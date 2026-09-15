@@ -254,6 +254,13 @@
       display: flex; justify-content: center; padding: 4px 0 12px;
       font-family: var(--font-mono); font-size: 12px; font-weight: 500; line-height: 1; color: var(--text-muted);
     }
+    /* On pointer devices the caption stays hidden until the card is hovered.
+       Its space is still reserved, so revealing it never shifts the layout.
+       Touch devices have no hover, so there it is simply always visible. */
+    @media (hover: hover) {
+      .shot .caption { opacity: 0; transition: opacity 0.2s ease; }
+      .shot:hover .caption, .shot:focus-within .caption { opacity: 1; }
+    }
 
     /* Plain image card (Figma-style: padded, rounded image, no browser chrome) */
     .figure { overflow: hidden; }
