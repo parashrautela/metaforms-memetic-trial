@@ -231,8 +231,11 @@
     .media:has(video source)::after { display: none; }
 
     /* Browser-window mockup */
-    .shot { background: var(--mockup-bg); overflow: hidden; }
-    .shot-inner { padding: 48px; }
+    .shot { background: var(--mockup-bg); overflow: hidden; display: flex; flex-direction: column; }
+    /* Side-by-side cards stretch to a shared height; the image stays centred in
+       whatever space it gets, so two slightly different shapes still line up. */
+    .shot-inner { padding: 48px; flex: 1; display: flex; align-items: center; }
+    .shot-inner > .figure { width: 100%; }
     .browser { border: 1px solid rgba(55, 61, 65, 0.6); overflow: hidden; }
     .browser-bar {
       position: relative; display: flex; align-items: center; height: 32px; padding: 0 14px;
@@ -666,7 +669,7 @@
               <div class="caption">"then let the next bottleneck tell you where to expand"</div>
             </div>
 
-            <!-- Pair row (as in the Figma reference) -->
+            <!-- Pair row: one tall card left, two stacked panels right (Figma reference) -->
             <div class="c6 shot">
               <div class="shot-inner shot-inner-sm">
                 <div class="figure"><div class="media"><img src="images/metaforms/metaforms-survey-programming-section.webp" alt="Start with survey programming section"></div></div>
@@ -675,9 +678,9 @@
             </div>
             <div class="c6 shot">
               <div class="shot-inner shot-inner-sm">
-                <div class="figure"><div class="media"><img src="images/metaforms/metaforms-support-section-real-help-real-person.webp" alt="Support section, real help from a real person"></div></div>
+                <div class="figure"><div class="media"><img src="images/metaforms/metaforms-reviewable-batches-and-client-revisions.webp" alt="Reviewable batches and client revisions sections"></div></div>
               </div>
-              <div class="caption">support section</div>
+              <div class="caption">reviewable batches and client revisions</div>
             </div>
 
             <div class="c12 shot">
@@ -703,6 +706,13 @@
             <div class="c4 phone-wrap"><div class="phone"><div class="media"><img src="images/metaforms/metaforms-mobile-rollout-and-cta-section.webp" alt="Mobile rollout and CTA section"></div></div></div>
             <div class="c4 phone-wrap"><div class="phone"><div class="media"><img src="images/metaforms/metaforms-mobile-survey-programming-section.webp" alt="Mobile survey programming section"></div></div></div>
             <div class="c4 phone-wrap"><div class="phone"><div class="media"><img src="images/metaforms/metaforms-mobile-client-revisions-and-testimonial-section.webp" alt="Mobile client revisions and testimonial section"></div></div></div>
+
+            <div class="c12 shot">
+              <div class="shot-inner">
+                <div class="figure"><div class="media"><img src="images/metaforms/metaforms-support-section-real-help-real-person.webp" alt="Support section, real help from a real person"></div></div>
+              </div>
+              <div class="caption">support section</div>
+            </div>
 
             <!-- ================= IN CONTEXT ================= -->
             <div class="c12 text-block">
