@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Case Study — Potpie</title>
+  <title>Case Study — Metaforms</title>
 
   <!-- Fonts: Bebas Neue (headings), Geist (body), Geist Mono (labels).
        The original site also uses "Geist Pixel" for two tiny captions; it is not on Google Fonts,
@@ -251,10 +251,16 @@
       font-family: var(--font-mono); font-size: 12px; font-weight: 500; line-height: 1; color: var(--text-muted);
     }
 
+    /* Plain image card (Figma-style: padded, rounded image, no browser chrome) */
+    .figure { border-radius: 4px; overflow: hidden; }
+    .figure .media { background: var(--surface-sunken); }
+    .shot-inner-sm { padding: 32px; }
+    @media (max-width: 767px) { .shot-inner-sm { padding: 20px; } }
+
     /* Phone mockup */
     .phone-wrap { background: var(--mockup-bg); padding: 24px; overflow: hidden; }
     .phone { border: 1px solid var(--border); border-radius: 2px; overflow: hidden; }
-    .phone .media { aspect-ratio: 134 / 254; }
+    .phone .media { aspect-ratio: 984 / 2400; }   /* matches the mobile screenshot exports */
 
     /* Tweet-style card (static markup replacing the embedded tweets) */
     .tweets { margin-top: 8px; }
@@ -425,14 +431,12 @@
       </div>
 
       <nav class="projects" aria-label="Projects">
-        <div><a class="proj-link" href="#"><span class="roll"><span>Supermemory</span><span>Supermemory</span></span></a></div>
-        <div><a class="proj-link" href="#"><span class="roll"><span>OdysseyML</span><span>OdysseyML</span></span></a></div>
-        <div><a class="proj-link active" href="#"><span class="roll"><span>Potpie</span><span>Potpie</span></span></a></div>
-        <div><a class="proj-link" href="#"><span class="roll"><span>Decimal</span><span>Decimal</span></span></a></div>
-        <div><a class="proj-link" href="#"><span class="roll"><span>Composio</span><span>Composio</span></span></a></div>
-        <div><a class="proj-link" href="#"><span class="roll"><span>100xEngineers</span><span>100xEngineers</span></span></a></div>
-        <div><a class="proj-link" href="#"><span class="roll"><span>Morni</span><span>Morni</span></span></a></div>
-        <div><a class="proj-link" href="#"><span class="roll"><span>10kdesigners</span><span>10kdesigners</span></span></a></div>
+        <div><a class="proj-link active" href="#"><span class="roll"><span>Metaforms</span><span>Metaforms</span></span></a></div>
+        <div><a class="proj-link" href="#"><span class="roll"><span>Yaas</span><span>Yaas</span></span></a></div>
+        <div><a class="proj-link" href="#"><span class="roll"><span>Hexalogs</span><span>Hexalogs</span></span></a></div>
+        <div><a class="proj-link" href="#"><span class="roll"><span>0xGasless</span><span>0xGasless</span></span></a></div>
+        <div><a class="proj-link" href="#"><span class="roll"><span>Blockpe</span><span>Blockpe</span></span></a></div>
+        <div><a class="proj-link" href="#"><span class="roll"><span>Nyayanidhi</span><span>Nyayanidhi</span></span></a></div>
       </nav>
     </div>
 
@@ -492,14 +496,12 @@
     <!-- Mobile menu (only used under 768px) -->
     <div class="mobile-menu" id="mobileMenu">
       <nav class="projects" aria-label="Projects">
-        <div><a class="proj-link" href="#">Supermemory</a></div>
-        <div><a class="proj-link" href="#">OdysseyML</a></div>
-        <div><a class="proj-link active" href="#">Potpie</a></div>
-        <div><a class="proj-link" href="#">Decimal</a></div>
-        <div><a class="proj-link" href="#">Composio</a></div>
-        <div><a class="proj-link" href="#">100xEngineers</a></div>
-        <div><a class="proj-link" href="#">Morni</a></div>
-        <div><a class="proj-link" href="#">10kdesigners</a></div>
+        <div><a class="proj-link active" href="#">Metaforms</a></div>
+        <div><a class="proj-link" href="#">Yaas</a></div>
+        <div><a class="proj-link" href="#">Hexalogs</a></div>
+        <div><a class="proj-link" href="#">0xGasless</a></div>
+        <div><a class="proj-link" href="#">Blockpe</a></div>
+        <div><a class="proj-link" href="#">Nyayanidhi</a></div>
       </nav>
       <div class="links">
         <a href="#">All Projects</a><a href="#">Video</a><a href="#">Brand</a><a href="#">Web</a><a href="#">Product</a><a href="#">Socials</a><a href="#">About</a>
@@ -512,17 +514,17 @@
         <!-- ================= HERO ================= -->
         <header class="hero">
           <div class="hero-title">
-            <h1 class="h1">Potpie</h1>
-            <p class="body">A developer-first AI brand built from the ground up</p>
+            <h1 class="h1">Metaforms</h1>
+            <p class="body">Honest and grounded AI infrastructure for research delivery teams</p>
           </div>
           <div class="hero-meta">
             <div class="meta-row">
               <span class="label">Client</span>
-              <a class="value" href="#" target="_blank" rel="noopener">Potpie <span class="arrow">↗</span></a>
+              <a class="value" href="https://metaforms.ai" target="_blank" rel="noopener">Metaforms <span class="arrow">↗</span></a>
             </div>
             <div class="meta-row">
               <span class="label">Services</span>
-              <span class="value">Brand Identity, Brand Strategy, Web Design &amp; Development, Motion Design, Content Strategy, Social Assets</span>
+              <span class="value">Brand Identity, Illustration, Web Design &amp; Development</span>
             </div>
             <div class="meta-row">
               <span class="label">Year</span>
@@ -535,11 +537,11 @@
         <div class="row-2">
           <div class="card">
             <h2 class="h2">The Challenge</h2>
-            <p class="body">Potpie had a powerful AI engineering platform but no brand. The website undersold the product. They needed an identity that could stand in front of enterprise procurement teams and individual developers at the same time.</p>
+            <p class="body">Metaforms sells AI infrastructure to market research agencies, a category full of cold gradients and generic robot imagery. They needed a brand that felt honest, human and grounded while still reading as serious software.</p>
           </div>
           <div class="card">
             <h2 class="h2">The Solution</h2>
-            <p class="body">Starting with a brand workshop, we uncovered the core metaphor: like the dish, Potpie offers comforting reliability with layers of depth beneath a simple surface. We translated this into a complete identity, design system and website built in Framer.</p>
+            <p class="body">A hand-drawn elephant mascot, warm cream and orange palette, serif headlines and sticky-note asides. We designed and built the full website around the story of removing one bottleneck at a time.</p>
           </div>
         </div>
 
@@ -547,278 +549,168 @@
         <div class="row-3">
           <div class="card">
             <span class="label eyebrow">Month 1</span>
-            <h2 class="h2">Brand Workshop + Identity</h2>
-            <p class="body">Ran a structured brand alignment workshop with the founders. Developed the logo, a cursor within a pie slice that doubles as a greater-than-or-equal-to symbol. Established the mathematical visual language inspired by generative art.</p>
+            <h2 class="h2">Research + Mascot</h2>
+            <p class="body">Audited competitors, built a moodboard and explored illustration styles until the orange elephant emerged as the face of the brand.</p>
           </div>
           <div class="card">
             <span class="label eyebrow">Month 2-3</span>
             <h2 class="h2">Website Design + Build</h2>
-            <p class="body">Designed the full website in Figma with the dark-teal and coral accent system. Built and launched natively in Framer with scroll interactions, CMS blog and reusable section kit. The full-team reveal earned spontaneous applause.</p>
+            <p class="body">Wireframed the narrative, explored hero directions, then designed every section with custom illustration and diagrams of the delivery chain.</p>
           </div>
           <div class="card">
             <span class="label eyebrow">Month 3.5</span>
-            <h2 class="h2">Launch</h2>
-            <p class="body">Timed the brand and website launch with Potpie's fundraise announcement. Forbes covered the fundraise. Framer featured the site. The design system scaled immediately into feature pages, use case templates and enterprise pages.</p>
+            <h2 class="h2">Build + Launch</h2>
+            <p class="body">Built the responsive site with mobile-first recrops of every illustration and shipped it with the new footer wordmark and support pages.</p>
           </div>
         </div>
 
         <!-- ================= CASE STUDY BODY ================= -->
+        <!-- Image order follows the Figma reference frame. Copy below is draft; replace with your own. -->
         <div class="casestudy">
           <div class="grid12">
 
-            <!-- Hero video (16:9). Drop an mp4 into src, or swap for an <img>. -->
+            <!-- Hero: full-bleed homepage video (WebM, muted autoplay loop; poster shows until it plays) -->
             <div class="c12">
-              <div class="media r169" data-label="Hero video · 16:9">
-                <video src="" autoplay muted loop playsinline></video>
+              <div class="media r169">
+                <video autoplay muted loop playsinline preload="metadata" poster="images/metaforms/metaforms-homepage-hero-honest-and-grounded-elephant.webp">
+                  <source src="images/metaforms/metaforms-homepage-v1.webm" type="video/webm">
+                </video>
               </div>
             </div>
 
+            <!-- Research -->
             <div class="c12 text-block">
-              <h3 class="h3">Brand Workshop</h3>
-              <p class="body">We run a brand alignment workshop before any design work starts. It's a framework we built in-house: tailored questions that dig into brand essence, positioning, audience and perception gaps.</p>
-              <p class="body">With Potpie, the founders were honest about where they stood: "Unfunded small company, indie hacker project, unpolished. But good work." They wanted to be seen as a premium enterprise offering worth putting in front of a procurement team. By the end of the session we had a clear picture of not just how the brand should look, but how it should feel.</p>
+              <h3 class="h3">Research + Competitor Analysis</h3>
+              <p class="body">We started by mapping the market research tooling landscape: how competitors position AI, how they talk to research delivery teams, and where the visual language of the category had gone stale. That audit set the direction for a warmer, more human brand.</p>
             </div>
 
-            <div class="c12"><div class="media r169" data-label="Brand workshop synthesis · 16:9"><img src="" alt="Brand workshop synthesis"></div></div>
-
-            <div class="c12 text-block">
-              <h3 class="h3">Potpie's Identity</h3>
-              <p class="body">We explored three directions over two weeks and narrowed to one. The logo is the top view of a potpie that also reads as a greater-than-or-equal-to symbol, with a cursor formed in the negative space. Three meanings in one mark. The color palette came from the dish itself: spinach green, peas green, cream. Warm and grounded while still reading as technical.</p>
+            <div class="c12 shot">
+              <div class="shot-inner">
+                <div class="figure"><div class="media r43"><img src="images/metaforms/metaforms-competitor-analysis-board.webp" alt="Competitor analysis board"></div></div>
+              </div>
+              <div class="caption">competitor analysis board</div>
             </div>
 
-            <div class="c12"><div class="media r169" data-label="Logo construction and meaning · 16:9"><img src="" alt="Logo construction and meaning"></div></div>
-            <div class="c12"><div class="media r169" data-label="Logo variations and lockups · 16:9"><img src="" alt="Logo variations and lockups"></div></div>
+            <!-- Mascot -->
+            <div class="c12 text-block">
+              <h3 class="h3">The Elephant</h3>
+              <p class="body">Metaforms needed a character that felt honest and grounded, not another abstract AI gradient. We built a moodboard around elephants, explored dozens of illustration styles, and landed on a hand-drawn orange elephant that could live in real-world scenes across the site.</p>
+            </div>
 
-            <!-- Two-column text -->
+            <div class="c12 shot">
+              <div class="shot-inner">
+                <div class="figure"><div class="media" style="aspect-ratio: 1800 / 602;"><img src="images/metaforms/metaforms-elephant-mascot-inspiration-moodboard.webp" alt="Elephant mascot inspiration moodboard"></div></div>
+              </div>
+              <div class="caption">mascot inspiration moodboard</div>
+            </div>
+
+            <div class="c12 shot">
+              <div class="shot-inner">
+                <div class="figure"><div class="media" style="aspect-ratio: 2000 / 885;"><img src="images/metaforms/metaforms-elephant-mascot-illustration-explorations.webp" alt="Elephant mascot illustration explorations"></div></div>
+              </div>
+              <div class="caption">mascot illustration explorations</div>
+            </div>
+
+            <div class="c12 shot">
+              <div class="shot-inner">
+                <div class="figure"><div class="media" style="aspect-ratio: 1800 / 618;"><img src="images/metaforms/metaforms-elephant-mascot-scene-illustrations-grid.webp" alt="Elephant mascot scene illustrations"></div></div>
+              </div>
+              <div class="caption">scene illustrations across the site</div>
+            </div>
+
+            <!-- Wireframes + hero explorations -->
             <div class="c6 text-block">
-              <h3 class="h3">Design System</h3>
-              <p class="body">Spinach green as the primary, peas green as the secondary, cream as the surface. Warm enough to feel approachable, sharp enough to feel technical. Uncut Sans as the typeface. Clean enough for UI, sharp enough for headlines.</p>
+              <h3 class="h3">Wireframes</h3>
+              <p class="body">Low-fidelity wireframes for the homepage locked the narrative first: the problem, the delivery chain, the bottleneck, the proof. Every section had a job before it had a look.</p>
             </div>
             <div class="c6 text-block">
               <div class="spacer" aria-hidden="true"></div>
-              <p class="body">Every element was built as a reusable component. Cards, sections, CTAs, illustration frames. Things that could snap together into new pages without losing the thread. The system had to work for a homepage, product pages, enterprise pricing, a blog and whatever came next.</p>
+              <p class="body">From there we explored several hero directions, from dark and editorial to cream and illustrated, before settling on the "Honest and grounded" concept with the elephant reading under a tree.</p>
             </div>
 
-            <div class="c12"><div class="media r169" data-label="Design system, tokens and components · 16:9"><img src="" alt="Design system, tokens and components"></div></div>
-
-            <div class="c6 text-block">
-              <h3 class="h3">Figma Iterations</h3>
-              <p class="body">We started with wireframes in Figma and moved into high-fidelity designs across homepage, product pages, enterprise pricing, blog and sign-up. Each page had its own layout and interaction pattern tailored to what that section of the site needed to do.</p>
-            </div>
-            <div class="c6 text-block">
-              <div class="spacer" aria-hidden="true"></div>
-              <p class="body">The site had to work for enterprise buyers and individual developers at the same time. Clear enough to explain a technical product, polished enough to close a deal. The hero section alone went through several rounds before anything moved into development.</p>
+            <div class="c12 shot">
+              <div class="shot-inner">
+                <div class="figure"><div class="media" style="aspect-ratio: 2400 / 1627;"><img src="images/metaforms/metaforms-homepage-full-page-layout.webp" alt="Homepage wireframes and full page layout"></div></div>
+              </div>
+              <div class="caption">homepage wireframes, full page layout</div>
             </div>
 
-            <div class="c12"><div class="media r169" data-label="Figma workspace, iterations across pages · 16:9"><img src="" alt="Figma workspace, iterations across pages"></div></div>
-
-            <!-- Text left, image right -->
-            <div class="c6 text-block">
-              <h3 class="h3">Framer Development</h3>
-              <p class="body">Everything built natively in Framer. No external libraries, no imported scripts. The hero animation runs entirely on Frames and vectors. Agent emblems, scramble text, packet animations, scroll interactions.</p>
-              <p class="body">The enterprise page uses Framer's native forms. The blog runs on Framer CMS with auto-generated table of contents. We also built a UI kit of reusable sections so the client can create new pages without needing a developer.</p>
+            <div class="c12 shot">
+              <div class="shot-inner">
+                <div class="figure"><div class="media" style="aspect-ratio: 1400 / 900;"><img src="images/metaforms/metaforms-homepage-hero-explorations-grid.webp" alt="Homepage hero explorations"></div></div>
+              </div>
+              <div class="caption">homepage hero explorations</div>
             </div>
-            <div class="c6"><div class="media r169" data-label="Framer build, components and CMS · 16:9"><img src="" alt="Framer build, components and CMS"></div></div>
 
             <!-- ================= THE WEBSITE ================= -->
             <div class="c12 text-block">
               <h2 class="h2">The Website</h2>
-              <p class="body">"Guys we showed the website to our team and everyone literally clapped. Wish I would have recorded that for you to see! But amazing work." The client presented the site to their engineering team before launch. This was the message we got right after.</p>
-            </div>
-
-            <!-- Browser mockups. Add class "with-bar" style by including the .browser-bar block; omit it for cropped sections. -->
-            <div class="c12 shot">
-              <div class="shot-inner">
-                <div class="browser">
-                  <div class="browser-bar"><div class="dots"><span></span><span></span><span></span></div><div class="url">potpie.ai</div></div>
-                  <div class="browser-body"><div class="media r1610" data-label="Homepage hero"><img src="" alt="Homepage hero with isometric code illustration"></div></div>
-                </div>
-              </div>
-              <div class="caption">homepage hero with isometric code illustration</div>
+              <p class="body">A hand-drawn, warm, editorial site for a technical product. Serif headlines, orange accents, sticky-note asides and the elephant guiding readers from bottleneck to rollout.</p>
             </div>
 
             <div class="c12 shot">
               <div class="shot-inner">
-                <div class="browser">
-                  <div class="browser-body"><div class="media r1610" data-label="Value proposition badges"><img src="" alt="Value proposition badges on light background"></div></div>
-                </div>
+                <div class="figure"><div class="media" style="aspect-ratio: 1800 / 1190;"><img src="images/metaforms/metaforms-next-bottleneck-delivery-chain-section.webp" alt="Next bottleneck delivery chain section"></div></div>
               </div>
-              <div class="caption">value proposition badges on light background</div>
+              <div class="caption">"then let the next bottleneck tell you where to expand"</div>
+            </div>
+
+            <!-- Pair row (as in the Figma reference) -->
+            <div class="c6 shot">
+              <div class="shot-inner shot-inner-sm">
+                <div class="figure"><div class="media" style="aspect-ratio: 1 / 1;"><img src="images/metaforms/metaforms-survey-programming-section.webp" alt="Start with survey programming section"></div></div>
+              </div>
+              <div class="caption">survey programming section</div>
+            </div>
+            <div class="c6 shot">
+              <div class="shot-inner shot-inner-sm">
+                <div class="figure"><div class="media" style="aspect-ratio: 1 / 1;"><img src="images/metaforms/metaforms-support-section-real-help-real-person.webp" alt="Support section, real help from a real person"></div></div>
+              </div>
+              <div class="caption">support section</div>
             </div>
 
             <div class="c12 shot">
               <div class="shot-inner">
-                <div class="browser">
-                  <div class="browser-bar"><div class="dots"><span></span><span></span><span></span></div><div class="url">potpie.ai</div></div>
-                  <div class="browser-body"><div class="media r1610" data-label="Product page"><img src="" alt="Product page with golden gate illustration"></div></div>
-                </div>
+                <div class="figure"><div class="media" style="aspect-ratio: 2400 / 816;"><img src="images/metaforms/metaforms-customer-testimonials-illustrated-portraits.webp" alt="Customer testimonials with illustrated portraits"></div></div>
               </div>
-              <div class="caption">product page with golden gate illustration</div>
+              <div class="caption">customer testimonials with illustrated portraits</div>
             </div>
 
             <div class="c12 shot">
               <div class="shot-inner">
-                <div class="browser">
-                  <div class="browser-body"><div class="media r1610" data-label="Solution features grid"><img src="" alt="Solution features grid with isometric icons"></div></div>
-                </div>
+                <div class="figure"><div class="media" style="aspect-ratio: 2000 / 1165;"><img src="images/metaforms/metaforms-ai-without-disrupting-cafe-illustration-section.webp" alt="AI that works without disrupting how your team works, cafe illustration"></div></div>
               </div>
-              <div class="caption">solution features grid with isometric icons</div>
+              <div class="caption">"AI that works without disrupting how your team works"</div>
             </div>
 
-            <div class="c12 shot">
-              <div class="shot-inner">
-                <div class="browser">
-                  <div class="browser-body"><div class="media r1610" data-label="Code understanding engine steps"><img src="" alt="Code understanding engine steps section"></div></div>
-                </div>
-              </div>
-              <div class="caption">code understanding engine steps section</div>
-            </div>
-
-            <div class="c12 shot">
-              <div class="shot-inner">
-                <div class="browser">
-                  <div class="browser-body"><div class="media r1610" data-label="Brand philosophy principles"><img src="" alt="Brand philosophy principles list section"></div></div>
-                </div>
-              </div>
-              <div class="caption">brand philosophy principles list section</div>
-            </div>
-
-            <div class="c12 shot">
-              <div class="shot-inner">
-                <div class="browser">
-                  <div class="browser-bar"><div class="dots"><span></span><span></span><span></span></div><div class="url">potpie.ai</div></div>
-                  <div class="browser-body"><div class="media r1610" data-label="Enterprise security page"><img src="" alt="Enterprise security page on dark teal"></div></div>
-                </div>
-              </div>
-              <div class="caption">enterprise security page on dark teal</div>
-            </div>
-
-            <div class="c12 shot">
-              <div class="shot-inner">
-                <div class="browser">
-                  <div class="browser-bar"><div class="dots"><span></span><span></span><span></span></div><div class="url">potpie.ai</div></div>
-                  <div class="browser-body"><div class="media r1610" data-label="Pricing page"><img src="" alt="Pricing page with two plan tiers"></div></div>
-                </div>
-              </div>
-              <div class="caption">pricing page with two plan tiers</div>
-            </div>
-
-            <div class="c12 shot">
-              <div class="shot-inner">
-                <div class="browser">
-                  <div class="browser-bar"><div class="dots"><span></span><span></span><span></span></div><div class="url">potpie.ai</div></div>
-                  <div class="browser-body"><div class="media r1610" data-label="Enterprise hero"><img src="" alt="Enterprise hero with city skyline illustration"></div></div>
-                </div>
-              </div>
-              <div class="caption">enterprise hero with city skyline illustration</div>
-            </div>
-
-            <div class="c12 shot">
-              <div class="shot-inner">
-                <div class="browser">
-                  <div class="browser-body"><div class="media r1610" data-label="Impact stats and testimonials"><img src="" alt="Impact stats and customer testimonials"></div></div>
-                </div>
-              </div>
-              <div class="caption">impact stats and customer testimonials</div>
-            </div>
-
-            <!-- Four phone mockups -->
-            <div class="c3 phone-wrap"><div class="phone"><div class="media" data-label="Mobile 1"><img src="" alt="Mobile screen 1"></div></div></div>
-            <div class="c3 phone-wrap"><div class="phone"><div class="media" data-label="Mobile 2"><img src="" alt="Mobile screen 2"></div></div></div>
-            <div class="c3 phone-wrap"><div class="phone"><div class="media" data-label="Mobile 3"><img src="" alt="Mobile screen 3"></div></div></div>
-            <div class="c3 phone-wrap"><div class="phone"><div class="media" data-label="Mobile 4"><img src="" alt="Mobile screen 4"></div></div></div>
-
-            <!-- ================= PRODUCT UI ================= -->
+            <!-- ================= MOBILE ================= -->
             <div class="c12 text-block">
-              <h2 class="h2">Product UI</h2>
-              <p class="body">We shipped these screens early through Figma so their engineering team could start building the product frontend while we were still working on the website. Sign-up flows, mobile variants, component patterns. Everything they needed to move without waiting on us.</p>
+              <h2 class="h2">Mobile</h2>
+              <p class="body">Every section was rebuilt for small screens rather than squeezed. Illustrations were recropped and the elephant reappears where the layout needed a beat.</p>
             </div>
 
-            <div class="c12 shot">
-              <div class="shot-inner"><div class="browser"><div class="browser-body"><div class="media r1610" data-label="Sign in screen"><img src="" alt="Sign in screen with testimonial sidebar"></div></div></div></div>
-              <div class="caption">sign in screen with testimonial sidebar</div>
-            </div>
-            <div class="c12 shot">
-              <div class="shot-inner"><div class="browser"><div class="browser-body"><div class="media r1610" data-label="Builds dashboard"><img src="" alt="Builds dashboard with feature cards"></div></div></div></div>
-              <div class="caption">builds dashboard with feature cards</div>
-            </div>
-            <div class="c12 shot">
-              <div class="shot-inner"><div class="browser"><div class="browser-body"><div class="media r1610" data-label="Chat interface"><img src="" alt="Chat interface with repo selector"></div></div></div></div>
-              <div class="caption">chat interface with repo selector</div>
-            </div>
+            <div class="c4 phone-wrap"><div class="phone"><div class="media"><img src="images/metaforms/metaforms-mobile-rollout-and-cta-section.webp" alt="Mobile rollout and CTA section"></div></div></div>
+            <div class="c4 phone-wrap"><div class="phone"><div class="media"><img src="images/metaforms/metaforms-mobile-survey-programming-section.webp" alt="Mobile survey programming section"></div></div></div>
+            <div class="c4 phone-wrap"><div class="phone"><div class="media"><img src="images/metaforms/metaforms-mobile-client-revisions-and-testimonial-section.webp" alt="Mobile client revisions and testimonial section"></div></div></div>
 
-            <!-- ================= BRAND IN USE ================= -->
+            <!-- ================= IN CONTEXT ================= -->
             <div class="c12 text-block">
-              <h2 class="h2">Brand in Use</h2>
-              <p class="body">A brand that only lives on a website isn't a brand. We stretched it across physical and digital. Same system, same rules, every surface.</p>
+              <h2 class="h2">In Context</h2>
+              <p class="body">The site as it is used: on a desk, on a monitor, in the hands of a research delivery team.</p>
             </div>
 
-            <div class="c12"><div class="media r169" data-label="Brand system overview · 16:9"><img src="" alt="Brand system overview"></div></div>
-            <div class="c6"><div class="media r169" data-label="Business cards"><img src="" alt="Business cards"></div></div>
-            <div class="c6"><div class="media r169" data-label="Social templates"><img src="" alt="Social templates"></div></div>
-            <div class="c6"><div class="media r169" data-label="Presentation slides"><img src="" alt="Presentation slides"></div></div>
-            <div class="c6"><div class="media r169" data-label="Merch design"><img src="" alt="Merch design"></div></div>
-            <div class="c6"><div class="media r169" data-label="Email signature"><img src="" alt="Email signature"></div></div>
-            <div class="c6"><div class="media r169" data-label="Sticker set"><img src="" alt="Sticker set"></div></div>
-
-            <!-- ================= LAUNCH ================= -->
-            <div class="c12 text-block">
-              <h2 class="h2">Launch</h2>
-              <p class="body">The site went live alongside Potpie's fundraise announcement and Forbes coverage. Brand, website and fundraise all launched together. Framer noticed the site and featured it. Forbes ran a piece on the fundraise.</p>
-            </div>
-
-            <div class="c12">
-              <div class="media r169" data-label="Launch video · 16:9">
-                <video src="" autoplay muted loop playsinline></video>
+            <div class="c12 shot">
+              <div class="shot-inner">
+                <div class="figure"><div class="media" style="aspect-ratio: 2400 / 1793;"><img src="images/metaforms/metaforms-survey-programming-desktop-monitor-mockup.webp" alt="Survey programming page on a desktop monitor"></div></div>
               </div>
+              <div class="caption">survey programming page on desktop</div>
             </div>
 
             <div class="c12 shot">
-              <div class="shot-inner"><div class="browser"><div class="browser-body"><div class="media r1610" data-label="Press / feature screenshot"><img src="" alt="Press coverage screenshot"></div></div></div></div>
-            </div>
-
-            <div class="c12"><div class="media r169" data-label="Launch day assets · 16:9"><img src="" alt="Launch day assets"></div></div>
-          </div>
-
-          <!-- Tweet cards (static markup; swap text, handles and media) -->
-          <div class="grid12 tweets">
-            <div class="c4">
-              <article class="tweet">
-                <div class="tweet-head">
-                  <div class="tweet-avatar"><img src="" alt=""></div>
-                  <div class="tweet-who">
-                    <span class="tweet-name">abhinav</span>
-                    <span class="tweet-handle">@abnux · <a href="#">Follow</a></span>
-                  </div>
-                  <span class="tweet-x"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></span>
-                </div>
-                <p class="tweet-body">Excited to launch the new brand, website &amp; video we worked on for <a href="#">@potpiedotai</a> 🥧
-
-Been a pleasure working with <a href="#">@aditikothari_</a> and team. Can't wait to share more!</p>
-                <div class="tweet-media"><div class="media r169" data-label="Tweet media"><img src="" alt=""></div></div>
-                <span class="tweet-date">8:18 PM · Feb 23, 2026</span>
-                <div class="tweet-actions"><span>♡ 82</span><span>Reply</span><span>Copy link</span></div>
-                <a class="tweet-replies" href="#">Read 14 replies</a>
-              </article>
-            </div>
-            <div class="c4">
-              <article class="tweet">
-                <div class="tweet-head">
-                  <div class="tweet-avatar"><img src="" alt=""></div>
-                  <div class="tweet-who">
-                    <span class="tweet-name">Aditi Kothari</span>
-                    <span class="tweet-handle">@aditikothari_ · <a href="#">Follow</a></span>
-                  </div>
-                  <span class="tweet-x"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></span>
-                </div>
-                <p class="tweet-body">We are announcing <a href="#">@potpiedotai</a> $2.2M pre-seed fundraise to advance Spec-Driven Development for large enterprise codebases.
-
-The round is led by <a href="#">@emergent_vc</a>, with participation from <a href="#">@All_IN_CAPITAL</a>, <a href="#">@DeVC_Global</a>, and <a href="#">@PointoneCapital</a>, along with the support of some amazing <a href="#">Show more</a></p>
-                <div class="tweet-media"><div class="media r169" data-label="Tweet media"><img src="" alt=""></div></div>
-                <span class="tweet-date">7:13 PM · Feb 23, 2026</span>
-                <div class="tweet-actions"><span>♡ 216</span><span>Reply</span><span>Copy link</span></div>
-                <a class="tweet-replies" href="#">Read 28 replies</a>
-              </article>
+              <div class="shot-inner">
+                <div class="figure"><div class="media" style="aspect-ratio: 2400 / 1160;"><img src="images/metaforms/metaforms-footer-orange-wordmark.webp" alt="Footer with the orange Metaforms wordmark"></div></div>
+              </div>
+              <div class="caption">footer with the orange wordmark</div>
             </div>
           </div>
         </div>
@@ -832,28 +724,28 @@ The round is led by <a href="#">@emergent_vc</a>, with participation from <a hre
           <div class="more-grid">
             <div class="more-card">
               <a href="#">
-                <div class="media thumb" data-label="Supermemory"><img src="" alt="Supermemory"></div>
+                <div class="media thumb" data-label="Yaas"><img src="" alt="Yaas"></div>
                 <div class="more-info">
-                  <div class="stack"><span class="title">Supermemory</span><span class="label">Brand, Web, Product, Video</span></div>
-                  <span class="label stage">$3M Seed</span>
+                  <div class="stack"><span class="title">Yaas</span><span class="label">Brand, Web</span></div>
+                  <span class="label stage">Case study</span>
                 </div>
               </a>
             </div>
             <div class="more-card">
               <a href="#">
-                <div class="media thumb" data-label="OdysseyML"><img src="" alt="OdysseyML"></div>
+                <div class="media thumb" data-label="Hexalogs"><img src="" alt="Hexalogs"></div>
                 <div class="more-info">
-                  <div class="stack"><span class="title">OdysseyML</span><span class="label">Web, Video, Motion</span></div>
-                  <span class="label stage">$310M Series B</span>
+                  <div class="stack"><span class="title">Hexalogs</span><span class="label">Brand, Web</span></div>
+                  <span class="label stage">Case study</span>
                 </div>
               </a>
             </div>
             <div class="more-card">
               <a href="#">
-                <div class="media thumb" data-label="10kdesigners"><img src="" alt="10kdesigners"></div>
+                <div class="media thumb" data-label="0xGasless"><img src="" alt="0xGasless"></div>
                 <div class="more-info">
-                  <div class="stack"><span class="title">10kdesigners</span><span class="label">Web, Brand, Video</span></div>
-                  <span class="label stage">In-house</span>
+                  <div class="stack"><span class="title">0xGasless</span><span class="label">Web, Motion, Video</span></div>
+                  <span class="label stage">Case study</span>
                 </div>
               </a>
             </div>
@@ -891,9 +783,9 @@ The round is led by <a href="#">@emergent_vc</a>, with participation from <a hre
 </div>
 
 <!-- Floating CTA (desktop) -->
-<a class="visit-btn" href="#" target="_blank" rel="noopener">
+<a class="visit-btn" href="https://metaforms.ai" target="_blank" rel="noopener">
   <span class="cta">Visit Website</span>
-  <span class="url">potpie.ai</span>
+  <span class="url">metaforms.ai</span>
   <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
 </a>
 
