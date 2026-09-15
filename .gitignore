@@ -1,0 +1,5 @@
+.DS_Store
+.claude/
+*-context.md
+design-context-raw.md
+implementation-plan.md
