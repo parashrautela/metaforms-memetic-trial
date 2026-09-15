@@ -215,6 +215,10 @@
     .media.r1610 { aspect-ratio: 16 / 10; }
     .media.r43 { aspect-ratio: 4 / 3; }
     .media img, .media video { width: 100%; height: 100%; object-fit: cover; }
+    /* A box holding a real image takes the image's own proportions: no crop, no squash. */
+    .media:has(img[src]:not([src=""])) { aspect-ratio: auto !important; }
+    .media img { height: auto; }
+
     .media[data-label]::after {
       content: attr(data-label);
       position: absolute; inset: 0;
@@ -229,7 +233,7 @@
     /* Browser-window mockup */
     .shot { background: var(--mockup-bg); overflow: hidden; }
     .shot-inner { padding: 48px; }
-    .browser { border: 1px solid rgba(55, 61, 65, 0.6); border-radius: 4px; overflow: hidden; }
+    .browser { border: 1px solid rgba(55, 61, 65, 0.6); overflow: hidden; }
     .browser-bar {
       position: relative; display: flex; align-items: center; height: 32px; padding: 0 14px;
       background: #1b1c20;
@@ -241,7 +245,7 @@
     .browser-bar .dots span:nth-child(3) { background: #27c93f; }
     .browser-bar .url {
       position: absolute; left: 50%; transform: translateX(-50%);
-      width: 199px; padding: 3px 12px; border-radius: 4px; background: #090e11;
+      width: 199px; padding: 3px 12px; background: #090e11;
       font-size: 10px; line-height: 1.5; color: #888; text-align: center;
     }
     .browser-body { background: var(--mockup-bg); }
@@ -252,14 +256,14 @@
     }
 
     /* Plain image card (Figma-style: padded, rounded image, no browser chrome) */
-    .figure { border-radius: 4px; overflow: hidden; }
+    .figure { overflow: hidden; }
     .figure .media { background: transparent; }   /* transparent PNG/webp areas show the card colour */
     .shot-inner-sm { padding: 32px; }
     @media (max-width: 767px) { .shot-inner-sm { padding: 20px; } }
 
     /* Phone mockup */
     .phone-wrap { background: var(--mockup-bg); padding: 24px; overflow: hidden; }
-    .phone { border: 1px solid var(--border); border-radius: 2px; overflow: hidden; }
+    .phone { border: 1px solid var(--border); overflow: hidden; }
     .phone .media { aspect-ratio: 984 / 2400; background: transparent; }   /* matches the mobile screenshot exports */
 
     /* Tweet-style card (static markup replacing the embedded tweets) */
@@ -267,7 +271,7 @@
     .tweet {
       display: flex; flex-direction: column; gap: 12px;
       padding: 12px 16px;
-      background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+      background: var(--surface); border: 1px solid var(--border);
       font-size: 15px; line-height: 1.4;
     }
     .tweet-head { display: flex; align-items: center; gap: 12px; }
@@ -281,12 +285,12 @@
     .tweet-x svg { width: 24px; height: 24px; fill: var(--text-primary); }
     .tweet-body { white-space: pre-line; }
     .tweet-body a { color: #1d9bf0; }
-    .tweet-media { border-radius: 12px; overflow: hidden; border: 1px solid var(--border); }
+    .tweet-media { overflow: hidden; border: 1px solid var(--border); }
     .tweet-date { color: var(--text-muted); font-size: 15px; }
     .tweet-actions { display: flex; align-items: center; gap: 16px; color: var(--text-muted); font-size: 14px; padding-top: 4px; border-top: 1px solid var(--border); }
     .tweet-actions span { display: flex; align-items: center; gap: 6px; }
     .tweet-replies {
-      display: block; text-align: center; padding: 8px 0; border: 1px solid var(--border); border-radius: 999px;
+      display: block; text-align: center; padding: 8px 0; border: 1px solid var(--border);
       color: #1d9bf0; font-size: 15px; font-weight: 500;
     }
 
@@ -586,7 +590,7 @@
 
             <div class="c12 shot">
               <div class="shot-inner">
-                <div class="figure"><div class="media r43"><img src="images/metaforms/metaforms-competitor-analysis-board.webp" alt="Competitor analysis board"></div></div>
+                <div class="figure"><div class="media"><img src="images/metaforms/metaforms-competitor-analysis-board.webp" alt="Competitor analysis board"></div></div>
               </div>
               <div class="caption">competitor analysis board</div>
             </div>
@@ -599,21 +603,21 @@
 
             <div class="c12 shot">
               <div class="shot-inner">
-                <div class="figure"><div class="media" style="aspect-ratio: 1800 / 602;"><img src="images/metaforms/metaforms-elephant-mascot-inspiration-moodboard.webp" alt="Elephant mascot inspiration moodboard"></div></div>
+                <div class="figure"><div class="media"><img src="images/metaforms/metaforms-elephant-mascot-inspiration-moodboard.webp" alt="Elephant mascot inspiration moodboard"></div></div>
               </div>
               <div class="caption">mascot inspiration moodboard</div>
             </div>
 
             <div class="c12 shot">
               <div class="shot-inner">
-                <div class="figure"><div class="media" style="aspect-ratio: 2000 / 885;"><img src="images/metaforms/metaforms-elephant-mascot-illustration-explorations.webp" alt="Elephant mascot illustration explorations"></div></div>
+                <div class="figure"><div class="media"><img src="images/metaforms/metaforms-elephant-mascot-illustration-explorations.webp" alt="Elephant mascot illustration explorations"></div></div>
               </div>
               <div class="caption">mascot illustration explorations</div>
             </div>
 
             <div class="c12 shot">
               <div class="shot-inner">
-                <div class="figure"><div class="media" style="aspect-ratio: 1800 / 618;"><img src="images/metaforms/metaforms-elephant-mascot-scene-illustrations-grid.webp" alt="Elephant mascot scene illustrations"></div></div>
+                <div class="figure"><div class="media"><img src="images/metaforms/metaforms-elephant-mascot-scene-illustrations-grid.webp" alt="Elephant mascot scene illustrations"></div></div>
               </div>
               <div class="caption">scene illustrations across the site</div>
             </div>
@@ -630,14 +634,14 @@
 
             <div class="c12 shot">
               <div class="shot-inner">
-                <div class="figure"><div class="media" style="aspect-ratio: 2400 / 1627;"><img src="images/metaforms/metaforms-homepage-full-page-layout.webp" alt="Homepage wireframes and full page layout"></div></div>
+                <div class="figure"><div class="media"><img src="images/metaforms/metaforms-homepage-full-page-layout.webp" alt="Homepage wireframes and full page layout"></div></div>
               </div>
               <div class="caption">homepage wireframes, full page layout</div>
             </div>
 
             <div class="c12 shot">
               <div class="shot-inner">
-                <div class="figure"><div class="media" style="aspect-ratio: 1400 / 900;"><img src="images/metaforms/metaforms-homepage-hero-explorations-grid.webp" alt="Homepage hero explorations"></div></div>
+                <div class="figure"><div class="media"><img src="images/metaforms/metaforms-homepage-hero-explorations-grid.webp" alt="Homepage hero explorations"></div></div>
               </div>
               <div class="caption">homepage hero explorations</div>
             </div>
@@ -650,7 +654,7 @@
 
             <div class="c12 shot">
               <div class="shot-inner">
-                <div class="figure"><div class="media" style="aspect-ratio: 1800 / 1190;"><img src="images/metaforms/metaforms-next-bottleneck-delivery-chain-section.webp" alt="Next bottleneck delivery chain section"></div></div>
+                <div class="figure"><div class="media"><img src="images/metaforms/metaforms-next-bottleneck-delivery-chain-section.webp" alt="Next bottleneck delivery chain section"></div></div>
               </div>
               <div class="caption">"then let the next bottleneck tell you where to expand"</div>
             </div>
@@ -658,27 +662,27 @@
             <!-- Pair row (as in the Figma reference) -->
             <div class="c6 shot">
               <div class="shot-inner shot-inner-sm">
-                <div class="figure"><div class="media" style="aspect-ratio: 1 / 1;"><img src="images/metaforms/metaforms-survey-programming-section.webp" alt="Start with survey programming section"></div></div>
+                <div class="figure"><div class="media"><img src="images/metaforms/metaforms-survey-programming-section.webp" alt="Start with survey programming section"></div></div>
               </div>
               <div class="caption">survey programming section</div>
             </div>
             <div class="c6 shot">
               <div class="shot-inner shot-inner-sm">
-                <div class="figure"><div class="media" style="aspect-ratio: 1 / 1;"><img src="images/metaforms/metaforms-support-section-real-help-real-person.webp" alt="Support section, real help from a real person"></div></div>
+                <div class="figure"><div class="media"><img src="images/metaforms/metaforms-support-section-real-help-real-person.webp" alt="Support section, real help from a real person"></div></div>
               </div>
               <div class="caption">support section</div>
             </div>
 
             <div class="c12 shot">
               <div class="shot-inner">
-                <div class="figure"><div class="media" style="aspect-ratio: 2400 / 816;"><img src="images/metaforms/metaforms-customer-testimonials-illustrated-portraits.webp" alt="Customer testimonials with illustrated portraits"></div></div>
+                <div class="figure"><div class="media"><img src="images/metaforms/metaforms-customer-testimonials-illustrated-portraits.webp" alt="Customer testimonials with illustrated portraits"></div></div>
               </div>
               <div class="caption">customer testimonials with illustrated portraits</div>
             </div>
 
             <div class="c12 shot">
               <div class="shot-inner">
-                <div class="figure"><div class="media" style="aspect-ratio: 2000 / 1165;"><img src="images/metaforms/metaforms-ai-without-disrupting-cafe-illustration-section.webp" alt="AI that works without disrupting how your team works, cafe illustration"></div></div>
+                <div class="figure"><div class="media"><img src="images/metaforms/metaforms-ai-without-disrupting-cafe-illustration-section.webp" alt="AI that works without disrupting how your team works, cafe illustration"></div></div>
               </div>
               <div class="caption">"AI that works without disrupting how your team works"</div>
             </div>
@@ -701,14 +705,14 @@
 
             <div class="c12 shot">
               <div class="shot-inner">
-                <div class="figure"><div class="media" style="aspect-ratio: 2400 / 1793;"><img src="images/metaforms/metaforms-survey-programming-desktop-monitor-mockup.webp" alt="Survey programming page on a desktop monitor"></div></div>
+                <div class="figure"><div class="media"><img src="images/metaforms/metaforms-survey-programming-desktop-monitor-mockup.webp" alt="Survey programming page on a desktop monitor"></div></div>
               </div>
               <div class="caption">survey programming page on desktop</div>
             </div>
 
             <div class="c12 shot">
               <div class="shot-inner">
-                <div class="figure"><div class="media" style="aspect-ratio: 2400 / 1160;"><img src="images/metaforms/metaforms-footer-orange-wordmark.webp" alt="Footer with the orange Metaforms wordmark"></div></div>
+                <div class="figure"><div class="media"><img src="images/metaforms/metaforms-footer-orange-wordmark.webp" alt="Footer with the orange Metaforms wordmark"></div></div>
               </div>
               <div class="caption">footer with the orange wordmark</div>
             </div>
