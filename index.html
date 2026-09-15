@@ -586,9 +586,12 @@
             <!-- Hero: full-bleed homepage video (WebM, muted autoplay loop; poster shows until it plays) -->
             <div class="c12">
               <div class="media r169">
-                <video autoplay muted loop playsinline preload="metadata" poster="images/metaforms/metaforms-homepage-hero-honest-and-grounded-elephant-2600.webp">
-                  <source src="images/metaforms/metaforms-homepage-v1.webm" type="video/webm">
-                </video>
+                <!-- Source is chosen by viewport in the script below: 4K on desktop, 720p on phones.
+                     The media attribute on <source> is unreliable inside <video>, so JS sets it. -->
+                <video id="heroVideo" autoplay muted loop playsinline preload="metadata"
+                       poster="images/metaforms/metaforms-homepage-hero-honest-and-grounded-elephant-2600.webp"
+                       data-src-lg="images/metaforms/metaforms-homepage-2160.webm"
+                       data-src-sm="images/metaforms/metaforms-homepage-720.webm"></video>
               </div>
             </div>
 
@@ -843,6 +846,19 @@
     sync();
     window.addEventListener('resize', sync);
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(sync);
+  })();
+
+  // Hero video: pick 4K on desktop, 720p on phones, then start it.
+  (function () {
+    var v = document.getElementById('heroVideo');
+    if (!v) return;
+    var big = window.matchMedia('(min-width: 768px)').matches;
+    v.addEventListener('loadeddata', function () {
+      var go = v.play();
+      if (go && go.catch) go.catch(function () {});   // autoplay blocked: poster stays
+    }, { once: true });
+    v.src = big ? v.dataset.srcLg : v.dataset.srcSm;
+    v.load();
   })();
 
   // Mobile menu
