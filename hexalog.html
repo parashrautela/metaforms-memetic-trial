@@ -601,9 +601,16 @@
         <div class="casestudy">
           <div class="grid12">
 
-            <!-- Hero: the shipped homepage hero, full-bleed -->
+            <!-- Hero: full-bleed site walkthrough (muted autoplay loop; poster shows until it plays) -->
             <div class="c12">
-              <div class="media r169"><img width="2600" height="1471" src="images/hexalog/hexalog-homepage-hero-cross-border-supply-chain-2600.webp" srcset="images/hexalog/hexalog-homepage-hero-cross-border-supply-chain-1400.webp 1400w, images/hexalog/hexalog-homepage-hero-cross-border-supply-chain-2600.webp 2600w, images/hexalog/hexalog-homepage-hero-cross-border-supply-chain-3966.webp 3966w" sizes="(max-width: 767px) calc(100vw - 72px), calc(100vw - 360px)" fetchpriority="high" decoding="async" alt="Hexalog homepage hero: the operating layer for your entire cross-border supply chain, over an illustrated port town at dusk"></div>
+              <div class="media r169">
+                <!-- Source is chosen by viewport in the script below: 1080p60 on desktop, 720p on phones. -->
+                <video id="heroVideo" autoplay muted loop playsinline preload="metadata"
+                       poster="images/hexalog/motion/hexalog-website-walkthrough-poster.webp"
+                       data-src-lg="images/hexalog/motion/hexalog-website-walkthrough-1920.webm"
+                       data-src-sm="images/hexalog/motion/hexalog-website-walkthrough-1280.mp4"
+                       aria-label="Walkthrough of the Hexalog website, from the illustrated hero to the closing call to action"></video>
+              </div>
             </div>
 
             <!-- ================= BRAND WORKSHOP ================= -->
@@ -705,6 +712,12 @@
                 <div class="figure"><div class="media"><img width="2600" height="1843" src="images/hexalog/hexalog-homepage-hero-explorations-grid-2600.webp" srcset="images/hexalog/hexalog-homepage-hero-explorations-grid-1400.webp 1400w, images/hexalog/hexalog-homepage-hero-explorations-grid-2600.webp 2600w, images/hexalog/hexalog-homepage-hero-explorations-grid-3966.webp 3966w" sizes="(max-width: 767px) calc(100vw - 72px), calc(100vw - 360px)" loading="lazy" decoding="async" alt="Four homepage hero explorations with illustrated supply chain scenes"></div></div>
               </div>
               <div class="caption">hero explorations</div>
+            </div>
+            <div class="c12 shot">
+              <div class="shot-inner">
+                <div class="figure"><div class="media"><img width="2600" height="1471" src="images/hexalog/hexalog-homepage-hero-cross-border-supply-chain-2600.webp" srcset="images/hexalog/hexalog-homepage-hero-cross-border-supply-chain-1400.webp 1400w, images/hexalog/hexalog-homepage-hero-cross-border-supply-chain-2600.webp 2600w, images/hexalog/hexalog-homepage-hero-cross-border-supply-chain-3966.webp 3966w" sizes="(max-width: 767px) calc(100vw - 72px), calc(100vw - 360px)" loading="lazy" decoding="async" alt="Hexalog homepage hero: the operating layer for your entire cross-border supply chain, over an illustrated port town at dusk"></div></div>
+              </div>
+              <div class="caption">the hero that shipped</div>
             </div>
             <div class="c12 shot">
               <div class="shot-inner">
