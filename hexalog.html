@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Case Study — Metaforms</title>
+  <title>Case Study — Hexalog</title>
 
   <!-- Fonts: Bebas Neue (headings), Geist (body), Geist Mono (labels).
        The original site also uses "Geist Pixel" for two tiny captions; it is not on Google Fonts,
@@ -202,11 +202,15 @@
     .casestudy { padding: 0 12px; }
     .grid12 { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 8px; }
     .c12 { grid-column: span 12; }
+    .c8  { grid-column: span 8; }
     .c6  { grid-column: span 6; }
     .c4  { grid-column: span 4; }
     .c3  { grid-column: span 3; }
 
     .text-block { display: flex; flex-direction: column; gap: 16px; padding: 24px 12px; }
+    /* Text set beside an image: sits at the foot of its column, as in the Figma layout */
+    .text-side { justify-content: flex-end; padding: 24px; }
+    .text-block .eyebrow { color: var(--accent); }
     .text-block .spacer { height: 32px; }   /* aligns a companion paragraph with a heading on its left */
 
     /* Generic media frame. Put your <img>/<video> inside; the data-label text shows only while empty. */
@@ -273,6 +277,11 @@
     }
     .figure .media { background: transparent; }   /* transparent PNG/webp areas show the card colour */
     .shot-inner-sm { padding: 32px; }
+    /* Near-square images on a full row: capped and centred so they don't tower */
+    .shot-inner > .figure.figure-narrow { max-width: 760px; margin: 0 auto; }
+    /* Two cards stacked in one half-width column, beside a taller card */
+    .stack { display: flex; flex-direction: column; gap: 8px; }
+    .stack > .shot { flex: 1; }
     @media (max-width: 767px) { .shot-inner-sm { padding: 20px; } }
 
     /* Phone mockup */
@@ -385,7 +394,8 @@
       .card:last-child { border-bottom: 0; }
 
       .grid12 { grid-template-columns: 1fr; }
-      .c12, .c6, .c4, .c3 { grid-column: auto; }
+      .c12, .c8, .c6, .c4, .c3 { grid-column: auto; }
+      .text-side { padding: 24px 12px; }
       .shot-inner { padding: 24px; }
       .browser-bar .url { width: 140px; }
 
@@ -451,10 +461,10 @@
       </div>
 
       <nav class="projects" aria-label="Projects">
-        <div><a class="proj-link active" href="#"><span class="roll"><span>Metaforms</span><span>Metaforms</span></span></a></div>
+        <div><a class="proj-link" href="index.html"><span class="roll"><span>Metaforms</span><span>Metaforms</span></span></a></div>
         <div><a class="proj-link" href="cxverse.html"><span class="roll"><span>CXVERSE</span><span>CXVERSE</span></span></a></div>
         <div><a class="proj-link" href="#"><span class="roll"><span>Yaas</span><span>Yaas</span></span></a></div>
-        <div><a class="proj-link" href="hexalog.html"><span class="roll"><span>Hexalog</span><span>Hexalog</span></span></a></div>
+        <div><a class="proj-link active" href="#"><span class="roll"><span>Hexalog</span><span>Hexalog</span></span></a></div>
         <div><a class="proj-link" href="#"><span class="roll"><span>0xGasless</span><span>0xGasless</span></span></a></div>
         <div><a class="proj-link" href="#"><span class="roll"><span>Blockpe</span><span>Blockpe</span></span></a></div>
         <div><a class="proj-link" href="nyayanidhi.html"><span class="roll"><span>Nyayanidhi</span><span>Nyayanidhi</span></span></a></div>
@@ -517,10 +527,10 @@
     <!-- Mobile menu (only used under 768px) -->
     <div class="mobile-menu" id="mobileMenu">
       <nav class="projects" aria-label="Projects">
-        <div><a class="proj-link active" href="#">Metaforms</a></div>
+        <div><a class="proj-link" href="index.html">Metaforms</a></div>
         <div><a class="proj-link" href="cxverse.html">CXVERSE</a></div>
         <div><a class="proj-link" href="#">Yaas</a></div>
-        <div><a class="proj-link" href="hexalog.html">Hexalog</a></div>
+        <div><a class="proj-link active" href="#">Hexalog</a></div>
         <div><a class="proj-link" href="#">0xGasless</a></div>
         <div><a class="proj-link" href="#">Blockpe</a></div>
         <div><a class="proj-link" href="nyayanidhi.html">Nyayanidhi</a></div>
@@ -536,21 +546,21 @@
         <!-- ================= HERO ================= -->
         <header class="hero">
           <div class="hero-title">
-            <h1 class="h1">Metaforms</h1>
-            <p class="body">Honest and grounded AI infrastructure for research delivery teams</p>
+            <h1 class="h1">Hexalog</h1>
+            <p class="body">The supply-chain operating layer for cross-border commerce.</p>
           </div>
           <div class="hero-meta">
             <div class="meta-row">
               <span class="label">Client</span>
-              <a class="value" href="https://metaforms.ai" target="_blank" rel="noopener">Metaforms <span class="arrow">↗</span></a>
+              <a class="value" href="https://hexalog.in" target="_blank" rel="noopener">Hexalog <span class="arrow">↗</span></a>
             </div>
             <div class="meta-row">
               <span class="label">Services</span>
-              <span class="value">Brand Identity, Illustration, Web Design &amp; Development</span>
+              <span class="value">Brand Identity, Brand Guidelines, Design System, Web &amp; Motion</span>
             </div>
             <div class="meta-row">
               <span class="label">Year</span>
-              <span class="value">2025–2026</span>
+              <span class="value">2026</span>
             </div>
           </div>
         </header>
@@ -559,403 +569,265 @@
         <div class="row-2">
           <div class="card">
             <h2 class="h2">The Challenge</h2>
-            <p class="body">Metaforms sells AI infrastructure to market research agencies, a category full of cold gradients and generic robot imagery. They needed a brand that felt honest, human and grounded while still reading as serious software.</p>
+            <p class="body">Hexalog moves freight across borders for two hundred brands: forwarding, customs, warehousing, last mile. But it presented like every other logistics vendor, a service in a stack of services, judged on rate cards. It needed an identity that made it the layer everything else plugs into, not another line on the invoice.</p>
           </div>
           <div class="card">
             <h2 class="h2">The Solution</h2>
-            <p class="body">A hand-drawn elephant mascot, warm cream and orange palette, serif headlines and sticky-note asides. We designed and built the full website around the story of removing one bottleneck at a time.</p>
+            <p class="body">A brand built as infrastructure. One idea, one partner from factory to doorstep, carried through to a hexagon that reads as a container from one angle and a forward arrow from the other, a deep-purple and iris system with a signal-green accent, and a mascot that carries the warmth the data plane can’t.</p>
           </div>
         </div>
 
         <!-- ================= TIMELINE ================= -->
         <div class="row-3">
           <div class="card">
-            <span class="label eyebrow">Month 1</span>
-            <h2 class="h2">Research + Mascot</h2>
-            <p class="body">Audited competitors, built a moodboard and explored illustration styles until the orange elephant emerged as the face of the brand.</p>
+            <span class="label eyebrow">Phase 01</span>
+            <h2 class="h2">Positioning</h2>
+            <p class="body">Ran a four-board workshop down to a single idea: Hexalog isn’t a carrier, it’s the orchestration layer between the factory floor and the customer’s door. Mapped the archetype territory to find where Hexalog actually sits.</p>
           </div>
           <div class="card">
-            <span class="label eyebrow">Month 2-3</span>
-            <h2 class="h2">Website Design + Build</h2>
-            <p class="body">Wireframed the narrative, explored hero directions, then designed every section with custom illustration and diagrams of the delivery chain.</p>
+            <span class="label eyebrow">Phase 02</span>
+            <h2 class="h2">Identity + System</h2>
+            <p class="body">Turned the box into a mark: a hexagon built from three isometric planes that reads as a container, a package and a forward arrow depending on how you hold it. Built the system around it: primary purple, iris, signal green, Hauora and Geist.</p>
           </div>
           <div class="card">
-            <span class="label eyebrow">Month 3.5</span>
-            <h2 class="h2">Build + Launch</h2>
-            <p class="body">Built the responsive site with mobile-first recrops of every illustration and shipped it with the new footer wordmark and support pages.</p>
+            <span class="label eyebrow">Phase 03</span>
+            <h2 class="h2">Deployment</h2>
+            <p class="body">Brand guidelines, a sixty-slide deck kit, a two-hundred-icon logistics set, fleet and container livery, office signage, a mascot system and a responsive site with an illustrated hero. Shipped across every breakpoint.</p>
           </div>
         </div>
 
         <!-- ================= CASE STUDY BODY ================= -->
-        <!-- Image order follows the Figma reference frame. Copy below is draft; replace with your own. -->
+        <!-- Copy and image order follow the "Container — Hexalog" frame in the memetic.design-LP Figma file. Images are encoded from the originals in "Memetic Agency work /Hexalogs". -->
         <div class="casestudy">
           <div class="grid12">
 
-            <!-- Hero: full-bleed homepage video (WebM, muted autoplay loop; poster shows until it plays) -->
+            <!-- Hero: the shipped homepage hero, full-bleed -->
             <div class="c12">
-              <div class="media r169">
-                <!-- Source is chosen by viewport in the script below: 4K on desktop, 720p on phones.
-                     The media attribute on <source> is unreliable inside <video>, so JS sets it. -->
-                <video id="heroVideo" autoplay muted loop playsinline preload="metadata"
-                       poster="images/metaforms/metaforms-homepage-hero-honest-and-grounded-elephant-2600.webp"
-                       data-src-lg="images/metaforms/metaforms-homepage-2160.webm"
-                       data-src-sm="images/metaforms/metaforms-homepage-720.webm"></video>
-              </div>
+              <div class="media r169"><img width="2600" height="1471" src="images/hexalog/hexalog-homepage-hero-cross-border-supply-chain-2600.webp" srcset="images/hexalog/hexalog-homepage-hero-cross-border-supply-chain-1400.webp 1400w, images/hexalog/hexalog-homepage-hero-cross-border-supply-chain-2600.webp 2600w, images/hexalog/hexalog-homepage-hero-cross-border-supply-chain-3966.webp 3966w" sizes="(max-width: 767px) calc(100vw - 72px), calc(100vw - 360px)" fetchpriority="high" decoding="async" alt="Hexalog homepage hero: the operating layer for your entire cross-border supply chain, over an illustrated port town at dusk"></div>
             </div>
 
-            <!-- Research -->
+            <!-- ================= BRAND WORKSHOP ================= -->
             <div class="c12 text-block">
-              <h3 class="h3">Research + Competitor Analysis</h3>
-              <p class="body">We started by mapping the market research tooling landscape: how competitors position AI, how they talk to research delivery teams, and where the visual language of the category had gone stale. That audit set the direction for a warmer, more human brand.</p>
+              <h2 class="h2">Brand Workshop</h2>
+              <p class="body">We ran a four-board workshop with the Hexalog founders covering brand essence, DNA, meta questions and vibe. The core tension surfaced early: whether Hexalog was a logistics operator that had bought software, or a technology company that happened to move boxes. We mapped what they wanted to avoid, what they wanted to achieve and what had to be retained from the existing identity. The team landed on operating layer, which set the direction for everything that followed.</p>
             </div>
-
             <div class="c12 shot">
               <div class="shot-inner">
-                <div class="figure"><div class="media"><img width="2600" height="1932" src="images/metaforms/metaforms-competitor-analysis-board-2600.webp" srcset="images/metaforms/metaforms-competitor-analysis-board-1400.webp 1400w, images/metaforms/metaforms-competitor-analysis-board-2600.webp 2600w, images/metaforms/metaforms-competitor-analysis-board-3966.webp 3966w" sizes="(max-width: 767px) calc(100vw - 72px), calc(100vw - 360px)" loading="lazy" decoding="async" alt="Competitor analysis board"></div></div>
+                <div class="figure"><div class="media"><img width="2600" height="1123" src="images/hexalog/hexalog-brand-workshop-essence-dna-vibe-boards-2600.webp" srcset="images/hexalog/hexalog-brand-workshop-essence-dna-vibe-boards-1400.webp 1400w, images/hexalog/hexalog-brand-workshop-essence-dna-vibe-boards-2600.webp 2600w, images/hexalog/hexalog-brand-workshop-essence-dna-vibe-boards-3966.webp 3966w" sizes="(max-width: 767px) calc(100vw - 72px), calc(100vw - 360px)" loading="lazy" decoding="async" alt="Brand workshop boards covering essence, DNA, meta questions and vibe"></div></div>
               </div>
-              <div class="caption">competitor analysis board</div>
+              <div class="caption">four boards: essence, dna, meta questions, vibe</div>
             </div>
-
-            <!-- Mascot -->
             <div class="c12 text-block">
-              <h3 class="h3">The Elephant</h3>
-              <p class="body">Metaforms needed a character that felt honest and grounded, not another abstract AI gradient. We built a moodboard around elephants, explored dozens of illustration styles, and landed on a hand-drawn orange elephant that could live in real-world scenes across the site.</p>
+              <h3 class="h3">One partner, factory to doorstep</h3>
+              <p class="body">Cross-border freight is a relay of handoffs: origin pickup, quality check, consolidation, customs, last mile. Every handoff is a different vendor with a different system. What a brand can do is make the whole relay look like one company. That was the job.</p>
             </div>
 
-            <div class="c12 shot">
-              <div class="shot-inner">
-                <div class="figure"><div class="media"><img width="2600" height="870" src="images/metaforms/metaforms-elephant-mascot-inspiration-moodboard-2600.webp" srcset="images/metaforms/metaforms-elephant-mascot-inspiration-moodboard-1400.webp 1400w, images/metaforms/metaforms-elephant-mascot-inspiration-moodboard-2600.webp 2600w, images/metaforms/metaforms-elephant-mascot-inspiration-moodboard-3966.webp 3966w" sizes="(max-width: 767px) calc(100vw - 72px), calc(100vw - 360px)" loading="lazy" decoding="async" alt="Elephant mascot inspiration moodboard"></div></div>
-              </div>
-              <div class="caption">mascot inspiration moodboard</div>
-            </div>
-
-            <div class="c12 shot">
-              <div class="shot-inner">
-                <div class="figure"><div class="media"><img width="2600" height="1151" src="images/metaforms/metaforms-elephant-mascot-illustration-explorations-2600.webp" srcset="images/metaforms/metaforms-elephant-mascot-illustration-explorations-1400.webp 1400w, images/metaforms/metaforms-elephant-mascot-illustration-explorations-2600.webp 2600w, images/metaforms/metaforms-elephant-mascot-illustration-explorations-3966.webp 3966w" sizes="(max-width: 767px) calc(100vw - 72px), calc(100vw - 360px)" loading="lazy" decoding="async" alt="Elephant mascot illustration explorations"></div></div>
-              </div>
-              <div class="caption">mascot illustration explorations</div>
-            </div>
-
-            <div class="c12 shot">
-              <div class="shot-inner">
-                <div class="figure"><div class="media"><img width="2600" height="893" src="images/metaforms/metaforms-elephant-mascot-scene-illustrations-grid-2600.webp" srcset="images/metaforms/metaforms-elephant-mascot-scene-illustrations-grid-1400.webp 1400w, images/metaforms/metaforms-elephant-mascot-scene-illustrations-grid-2600.webp 2600w, images/metaforms/metaforms-elephant-mascot-scene-illustrations-grid-3966.webp 3966w" sizes="(max-width: 767px) calc(100vw - 72px), calc(100vw - 360px)" loading="lazy" decoding="async" alt="Elephant mascot scene illustrations"></div></div>
-              </div>
-              <div class="caption">scene illustrations across the site</div>
-            </div>
-
+            <!-- ================= EARLY VISUAL DIRECTION ================= -->
             <div class="c12 text-block">
-              <h3 class="h3">The Finished Scenes</h3>
-              <p class="body">The finished illustrations, drawn once and reused across the site: pricing, the pilot, security, the two ways to work with Metaforms, and the About page.</p>
+              <h2 class="h2">Early Visual Direction</h2>
+              <p class="body">We audited how logistics and infrastructure brands mark themselves, from Maersk, DHL and Flexport to FedEx and Delhivery, and found a category split between arrows and globes, with almost no one owning volume. Hexalog already had a hexagon in the name. We explored it as a wordmark, as an isometric box and as a lockup that holds at 24 pixels in a browser tab and at forty feet on a container door.</p>
             </div>
             <div class="c6 shot">
               <div class="shot-inner shot-inner-sm">
-                <div class="figure"><div class="media"><img width="2600" height="1464" src="images/metaforms/metaforms-illustration-elephant-biplane-2600.webp" srcset="images/metaforms/metaforms-illustration-elephant-biplane-1400.webp 1400w, images/metaforms/metaforms-illustration-elephant-biplane-2600.webp 2600w" sizes="(max-width: 767px) calc(100vw - 72px), calc(50vw - 200px)" loading="lazy" decoding="async" alt="The elephant flying a biplane"></div></div>
+                <div class="figure"><div class="media"><img width="2016" height="1984" src="images/hexalog/hexalog-brand-archetype-workshop-board-2016.webp" srcset="images/hexalog/hexalog-brand-archetype-workshop-board-1400.webp 1400w, images/hexalog/hexalog-brand-archetype-workshop-board-2016.webp 2016w" sizes="(max-width: 767px) calc(100vw - 72px), calc(50vw - 200px)" loading="lazy" decoding="async" alt="Brand archetype workshop board with the archetype wheel"></div></div>
               </div>
-              <div class="caption">flying a biplane</div>
+              <div class="caption">archetype board</div>
             </div>
             <div class="c6 shot">
               <div class="shot-inner shot-inner-sm">
-                <div class="figure"><div class="media"><img width="2600" height="1464" src="images/metaforms/metaforms-illustration-elephant-money-pile-2600.webp" srcset="images/metaforms/metaforms-illustration-elephant-money-pile-1400.webp 1400w, images/metaforms/metaforms-illustration-elephant-money-pile-2600.webp 2600w" sizes="(max-width: 767px) calc(100vw - 72px), calc(50vw - 200px)" loading="lazy" decoding="async" alt="The elephant on a pile of money"></div></div>
+                <div class="figure"><div class="media"><img width="1870" height="1996" src="images/hexalog/hexalog-whiteboard-logo-sketches-photo-1870.webp" srcset="images/hexalog/hexalog-whiteboard-logo-sketches-photo-1400.webp 1400w, images/hexalog/hexalog-whiteboard-logo-sketches-photo-1870.webp 1870w" sizes="(max-width: 767px) calc(100vw - 72px), calc(50vw - 200px)" loading="lazy" decoding="async" alt="Whiteboard photo of early logo sketches moving from a box to a hexagon and a forward arrow"></div></div>
               </div>
-              <div class="caption">on a pile of money</div>
+              <div class="caption">box, hexagon, arrow: on the whiteboard first</div>
             </div>
-            <div class="c6 shot">
-              <div class="shot-inner shot-inner-sm">
-                <div class="figure"><div class="media"><img width="2600" height="1464" src="images/metaforms/metaforms-illustration-elephant-park-bench-2600.webp" srcset="images/metaforms/metaforms-illustration-elephant-park-bench-1400.webp 1400w, images/metaforms/metaforms-illustration-elephant-park-bench-2600.webp 2600w" sizes="(max-width: 767px) calc(100vw - 72px), calc(50vw - 200px)" loading="lazy" decoding="async" alt="The elephant on a park bench between two people"></div></div>
-              </div>
-              <div class="caption">on a park bench</div>
+            <div class="c12 text-block">
+              <h3 class="h3">From box to hexagon</h3>
+              <p class="body">The box resolved into a hexagon: three isometric planes that read as a container, a package and a forward arrow depending on how you hold it. It holds at 24 pixels in a browser tab and at forty feet on a container door, which is the only test that mattered.</p>
             </div>
-            <div class="c6 shot">
-              <div class="shot-inner shot-inner-sm">
-                <div class="figure"><div class="media"><img width="2600" height="1461" src="images/metaforms/metaforms-illustration-elephant-picnic-2600.webp" srcset="images/metaforms/metaforms-illustration-elephant-picnic-1400.webp 1400w, images/metaforms/metaforms-illustration-elephant-picnic-2600.webp 2600w" sizes="(max-width: 767px) calc(100vw - 72px), calc(50vw - 200px)" loading="lazy" decoding="async" alt="The elephant at a picnic"></div></div>
-              </div>
-              <div class="caption">at a picnic</div>
+
+            <!-- ================= SIGNAGE AND OBJECTS ================= -->
+            <div class="c4 text-block text-side">
+              <span class="label eyebrow">Brand in space</span>
+              <h2 class="h2">Signage and Objects</h2>
+              <p class="body">We took the mark off screen, building signage, reception panels, desk objects and container livery. It had to read from across a warehouse floor and from six inches. Purple on white held at both, which fixed the pairing.</p>
             </div>
-            <div class="c6 shot">
-              <div class="shot-inner shot-inner-sm">
-                <div class="figure"><div class="media"><img width="2600" height="1464" src="images/metaforms/metaforms-illustration-elephant-street-corner-2600.webp" srcset="images/metaforms/metaforms-illustration-elephant-street-corner-1400.webp 1400w, images/metaforms/metaforms-illustration-elephant-street-corner-2600.webp 2600w" sizes="(max-width: 767px) calc(100vw - 72px), calc(50vw - 200px)" loading="lazy" decoding="async" alt="The elephant on a busy street corner"></div></div>
+            <div class="c8 shot">
+              <div class="shot-inner">
+                <div class="figure"><div class="media"><img width="2888" height="2080" src="images/hexalog/hexalog-office-lobby-wall-logo-signage-2888.webp" srcset="images/hexalog/hexalog-office-lobby-wall-logo-signage-1400.webp 1400w, images/hexalog/hexalog-office-lobby-wall-logo-signage-2888.webp 2888w" sizes="(max-width: 767px) calc(100vw - 72px), calc(66vw - 260px)" loading="lazy" decoding="async" alt="Hexalog logo as dimensional signage on a concrete office lobby wall"></div></div>
               </div>
-              <div class="caption">on a street corner</div>
+              <div class="caption">office lobby wall</div>
             </div>
-            <div class="c6 shot">
-              <div class="shot-inner shot-inner-sm">
-                <div class="figure"><div class="media"><img width="2600" height="1464" src="images/metaforms/metaforms-illustration-elephant-umbrella-2600.webp" srcset="images/metaforms/metaforms-illustration-elephant-umbrella-1400.webp 1400w, images/metaforms/metaforms-illustration-elephant-umbrella-2600.webp 2600w" sizes="(max-width: 767px) calc(100vw - 72px), calc(50vw - 200px)" loading="lazy" decoding="async" alt="The elephant leaning on a lamppost with an umbrella"></div></div>
+            <div class="c8 shot">
+              <div class="shot-inner">
+                <div class="figure"><div class="media"><img width="2808" height="1497" src="images/hexalog/hexalog-laptop-stickers-office-signage-pen-mockups-2808.webp" srcset="images/hexalog/hexalog-laptop-stickers-office-signage-pen-mockups-1400.webp 1400w, images/hexalog/hexalog-laptop-stickers-office-signage-pen-mockups-2808.webp 2808w" sizes="(max-width: 767px) calc(100vw - 72px), calc(66vw - 260px)" loading="lazy" decoding="async" alt="Hexalog laptop stickers, reception signage, desk plate and branded pen"></div></div>
               </div>
-              <div class="caption">waiting with an umbrella</div>
+              <div class="caption">stickers, reception wall, desk plate and pen</div>
+            </div>
+            <div class="c4 text-block text-side">
+              <span class="label eyebrow">The network</span>
+              <h2 class="h2">Factory floor to doorstep</h2>
+              <p class="body">Two hundred brands, forty-plus lanes and a customs desk in every one of them. We mapped the real journey first: origin pickup, quality check, consolidation, clearance, last mile. The brand was built against the actual network, not a pitch-deck version.</p>
+            </div>
+
+            <!-- ================= IDENTITY SYSTEM ================= -->
+            <div class="c12 shot">
+              <div class="shot-inner">
+                <div class="figure"><div class="media"><img width="2600" height="1471" src="images/hexalog/hexalog-brand-guidelines-pages-overview-2600.webp" srcset="images/hexalog/hexalog-brand-guidelines-pages-overview-1400.webp 1400w, images/hexalog/hexalog-brand-guidelines-pages-overview-2600.webp 2600w, images/hexalog/hexalog-brand-guidelines-pages-overview-3966.webp 3966w" sizes="(max-width: 767px) calc(100vw - 72px), calc(100vw - 360px)" loading="lazy" decoding="async" alt="Overview of Hexalog brand guideline pages"></div></div>
+              </div>
+              <div class="caption">brand guidelines: colour, typography, graphic elements, mascot</div>
+            </div>
+            <div class="c12 shot">
+              <div class="shot-inner">
+                <div class="figure"><div class="media"><img width="2600" height="1440" src="images/hexalog/hexalog-brand-identity-overview-collage-2600.webp" srcset="images/hexalog/hexalog-brand-identity-overview-collage-1400.webp 1400w, images/hexalog/hexalog-brand-identity-overview-collage-2600.webp 2600w, images/hexalog/hexalog-brand-identity-overview-collage-3966.webp 3966w" sizes="(max-width: 767px) calc(100vw - 72px), calc(100vw - 360px)" loading="lazy" decoding="async" alt="Hexalog brand identity collage: app screen, favicon, shipments panel, billboard, wordmark, fleet and mascot"></div></div>
+              </div>
+              <div class="caption">the identity in one frame</div>
+            </div>
+
+            <!-- ================= WEBSITE ================= -->
+            <div class="c8 shot">
+              <div class="shot-inner">
+                <div class="figure"><div class="media"><img width="2608" height="1548" src="images/hexalog/hexalog-website-favicon-browser-tab-2608.webp" srcset="images/hexalog/hexalog-website-favicon-browser-tab-1400.webp 1400w, images/hexalog/hexalog-website-favicon-browser-tab-2608.webp 2608w" sizes="(max-width: 767px) calc(100vw - 72px), calc(66vw - 260px)" loading="lazy" decoding="async" alt="Hexalog favicon in a browser tab at hexalog.in"></div></div>
+              </div>
+              <div class="caption">the hexagon at 24 pixels</div>
+            </div>
+            <div class="c4 text-block text-side">
+              <span class="label eyebrow">Website</span>
+              <h2 class="h2">Structure Before Surface</h2>
+              <p class="body">We wireframed the site in grey first: hero, proof strip, problem voices, the reframe, the offer. The argument was settled before anything looked like anything. The finished site carries one claim: one partner, factory to doorstep. Shipped responsive across desktop, tablet and mobile.</p>
+            </div>
+            <div class="c12 shot">
+              <div class="shot-inner">
+                <div class="figure"><div class="media"><img width="2600" height="1259" src="images/hexalog/hexalog-website-wireframes-information-architecture-2600.webp" srcset="images/hexalog/hexalog-website-wireframes-information-architecture-1400.webp 1400w, images/hexalog/hexalog-website-wireframes-information-architecture-2600.webp 2600w, images/hexalog/hexalog-website-wireframes-information-architecture-3966.webp 3966w" sizes="(max-width: 767px) calc(100vw - 72px), calc(100vw - 360px)" loading="lazy" decoding="async" alt="Website wireframes with information architecture notes"></div></div>
+              </div>
+              <div class="caption">information architecture and grey wireframes</div>
+            </div>
+            <div class="c12 shot">
+              <div class="shot-inner">
+                <div class="figure"><div class="media"><img width="2600" height="1843" src="images/hexalog/hexalog-homepage-hero-explorations-grid-2600.webp" srcset="images/hexalog/hexalog-homepage-hero-explorations-grid-1400.webp 1400w, images/hexalog/hexalog-homepage-hero-explorations-grid-2600.webp 2600w, images/hexalog/hexalog-homepage-hero-explorations-grid-3966.webp 3966w" sizes="(max-width: 767px) calc(100vw - 72px), calc(100vw - 360px)" loading="lazy" decoding="async" alt="Four homepage hero explorations with illustrated supply chain scenes"></div></div>
+              </div>
+              <div class="caption">hero explorations</div>
+            </div>
+            <div class="c12 shot">
+              <div class="shot-inner">
+                <div class="figure"><div class="media"><img width="2600" height="1471" src="images/hexalog/hexalog-problem-section-same-broken-supply-chain-2600.webp" srcset="images/hexalog/hexalog-problem-section-same-broken-supply-chain-1400.webp 1400w, images/hexalog/hexalog-problem-section-same-broken-supply-chain-2600.webp 2600w, images/hexalog/hexalog-problem-section-same-broken-supply-chain-3966.webp 3966w" sizes="(max-width: 767px) calc(100vw - 72px), calc(100vw - 360px)" loading="lazy" decoding="async" alt="Problem section: different problems, same broken supply chain, with customer complaints as callouts"></div></div>
+              </div>
+              <div class="caption">different problems, same broken supply chain</div>
+            </div>
+            <div class="c12 shot">
+              <div class="shot-inner">
+                <div class="figure"><div class="media"><img width="2600" height="1336" src="images/hexalog/hexalog-solutions-section-d2c-to-retail-giants-2600.webp" srcset="images/hexalog/hexalog-solutions-section-d2c-to-retail-giants-1400.webp 1400w, images/hexalog/hexalog-solutions-section-d2c-to-retail-giants-2600.webp 2600w, images/hexalog/hexalog-solutions-section-d2c-to-retail-giants-3966.webp 3966w" sizes="(max-width: 767px) calc(100vw - 72px), calc(100vw - 360px)" loading="lazy" decoding="async" alt="Solutions section: built for every brand, from D2C to retail giants"></div></div>
+              </div>
+              <div class="caption">solutions, from d2c to retail giants</div>
+            </div>
+            <div class="c12 shot">
+              <div class="shot-inner">
+                <div class="figure"><div class="media"><img width="2600" height="1778" src="images/hexalog/hexalog-case-studies-section-brands-grow-and-scale-2600.webp" srcset="images/hexalog/hexalog-case-studies-section-brands-grow-and-scale-1400.webp 1400w, images/hexalog/hexalog-case-studies-section-brands-grow-and-scale-2600.webp 2600w, images/hexalog/hexalog-case-studies-section-brands-grow-and-scale-3966.webp 3966w" sizes="(max-width: 767px) calc(100vw - 72px), calc(100vw - 360px)" loading="lazy" decoding="async" alt="Case studies section: see how brands grow and scale with Hexalog"></div></div>
+              </div>
+              <div class="caption">case studies</div>
+            </div>
+            <div class="c12 shot">
+              <div class="shot-inner">
+                <div class="figure"><div class="media"><img width="2600" height="1445" src="images/hexalog/hexalog-faq-section-2600.webp" srcset="images/hexalog/hexalog-faq-section-1400.webp 1400w, images/hexalog/hexalog-faq-section-2600.webp 2600w, images/hexalog/hexalog-faq-section-3966.webp 3966w" sizes="(max-width: 767px) calc(100vw - 72px), calc(100vw - 360px)" loading="lazy" decoding="async" alt="FAQ section with illustrated clouds and a container ship"></div></div>
+              </div>
+              <div class="caption">frequently asked questions</div>
+            </div>
+
+            <!-- ================= CAMPAIGN ================= -->
+            <div class="c12 shot">
+              <div class="shot-inner">
+                <div class="figure"><div class="media"><img width="2600" height="1898" src="images/hexalog/hexalog-billboard-truck-sunset-mockup-2600.webp" srcset="images/hexalog/hexalog-billboard-truck-sunset-mockup-1400.webp 1400w, images/hexalog/hexalog-billboard-truck-sunset-mockup-2600.webp 2600w, images/hexalog/hexalog-billboard-truck-sunset-mockup-3966.webp 3966w" sizes="(max-width: 767px) calc(100vw - 72px), calc(100vw - 360px)" loading="lazy" decoding="async" alt="Hexalog billboard at sunset: one partner, factory to doorstep"></div></div>
+              </div>
+              <div class="caption">the billboard on the port road</div>
             </div>
             <div class="c4 shot">
               <div class="shot-inner shot-inner-sm">
-                <div class="figure"><div class="media"><img width="2600" height="1464" src="images/metaforms/metaforms-illustration-elephant-watering-flower-2600.webp" srcset="images/metaforms/metaforms-illustration-elephant-watering-flower-1400.webp 1400w, images/metaforms/metaforms-illustration-elephant-watering-flower-2600.webp 2600w" sizes="(max-width: 767px) calc(100vw - 72px), calc(33vw - 150px)" loading="lazy" decoding="async" alt="The elephant watering a flower with a child"></div></div>
+                <div class="figure"><div class="media"><img width="1260" height="1264" src="images/hexalog/hexalog-earth-day-poster-elevator-lobby-mockup-1260.webp" srcset="images/hexalog/hexalog-earth-day-poster-elevator-lobby-mockup-700.webp 700w, images/hexalog/hexalog-earth-day-poster-elevator-lobby-mockup-1260.webp 1260w" sizes="(max-width: 767px) calc(100vw - 72px), calc(33vw - 150px)" loading="lazy" decoding="async" alt="Hexalog Earth Day poster in a lift lobby: one planet, one responsibility"></div></div>
               </div>
-              <div class="caption">watering a flower</div>
+              <div class="caption">earth day, lift lobby</div>
             </div>
             <div class="c4 shot">
               <div class="shot-inner shot-inner-sm">
-                <div class="figure"><div class="media"><img width="2600" height="1950" src="images/metaforms/metaforms-illustration-elephant-padlock-2600.webp" srcset="images/metaforms/metaforms-illustration-elephant-padlock-1400.webp 1400w, images/metaforms/metaforms-illustration-elephant-padlock-2600.webp 2600w" sizes="(max-width: 767px) calc(100vw - 72px), calc(33vw - 150px)" loading="lazy" decoding="async" alt="The elephant sitting on a padlock"></div></div>
+                <div class="figure"><div class="media"><img width="1446" height="1264" src="images/hexalog/hexalog-hexanaut-mascot-wall-signage-1446.webp" srcset="images/hexalog/hexalog-hexanaut-mascot-wall-signage-700.webp 700w, images/hexalog/hexalog-hexanaut-mascot-wall-signage-1446.webp 1446w" sizes="(max-width: 767px) calc(100vw - 72px), calc(33vw - 150px)" loading="lazy" decoding="async" alt="Hexanaut mascot on a projecting wall sign"></div></div>
               </div>
-              <div class="caption">sitting on a padlock</div>
+              <div class="caption">hexanaut wall sign</div>
             </div>
             <div class="c4 shot">
               <div class="shot-inner shot-inner-sm">
-                <div class="figure"><div class="media"><img width="2108" height="2400" src="images/metaforms/metaforms-illustration-elephant-letter-2108.webp" srcset="images/metaforms/metaforms-illustration-elephant-letter-1400.webp 1400w, images/metaforms/metaforms-illustration-elephant-letter-2108.webp 2108w" sizes="(max-width: 767px) calc(100vw - 72px), calc(33vw - 150px)" loading="lazy" decoding="async" alt="The elephant reading a letter"></div></div>
+                <div class="figure"><div class="media"><img width="1260" height="1264" src="images/hexalog/hexalog-earth-day-poster-lightbox-mockup-1260.webp" srcset="images/hexalog/hexalog-earth-day-poster-lightbox-mockup-700.webp 700w, images/hexalog/hexalog-earth-day-poster-lightbox-mockup-1260.webp 1260w" sizes="(max-width: 767px) calc(100vw - 72px), calc(33vw - 150px)" loading="lazy" decoding="async" alt="Hexalog Earth Day poster in a street lightbox"></div></div>
               </div>
-              <div class="caption">reading a letter</div>
+              <div class="caption">earth day, lightbox</div>
             </div>
-
-            <!-- Wireframes + hero explorations -->
-            <div class="c6 text-block">
-              <h3 class="h3">Wireframes</h3>
-              <p class="body">Low-fidelity wireframes for the homepage locked the narrative first: the problem, the delivery chain, the bottleneck, the proof. Every section had a job before it had a look.</p>
-            </div>
-            <div class="c6 text-block">
-              <div class="spacer" aria-hidden="true"></div>
-              <p class="body">From there we explored several hero directions, from dark and editorial to cream and illustrated, before settling on the "Honest and grounded" concept with the elephant reading under a tree.</p>
-            </div>
-
-            <div class="c12 shot">
+            <div class="c8 shot">
               <div class="shot-inner">
-                <div class="figure"><div class="media"><img width="2600" height="1763" src="images/metaforms/metaforms-homepage-full-page-layout-2600.webp" srcset="images/metaforms/metaforms-homepage-full-page-layout-1400.webp 1400w, images/metaforms/metaforms-homepage-full-page-layout-2600.webp 2600w, images/metaforms/metaforms-homepage-full-page-layout-3966.webp 3966w" sizes="(max-width: 767px) calc(100vw - 72px), calc(100vw - 360px)" loading="lazy" decoding="async" alt="Homepage wireframes and full page layout"></div></div>
+                <div class="figure"><div class="media"><img width="2600" height="1729" src="images/hexalog/hexalog-billboard-one-partner-factory-to-doorstep-2600.webp" srcset="images/hexalog/hexalog-billboard-one-partner-factory-to-doorstep-1400.webp 1400w, images/hexalog/hexalog-billboard-one-partner-factory-to-doorstep-2600.webp 2600w, images/hexalog/hexalog-billboard-one-partner-factory-to-doorstep-3128.webp 3128w" sizes="(max-width: 767px) calc(100vw - 72px), calc(66vw - 260px)" loading="lazy" decoding="async" alt="Hexalog billboard with a branded truck at a container port"></div></div>
               </div>
-              <div class="caption">homepage wireframes, full page layout</div>
+              <div class="caption">one partner, factory to doorstep</div>
+            </div>
+            <div class="c4 text-block text-side">
+              <span class="label eyebrow">The campaign</span>
+              <h2 class="h2">One claim, every surface</h2>
+              <p class="body">The campaign runs in logistics’ own formats: the billboard on the port road, the container door, the Earth Day post. One claim, one partner, factory to doorstep.</p>
             </div>
 
-            <div class="c12 shot">
-              <div class="shot-inner">
-                <div class="figure"><div class="media"><img width="2600" height="1671" src="images/metaforms/metaforms-homepage-hero-explorations-grid-2600.webp" srcset="images/metaforms/metaforms-homepage-hero-explorations-grid-1400.webp 1400w, images/metaforms/metaforms-homepage-hero-explorations-grid-2600.webp 2600w, images/metaforms/metaforms-homepage-hero-explorations-grid-3966.webp 3966w" sizes="(max-width: 767px) calc(100vw - 72px), calc(100vw - 360px)" loading="lazy" decoding="async" alt="Homepage hero explorations"></div></div>
-              </div>
-              <div class="caption">homepage hero explorations</div>
-            </div>
-
-            <div class="c12 shot">
-              <div class="shot-inner">
-                <div class="figure"><div class="media"><img width="2600" height="1526" src="images/metaforms/metaforms-homepage-hero-honest-and-grounded-elephant-2600.webp" srcset="images/metaforms/metaforms-homepage-hero-honest-and-grounded-elephant-1400.webp 1400w, images/metaforms/metaforms-homepage-hero-honest-and-grounded-elephant-2600.webp 2600w, images/metaforms/metaforms-homepage-hero-honest-and-grounded-elephant-3966.webp 3966w" sizes="(max-width: 767px) calc(100vw - 72px), calc(100vw - 360px)" loading="lazy" decoding="async" alt="Final homepage hero, honest and grounded, with the elephant reading under a tree"></div></div>
-              </div>
-              <div class="caption">the final homepage hero</div>
-            </div>
-
-            <!-- ================= THE WEBSITE ================= -->
+            <!-- ================= MERCH ================= -->
             <div class="c12 text-block">
-              <h2 class="h2">The Website</h2>
-              <p class="body">A hand-drawn, warm, editorial site for a technical product. Serif headlines, orange accents, sticky-note asides and the elephant guiding readers from bottleneck to rollout.</p>
+              <h2 class="h2">A brand you can carry</h2>
+              <p class="body">Totes, tees, keychains, lanyards, stickers and ID cards. Each surface tests the mark differently: drawn for embroidery, injection moulding, screen print and die-cut, from a lanyard clip to a container door. Where the full lockup got too tight, the hexagon ran on its own. For a company built on handovers, merch isn’t swag. It’s the first thing a new hire is handed.</p>
             </div>
-
             <div class="c12 shot">
               <div class="shot-inner">
-                <div class="figure"><div class="media"><img width="2600" height="1719" src="images/metaforms/metaforms-next-bottleneck-delivery-chain-section-2600.webp" srcset="images/metaforms/metaforms-next-bottleneck-delivery-chain-section-1400.webp 1400w, images/metaforms/metaforms-next-bottleneck-delivery-chain-section-2600.webp 2600w, images/metaforms/metaforms-next-bottleneck-delivery-chain-section-3966.webp 3966w" sizes="(max-width: 767px) calc(100vw - 72px), calc(100vw - 360px)" loading="lazy" decoding="async" alt="Next bottleneck delivery chain section"></div></div>
+                <div class="figure"><div class="media"><img width="2600" height="1689" src="images/hexalog/hexalog-merchandise-tote-lanyard-hexanaut-keychain-2600.webp" srcset="images/hexalog/hexalog-merchandise-tote-lanyard-hexanaut-keychain-1400.webp 1400w, images/hexalog/hexalog-merchandise-tote-lanyard-hexanaut-keychain-2600.webp 2600w, images/hexalog/hexalog-merchandise-tote-lanyard-hexanaut-keychain-3966.webp 3966w" sizes="(max-width: 767px) calc(100vw - 72px), calc(100vw - 360px)" loading="lazy" decoding="async" alt="Hexalog merchandise: gradient tote, ID lanyard and a boxed Hexanaut keychain"></div></div>
               </div>
-              <div class="caption">"then let the next bottleneck tell you where to expand"</div>
-            </div>
-
-            <!-- Pair row: one tall card left, two stacked panels right (Figma reference) -->
-            <div class="c6 shot">
-              <div class="shot-inner shot-inner-sm">
-                <div class="figure"><div class="media"><img width="1400" height="1343" src="images/metaforms/metaforms-survey-programming-section-1400.webp" srcset="images/metaforms/metaforms-survey-programming-section-900.webp 900w, images/metaforms/metaforms-survey-programming-section-1400.webp 1400w, images/metaforms/metaforms-survey-programming-section-1963.webp 1963w" sizes="(max-width: 767px) calc(100vw - 72px), calc(50vw - 200px)" loading="lazy" decoding="async" alt="Start with survey programming section"></div></div>
-              </div>
-              <div class="caption">survey programming section</div>
+              <div class="caption">tote, lanyard, hexanaut keychain</div>
             </div>
             <div class="c6 shot">
               <div class="shot-inner shot-inner-sm">
-                <div class="figure"><div class="media"><img width="982" height="908" src="images/metaforms/metaforms-reviewable-batches-and-client-revisions-982.webp" srcset="images/metaforms/metaforms-reviewable-batches-and-client-revisions-900.webp 900w, images/metaforms/metaforms-reviewable-batches-and-client-revisions-982.webp 982w" sizes="(max-width: 767px) calc(100vw - 72px), calc(50vw - 200px)" loading="lazy" decoding="async" alt="Reviewable batches and client revisions sections"></div></div>
+                <div class="figure"><div class="media"><img width="2600" height="1733" src="images/hexalog/hexalog-employee-welcome-kit-mockup-2600.webp" srcset="images/hexalog/hexalog-employee-welcome-kit-mockup-1400.webp 1400w, images/hexalog/hexalog-employee-welcome-kit-mockup-2600.webp 2600w, images/hexalog/hexalog-employee-welcome-kit-mockup-3966.webp 3966w" sizes="(max-width: 767px) calc(100vw - 72px), calc(50vw - 200px)" loading="lazy" decoding="async" alt="Hexalog employee welcome kit"></div></div>
               </div>
-              <div class="caption">reviewable batches and client revisions</div>
-            </div>
-
-            <div class="c12 shot">
-              <div class="shot-inner">
-                <div class="figure"><div class="media"><img width="2600" height="884" src="images/metaforms/metaforms-customer-testimonials-illustrated-portraits-2600.webp" srcset="images/metaforms/metaforms-customer-testimonials-illustrated-portraits-1400.webp 1400w, images/metaforms/metaforms-customer-testimonials-illustrated-portraits-2600.webp 2600w, images/metaforms/metaforms-customer-testimonials-illustrated-portraits-3966.webp 3966w" sizes="(max-width: 767px) calc(100vw - 72px), calc(100vw - 360px)" loading="lazy" decoding="async" alt="Customer testimonials with illustrated portraits"></div></div>
-              </div>
-              <div class="caption">customer testimonials with illustrated portraits</div>
-            </div>
-
-            <div class="c12 shot">
-              <div class="shot-inner">
-                <div class="figure"><div class="media"><img width="2600" height="1516" src="images/metaforms/metaforms-ai-without-disrupting-cafe-illustration-section-2600.webp" srcset="images/metaforms/metaforms-ai-without-disrupting-cafe-illustration-section-1400.webp 1400w, images/metaforms/metaforms-ai-without-disrupting-cafe-illustration-section-2600.webp 2600w, images/metaforms/metaforms-ai-without-disrupting-cafe-illustration-section-3966.webp 3966w" sizes="(max-width: 767px) calc(100vw - 72px), calc(100vw - 360px)" loading="lazy" decoding="async" alt="AI that works without disrupting how your team works, cafe illustration"></div></div>
-              </div>
-              <div class="caption">"AI that works without disrupting how your team works"</div>
-            </div>
-
-            <div class="c6 shot">
-              <div class="shot-inner shot-inner-sm">
-                <div class="figure"><div class="media"><img width="3966" height="2891" src="images/metaforms/metaforms-website-pricing-2600.webp" srcset="images/metaforms/metaforms-website-pricing-1400.webp 1400w, images/metaforms/metaforms-website-pricing-2600.webp 2600w, images/metaforms/metaforms-website-pricing-3966.webp 3966w" sizes="(max-width: 767px) calc(100vw - 72px), calc(50vw - 200px)" loading="lazy" decoding="async" alt="Pricing section: pay for projects, not seats or tokens"></div></div>
-              </div>
-              <div class="caption">pricing: pay for projects, not seats or tokens</div>
+              <div class="caption">welcome kit</div>
             </div>
             <div class="c6 shot">
               <div class="shot-inner shot-inner-sm">
-                <div class="figure"><div class="media"><img width="3966" height="2891" src="images/metaforms/metaforms-website-pilot-2600.webp" srcset="images/metaforms/metaforms-website-pilot-1400.webp 1400w, images/metaforms/metaforms-website-pilot-2600.webp 2600w, images/metaforms/metaforms-website-pilot-3966.webp 3966w" sizes="(max-width: 767px) calc(100vw - 72px), calc(50vw - 200px)" loading="lazy" decoding="async" alt="Pilot section: test Metaforms on work your team knows well"></div></div>
+                <div class="figure"><div class="media"><img width="2600" height="1739" src="images/hexalog/hexalog-letterhead-and-envelope-mockup-2600.webp" srcset="images/hexalog/hexalog-letterhead-and-envelope-mockup-1400.webp 1400w, images/hexalog/hexalog-letterhead-and-envelope-mockup-2600.webp 2600w, images/hexalog/hexalog-letterhead-and-envelope-mockup-3966.webp 3966w" sizes="(max-width: 767px) calc(100vw - 72px), calc(50vw - 200px)" loading="lazy" decoding="async" alt="Hexalog letterhead and envelope"></div></div>
               </div>
-              <div class="caption">pilot: test it on work your team knows well</div>
+              <div class="caption">letterhead and envelope</div>
             </div>
             <div class="c12 shot">
               <div class="shot-inner">
-                <div class="figure"><div class="media"><img width="3966" height="2891" src="images/metaforms/metaforms-website-security-2600.webp" srcset="images/metaforms/metaforms-website-security-1400.webp 1400w, images/metaforms/metaforms-website-security-2600.webp 2600w, images/metaforms/metaforms-website-security-3966.webp 3966w" sizes="(max-width: 767px) calc(100vw - 72px), calc(100vw - 360px)" loading="lazy" decoding="async" alt="Security section with compliance badges and the elephant on a padlock"></div></div>
+                <div class="figure figure-narrow"><div class="media"><img width="2498" height="3603" src="images/hexalog/hexalog-laptop-stickers-hexanaut-closeup-2498.webp" srcset="images/hexalog/hexalog-laptop-stickers-hexanaut-closeup-1400.webp 1400w, images/hexalog/hexalog-laptop-stickers-hexanaut-closeup-2498.webp 2498w" sizes="(max-width: 767px) calc(100vw - 72px), 760px" loading="lazy" decoding="async" alt="Close-up of Hexanaut laptop stickers"></div></div>
               </div>
-              <div class="caption">security: your security team won't be our first</div>
+              <div class="caption">hexanaut stickers, up close</div>
             </div>
 
-            <!-- ================= THE ABOUT PAGE ================= -->
-            <div class="c12 text-block">
-              <h2 class="h2">The About Page</h2>
-              <p class="body">The About page opens on an orange envelope. As you scroll, the flap lifts and the company's story slides out one letter at a time, from the early years to the people who taught the team the job. It ends on the team itself, the offices in New York and Bengaluru, and the backers.</p>
-            </div>
-
+            <!-- ================= HANDOVER + FLEET ================= -->
             <div class="c12 shot">
               <div class="shot-inner">
-                <div class="figure"><div class="media" style="aspect-ratio: 2276 / 1598;">
-                  <video class="lazy-video" muted loop playsinline preload="none"
-                         poster="images/metaforms/motion/about-page-envelope-poster.webp"
-                         data-src-lg="images/metaforms/motion/about-page-envelope-2276.webm"
-                         data-src-sm="images/metaforms/motion/about-page-envelope-1280.mp4"
-                         aria-label="Scrolling the About page: the orange envelope opens and the story letters slide out"></video>
-                </div></div>
+                <div class="figure"><div class="media"><img width="2600" height="1345" src="images/hexalog/hexalog-figma-file-assets-and-guidelines-overview-2600.webp" srcset="images/hexalog/hexalog-figma-file-assets-and-guidelines-overview-1400.webp 1400w, images/hexalog/hexalog-figma-file-assets-and-guidelines-overview-2600.webp 2600w, images/hexalog/hexalog-figma-file-assets-and-guidelines-overview-3966.webp 3966w" sizes="(max-width: 767px) calc(100vw - 72px), calc(100vw - 360px)" loading="lazy" decoding="async" alt="Overview of the Hexalog Figma handover file"></div></div>
               </div>
-              <div class="caption">the envelope opens and the story slides out, one letter at a time</div>
+              <div class="caption">the handover file: assets, guidelines, design frames, mascot</div>
             </div>
-
             <div class="c12 shot">
               <div class="shot-inner">
-                <div class="figure"><div class="media"><img width="3966" height="2883" src="images/metaforms/metaforms-about-page-board-2600.webp" srcset="images/metaforms/metaforms-about-page-board-1400.webp 1400w, images/metaforms/metaforms-about-page-board-2600.webp 2600w, images/metaforms/metaforms-about-page-board-3966.webp 3966w" sizes="(max-width: 767px) calc(100vw - 72px), calc(100vw - 360px)" loading="lazy" decoding="async" alt="About page screens: the envelope hero, offices, the team wall, and what we do"></div></div>
+                <div class="figure"><div class="media"><img width="2600" height="1950" src="images/hexalog/hexalog-shipping-containers-forklift-3d-render-2600.webp" srcset="images/hexalog/hexalog-shipping-containers-forklift-3d-render-1400.webp 1400w, images/hexalog/hexalog-shipping-containers-forklift-3d-render-2600.webp 2600w, images/hexalog/hexalog-shipping-containers-forklift-3d-render-3966.webp 3966w" sizes="(max-width: 767px) calc(100vw - 72px), calc(100vw - 360px)" loading="lazy" decoding="async" alt="Purple and white Hexalog shipping containers with a branded forklift"></div></div>
               </div>
-              <div class="caption">about page: envelope hero, offices, the team, and what we do</div>
+              <div class="caption">container livery</div>
             </div>
-
-            <!-- ================= ANIMATED DIAGRAMS ================= -->
-            <!-- Captured frame by frame from metaforms.ai at 60 fps. Loaded only near the viewport (see script). -->
-            <div class="c12 text-block">
-              <h2 class="h2">Animated Diagrams</h2>
-              <p class="body">Every product diagram on the site is animated. Each one is built from Figma layers and plays in the browser as live vector, so it stays sharp at any screen size. The elephant rides along on top, walking the delivery chain and sitting on the review card.</p>
-            </div>
-
             <div class="c12 shot">
               <div class="shot-inner">
-                <div class="figure"><div class="media" style="aspect-ratio: 3840 / 1636;">
-                  <video class="lazy-video" muted loop playsinline preload="none"
-                         poster="images/metaforms/motion/delivery-chain-poster.webp"
-                         data-src-lg="images/metaforms/motion/delivery-chain-3840.webm"
-                         data-src-sm="images/metaforms/motion/delivery-chain-1280.mp4"
-                         aria-label="Animated delivery chain: studies flow through ten module cards as each comes online"></video>
-                </div></div>
+                <div class="figure"><div class="media"><img width="2600" height="1733" src="images/hexalog/hexalog-warehouse-truck-fleet-branding-mockup-2600.webp" srcset="images/hexalog/hexalog-warehouse-truck-fleet-branding-mockup-1400.webp 1400w, images/hexalog/hexalog-warehouse-truck-fleet-branding-mockup-2600.webp 2600w, images/hexalog/hexalog-warehouse-truck-fleet-branding-mockup-3966.webp 3966w" sizes="(max-width: 767px) calc(100vw - 72px), calc(100vw - 360px)" loading="lazy" decoding="async" alt="Hexalog warehouse exterior with branded trucks at the loading docks"></div></div>
               </div>
-              <div class="caption">the delivery chain: studies flow through ten modules as each comes online</div>
-            </div>
-
-            <div class="c12 shot">
-              <div class="shot-inner">
-                <div class="figure"><div class="media" style="aspect-ratio: 3840 / 2210;">
-                  <video class="lazy-video" muted loop playsinline preload="none"
-                         poster="images/metaforms/motion/survey-programming-poster.webp"
-                         data-src-lg="images/metaforms/motion/survey-programming-3840.webm"
-                         data-src-sm="images/metaforms/motion/survey-programming-1280.mp4"
-                         aria-label="Animated survey programming: requirement cards stream into the Metaforms hub and come out as survey screens"></video>
-                </div></div>
-              </div>
-              <div class="caption">survey programming: requirements stream into the hub and come out as survey screens</div>
-            </div>
-
-            <div class="c12 shot">
-              <div class="shot-inner">
-                <div class="figure"><div class="media" style="aspect-ratio: 3840 / 2210;">
-                  <video class="lazy-video" muted loop playsinline preload="none"
-                         poster="images/metaforms/motion/change-management-poster.webp"
-                         data-src-lg="images/metaforms/motion/change-management-3840.webm"
-                         data-src-sm="images/metaforms/motion/change-management-1280.mp4"
-                         aria-label="Animated change management: a change request arrives, is routed and resolved"></video>
-                </div></div>
-              </div>
-              <div class="caption">change management: a change request arrives, is routed and resolved</div>
-            </div>
-
-            <div class="c6 shot">
-              <div class="shot-inner shot-inner-sm">
-                <div class="figure"><div class="media" style="aspect-ratio: 2560 / 1510;">
-                  <video class="lazy-video" muted loop playsinline preload="none"
-                         poster="images/metaforms/motion/integrations-poster.webp"
-                         data-src-lg="images/metaforms/motion/integrations-2560.webm"
-                         data-src-sm="images/metaforms/motion/integrations-960.mp4"
-                         aria-label="Animated integrations: connected tools link up to the Metaforms hub"></video>
-                </div></div>
-              </div>
-              <div class="caption">integrations: connected tools link up to the hub</div>
+              <div class="caption">warehouse and fleet</div>
             </div>
             <div class="c6 shot">
               <div class="shot-inner shot-inner-sm">
-                <div class="figure"><div class="media" style="aspect-ratio: 2560 / 1510;">
-                  <video class="lazy-video" muted loop playsinline preload="none"
-                         poster="images/metaforms/motion/q2-routing-poster.webp"
-                         data-src-lg="images/metaforms/motion/q2-routing-2560.webm"
-                         data-src-sm="images/metaforms/motion/q2-routing-960.mp4"
-                         aria-label="Animated Q2 routing: a question is routed, answered and applied to the survey"></video>
-                </div></div>
+                <div class="figure"><div class="media"><img width="2600" height="1727" src="images/hexalog/hexalog-delivery-truck-purple-branding-mockup-2600.webp" srcset="images/hexalog/hexalog-delivery-truck-purple-branding-mockup-1400.webp 1400w, images/hexalog/hexalog-delivery-truck-purple-branding-mockup-2600.webp 2600w, images/hexalog/hexalog-delivery-truck-purple-branding-mockup-3966.webp 3966w" sizes="(max-width: 767px) calc(100vw - 72px), calc(50vw - 200px)" loading="lazy" decoding="async" alt="Purple Hexalog delivery truck"></div></div>
               </div>
-              <div class="caption">q2 routing: a question is routed, answered and applied</div>
-            </div>
-
-            <!-- ================= AGENTIC FLOW ================= -->
-            <div class="c12 text-block">
-              <h2 class="h2">Agentic Flow</h2>
-              <p class="body">The Agentic Flow page walks a study through four stages, each drawn from a real product screen: plan the study from a research objective, build and field the survey, process and check the data, then present the report for approval.</p>
-            </div>
-
-            <div class="c6 shot">
-              <div class="shot-inner shot-inner-sm">
-                <div class="figure"><div class="media"><img width="2600" height="1681" src="images/metaforms/metaforms-agentic-plan-2600.webp" srcset="images/metaforms/metaforms-agentic-plan-1400.webp 1400w, images/metaforms/metaforms-agentic-plan-2600.webp 2600w" sizes="(max-width: 767px) calc(100vw - 72px), calc(50vw - 200px)" loading="lazy" decoding="async" alt="Plan stage: the agent shapes a study from a research objective"></div></div>
-              </div>
-              <div class="caption">plan: shape the study from a research objective</div>
+              <div class="caption">delivery truck</div>
             </div>
             <div class="c6 shot">
               <div class="shot-inner shot-inner-sm">
-                <div class="figure"><div class="media"><img width="2600" height="1677" src="images/metaforms/metaforms-agentic-build-2600.webp" srcset="images/metaforms/metaforms-agentic-build-1400.webp 1400w, images/metaforms/metaforms-agentic-build-2600.webp 2600w" sizes="(max-width: 767px) calc(100vw - 72px), calc(50vw - 200px)" loading="lazy" decoding="async" alt="Build stage: the survey in field with responses and quotas"></div></div>
+                <div class="figure"><div class="media"><img width="2600" height="2600" src="images/hexalog/hexalog-semi-truck-trailer-branding-mockup-2600.webp" srcset="images/hexalog/hexalog-semi-truck-trailer-branding-mockup-1400.webp 1400w, images/hexalog/hexalog-semi-truck-trailer-branding-mockup-2600.webp 2600w, images/hexalog/hexalog-semi-truck-trailer-branding-mockup-3966.webp 3966w" sizes="(max-width: 767px) calc(100vw - 72px), calc(50vw - 200px)" loading="lazy" decoding="async" alt="Hexalog semi-truck trailer livery"></div></div>
               </div>
-              <div class="caption">build: field the survey and track responses</div>
-            </div>
-            <div class="c6 shot">
-              <div class="shot-inner shot-inner-sm">
-                <div class="figure"><div class="media"><img width="2600" height="1663" src="images/metaforms/metaforms-agentic-process-2600.webp" srcset="images/metaforms/metaforms-agentic-process-1400.webp 1400w, images/metaforms/metaforms-agentic-process-2600.webp 2600w" sizes="(max-width: 767px) calc(100vw - 72px), calc(50vw - 200px)" loading="lazy" decoding="async" alt="Process stage: data checks, flags and exclusions"></div></div>
-              </div>
-              <div class="caption">process: check and clean the data</div>
-            </div>
-            <div class="c6 shot">
-              <div class="shot-inner shot-inner-sm">
-                <div class="figure"><div class="media"><img width="2600" height="1680" src="images/metaforms/metaforms-agentic-present-2600.webp" srcset="images/metaforms/metaforms-agentic-present-1400.webp 1400w, images/metaforms/metaforms-agentic-present-2600.webp 2600w" sizes="(max-width: 767px) calc(100vw - 72px), calc(50vw - 200px)" loading="lazy" decoding="async" alt="Present stage: the report ready for approval"></div></div>
-              </div>
-              <div class="caption">present: turn it into a report</div>
-            </div>
-
-            <!-- ================= MOBILE ================= -->
-            <div class="c12 text-block">
-              <h2 class="h2">Mobile</h2>
-              <p class="body">Every section was rebuilt for small screens rather than squeezed. Illustrations were recropped and the elephant reappears where the layout needed a beat.</p>
-            </div>
-
-            <div class="c4 phone-wrap"><div class="phone"><div class="media"><img width="984" height="2400" src="images/metaforms/metaforms-mobile-rollout-and-cta-section-984.webp" srcset="images/metaforms/metaforms-mobile-rollout-and-cta-section-500.webp 500w, images/metaforms/metaforms-mobile-rollout-and-cta-section-984.webp 984w" sizes="(max-width: 767px) calc(100vw - 72px), calc(33vw - 140px)" loading="lazy" decoding="async" alt="Mobile rollout and CTA section"></div></div></div>
-            <div class="c4 phone-wrap"><div class="phone"><div class="media"><img width="984" height="2400" src="images/metaforms/metaforms-mobile-survey-programming-section-984.webp" srcset="images/metaforms/metaforms-mobile-survey-programming-section-500.webp 500w, images/metaforms/metaforms-mobile-survey-programming-section-984.webp 984w" sizes="(max-width: 767px) calc(100vw - 72px), calc(33vw - 140px)" loading="lazy" decoding="async" alt="Mobile survey programming section"></div></div></div>
-            <div class="c4 phone-wrap"><div class="phone"><div class="media"><img width="984" height="2400" src="images/metaforms/metaforms-mobile-client-revisions-and-testimonial-section-984.webp" srcset="images/metaforms/metaforms-mobile-client-revisions-and-testimonial-section-500.webp 500w, images/metaforms/metaforms-mobile-client-revisions-and-testimonial-section-984.webp 984w" sizes="(max-width: 767px) calc(100vw - 72px), calc(33vw - 140px)" loading="lazy" decoding="async" alt="Mobile client revisions and testimonial section"></div></div></div>
-
-            <div class="c12 shot">
-              <div class="shot-inner">
-                <div class="figure"><div class="media"><img width="2600" height="1916" src="images/metaforms/metaforms-support-section-real-help-real-person-2600.webp" srcset="images/metaforms/metaforms-support-section-real-help-real-person-1400.webp 1400w, images/metaforms/metaforms-support-section-real-help-real-person-2600.webp 2600w, images/metaforms/metaforms-support-section-real-help-real-person-3966.webp 3966w" sizes="(max-width: 767px) calc(100vw - 72px), calc(100vw - 360px)" loading="lazy" decoding="async" alt="Support section, real help from a real person"></div></div>
-              </div>
-              <div class="caption">support section</div>
-            </div>
-
-            <!-- ================= IN CONTEXT ================= -->
-            <div class="c12 text-block">
-              <h2 class="h2">In Context</h2>
-              <p class="body">The site as it is used: on a desk, on a monitor, in the hands of a research delivery team.</p>
-            </div>
-
-            <div class="c12 shot">
-              <div class="shot-inner">
-                <div class="figure"><div class="media"><img width="2600" height="1943" src="images/metaforms/metaforms-survey-programming-desktop-monitor-mockup-2600.webp" srcset="images/metaforms/metaforms-survey-programming-desktop-monitor-mockup-1400.webp 1400w, images/metaforms/metaforms-survey-programming-desktop-monitor-mockup-2600.webp 2600w, images/metaforms/metaforms-survey-programming-desktop-monitor-mockup-3966.webp 3966w" sizes="(max-width: 767px) calc(100vw - 72px), calc(100vw - 360px)" loading="lazy" decoding="async" alt="Survey programming page on a desktop monitor"></div></div>
-              </div>
-              <div class="caption">survey programming page on desktop</div>
-            </div>
-
-            <div class="c12 shot">
-              <div class="shot-inner">
-                <div class="figure"><div class="media"><img width="2600" height="1257" src="images/metaforms/metaforms-footer-orange-wordmark-2600.webp" srcset="images/metaforms/metaforms-footer-orange-wordmark-1400.webp 1400w, images/metaforms/metaforms-footer-orange-wordmark-2600.webp 2600w, images/metaforms/metaforms-footer-orange-wordmark-3966.webp 3966w" sizes="(max-width: 767px) calc(100vw - 72px), calc(100vw - 360px)" loading="lazy" decoding="async" alt="Footer with the orange Metaforms wordmark"></div></div>
-              </div>
-              <div class="caption">footer with the orange wordmark</div>
+              <div class="caption">trailer livery</div>
             </div>
           </div>
         </div>
@@ -968,19 +840,19 @@
           </div>
           <div class="more-grid">
             <div class="more-card">
-              <a href="cxverse.html">
-                <div class="media thumb" data-label="CXVERSE"><img width="1400" height="902" src="images/cxverse/cxverse-homepage-hero-shape-every-moment-1400.webp" loading="lazy" decoding="async" alt="CXVERSE"></div>
+              <a href="index.html">
+                <div class="media thumb" data-label="Metaforms"><img width="1400" height="822" src="images/metaforms/metaforms-homepage-hero-honest-and-grounded-elephant-1400.webp" loading="lazy" decoding="async" alt="Metaforms"></div>
                 <div class="more-info">
-                  <div class="stack"><span class="title">CXVERSE</span><span class="label">Brand System, Web, Product</span></div>
+                  <div class="stack"><span class="title">Metaforms</span><span class="label">Brand, Illustration, Web</span></div>
                   <span class="label stage">Case study</span>
                 </div>
               </a>
             </div>
             <div class="more-card">
-              <a href="hexalog.html">
-                <div class="media thumb" data-label="Hexalog"><img width="1400" height="792" src="images/hexalog/hexalog-homepage-hero-cross-border-supply-chain-1400.webp" loading="lazy" decoding="async" alt="Hexalog"></div>
+              <a href="cxverse.html">
+                <div class="media thumb" data-label="CXVERSE"><img width="1400" height="902" src="images/cxverse/cxverse-homepage-hero-shape-every-moment-1400.webp" loading="lazy" decoding="async" alt="CXVERSE"></div>
                 <div class="more-info">
-                  <div class="stack"><span class="title">Hexalog</span><span class="label">Brand, Web, Motion</span></div>
+                  <div class="stack"><span class="title">CXVERSE</span><span class="label">Brand System, Web, Product</span></div>
                   <span class="label stage">Case study</span>
                 </div>
               </a>
@@ -1028,15 +900,15 @@
 </div>
 
 <!-- Floating CTA (desktop) -->
-<a class="visit-btn" href="https://metaforms.ai" target="_blank" rel="noopener">
+<a class="visit-btn" href="https://hexalog.in" target="_blank" rel="noopener">
   <span class="cta">Visit Website</span>
-  <span class="url">metaforms.ai</span>
+  <span class="url">hexalog.in</span>
   <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
 </a>
 
 <!-- Bottom bar (mobile) -->
 <div class="mobile-bar">
-  <a href="#" target="_blank" rel="noopener">Visit site <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+  <a href="https://hexalog.in" target="_blank" rel="noopener">Visit site <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
   <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Talk to us</a>
 </div>
 
