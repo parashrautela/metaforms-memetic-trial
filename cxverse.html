@@ -269,6 +269,8 @@
     .figure { overflow: hidden; }
     .figure .media { background: transparent; }   /* transparent PNG/webp areas show the card colour */
     .shot-inner-sm { padding: 32px; }
+    /* Near-square images on a full row: capped and centred so they don't tower */
+    .shot-inner > .figure.figure-narrow { max-width: 760px; margin: 0 auto; }
     @media (max-width: 767px) { .shot-inner-sm { padding: 20px; } }
 
     /* Phone mockup */
@@ -620,15 +622,15 @@
               </div>
               <div class="caption">every homepage iteration, side by side</div>
             </div>
-            <div class="c6 shot">
-              <div class="shot-inner shot-inner-sm">
-                <div class="figure"><div class="media"><img width="2600" height="2211" src="images/cxverse/cxverse-homepage-hero-explorations-grid-2600.webp" srcset="images/cxverse/cxverse-homepage-hero-explorations-grid-1400.webp 1400w, images/cxverse/cxverse-homepage-hero-explorations-grid-2600.webp 2600w" sizes="(max-width: 767px) calc(100vw - 72px), calc(50vw - 200px)" loading="lazy" decoding="async" alt="Homepage hero explorations with storefront illustrations"></div></div>
+            <div class="c12 shot">
+              <div class="shot-inner">
+                <div class="figure"><div class="media"><img width="2600" height="2211" src="images/cxverse/cxverse-homepage-hero-explorations-grid-2600.webp" srcset="images/cxverse/cxverse-homepage-hero-explorations-grid-1400.webp 1400w, images/cxverse/cxverse-homepage-hero-explorations-grid-2600.webp 2600w" sizes="(max-width: 767px) calc(100vw - 72px), calc(100vw - 360px)" loading="lazy" decoding="async" alt="Homepage hero explorations with storefront illustrations"></div></div>
               </div>
               <div class="caption">hero explorations</div>
             </div>
-            <div class="c6 shot">
-              <div class="shot-inner shot-inner-sm">
-                <div class="figure"><div class="media"><img width="2600" height="1348" src="images/cxverse/cxverse-industry-hero-banners-2600.webp" srcset="images/cxverse/cxverse-industry-hero-banners-1400.webp 1400w, images/cxverse/cxverse-industry-hero-banners-2600.webp 2600w" sizes="(max-width: 767px) calc(100vw - 72px), calc(50vw - 200px)" loading="lazy" decoding="async" alt="Industry page heroes for travel, restaurants, entertainment and fashion"></div></div>
+            <div class="c12 shot">
+              <div class="shot-inner">
+                <div class="figure"><div class="media"><img width="2600" height="1348" src="images/cxverse/cxverse-industry-hero-banners-2600.webp" srcset="images/cxverse/cxverse-industry-hero-banners-1400.webp 1400w, images/cxverse/cxverse-industry-hero-banners-2600.webp 2600w" sizes="(max-width: 767px) calc(100vw - 72px), calc(100vw - 360px)" loading="lazy" decoding="async" alt="Industry page heroes for travel, restaurants, entertainment and fashion"></div></div>
               </div>
               <div class="caption">industry heroes: travel, restaurants, leisure, fashion</div>
             </div>
@@ -645,15 +647,15 @@
               </div>
               <div class="caption">life before cxverse</div>
             </div>
-            <div class="c6 shot">
-              <div class="shot-inner shot-inner-sm">
-                <div class="figure"><div class="media"><img width="2600" height="1969" src="images/cxverse/cxverse-product-suite-one-platform-section-2600.webp" srcset="images/cxverse/cxverse-product-suite-one-platform-section-1400.webp 1400w, images/cxverse/cxverse-product-suite-one-platform-section-2600.webp 2600w" sizes="(max-width: 767px) calc(100vw - 72px), calc(50vw - 200px)" loading="lazy" decoding="async" alt="One platform, infinite possibilities: product suite cards in per-product colours"></div></div>
+            <div class="c12 shot">
+              <div class="shot-inner">
+                <div class="figure"><div class="media"><img width="2600" height="1969" src="images/cxverse/cxverse-product-suite-one-platform-section-2600.webp" srcset="images/cxverse/cxverse-product-suite-one-platform-section-1400.webp 1400w, images/cxverse/cxverse-product-suite-one-platform-section-2600.webp 2600w" sizes="(max-width: 767px) calc(100vw - 72px), calc(100vw - 360px)" loading="lazy" decoding="async" alt="One platform, infinite possibilities: product suite cards in per-product colours"></div></div>
               </div>
               <div class="caption">the product suite, one colour per product</div>
             </div>
-            <div class="c6 shot">
-              <div class="shot-inner shot-inner-sm">
-                <div class="figure"><div class="media"><img width="2600" height="2987" src="images/cxverse/cxverse-continuity-loop-section-2600.webp" srcset="images/cxverse/cxverse-continuity-loop-section-1400.webp 1400w, images/cxverse/cxverse-continuity-loop-section-2600.webp 2600w" sizes="(max-width: 767px) calc(100vw - 72px), calc(50vw - 200px)" loading="lazy" decoding="async" alt="Continuity loop section: where every interaction connects and moves the relationship forward"></div></div>
+            <div class="c12 shot">
+              <div class="shot-inner">
+                <div class="figure figure-narrow"><div class="media"><img width="2600" height="2987" src="images/cxverse/cxverse-continuity-loop-section-2600.webp" srcset="images/cxverse/cxverse-continuity-loop-section-1400.webp 1400w, images/cxverse/cxverse-continuity-loop-section-2600.webp 2600w" sizes="(max-width: 767px) calc(100vw - 72px), 760px" loading="lazy" decoding="async" alt="Continuity loop section: where every interaction connects and moves the relationship forward"></div></div>
               </div>
               <div class="caption">the continuity loop</div>
             </div>
@@ -713,15 +715,15 @@
               </div>
               <div class="caption">the switcher, open inside cx crm</div>
             </div>
-            <div class="c6 shot">
-              <div class="shot-inner shot-inner-sm">
-                <div class="figure"><div class="media"><img width="2600" height="1485" src="images/cxverse/cxverse-product-switcher-closeup-icons-2600.webp" srcset="images/cxverse/cxverse-product-switcher-closeup-icons-1400.webp 1400w, images/cxverse/cxverse-product-switcher-closeup-icons-2600.webp 2600w" sizes="(max-width: 767px) calc(100vw - 72px), calc(50vw - 200px)" loading="lazy" decoding="async" alt="Close-up of the product switcher with product emblems"></div></div>
+            <div class="c12 shot">
+              <div class="shot-inner">
+                <div class="figure"><div class="media"><img width="2600" height="1485" src="images/cxverse/cxverse-product-switcher-closeup-icons-2600.webp" srcset="images/cxverse/cxverse-product-switcher-closeup-icons-1400.webp 1400w, images/cxverse/cxverse-product-switcher-closeup-icons-2600.webp 2600w" sizes="(max-width: 767px) calc(100vw - 72px), calc(100vw - 360px)" loading="lazy" decoding="async" alt="Close-up of the product switcher with product emblems"></div></div>
               </div>
               <div class="caption">product emblems up close</div>
             </div>
-            <div class="c6 shot">
-              <div class="shot-inner shot-inner-sm">
-                <div class="figure"><div class="media"><img width="1590" height="1459" src="images/cxverse/cxverse-product-switcher-layout-variants-1590.webp" srcset="images/cxverse/cxverse-product-switcher-layout-variants-900.webp 900w, images/cxverse/cxverse-product-switcher-layout-variants-1590.webp 1590w" sizes="(max-width: 767px) calc(100vw - 72px), calc(50vw - 200px)" loading="lazy" decoding="async" alt="Product switcher layout variants: two-row selector, tabs and all-in-one"></div></div>
+            <div class="c12 shot">
+              <div class="shot-inner">
+                <div class="figure figure-narrow"><div class="media"><img width="1590" height="1459" src="images/cxverse/cxverse-product-switcher-layout-variants-1590.webp" srcset="images/cxverse/cxverse-product-switcher-layout-variants-900.webp 900w, images/cxverse/cxverse-product-switcher-layout-variants-1590.webp 1590w" sizes="(max-width: 767px) calc(100vw - 72px), 760px" loading="lazy" decoding="async" alt="Product switcher layout variants: two-row selector, tabs and all-in-one"></div></div>
               </div>
               <div class="caption">layout variants: two rows, tabs, all in one</div>
             </div>
@@ -744,15 +746,15 @@
               </div>
               <div class="caption">dashboard v1 explorations</div>
             </div>
-            <div class="c6 shot">
-              <div class="shot-inner shot-inner-sm">
-                <div class="figure"><div class="media"><img width="2600" height="1663" src="images/cxverse/cxverse-cx-seamless-dashboard-iterations-2600.webp" srcset="images/cxverse/cxverse-cx-seamless-dashboard-iterations-1400.webp 1400w, images/cxverse/cxverse-cx-seamless-dashboard-iterations-2600.webp 2600w" sizes="(max-width: 767px) calc(100vw - 72px), calc(50vw - 200px)" loading="lazy" decoding="async" alt="CX Seamless dashboard iterations in light and dark"></div></div>
+            <div class="c12 shot">
+              <div class="shot-inner">
+                <div class="figure"><div class="media"><img width="2600" height="1663" src="images/cxverse/cxverse-cx-seamless-dashboard-iterations-2600.webp" srcset="images/cxverse/cxverse-cx-seamless-dashboard-iterations-1400.webp 1400w, images/cxverse/cxverse-cx-seamless-dashboard-iterations-2600.webp 2600w" sizes="(max-width: 767px) calc(100vw - 72px), calc(100vw - 360px)" loading="lazy" decoding="async" alt="CX Seamless dashboard iterations in light and dark"></div></div>
               </div>
               <div class="caption">cx seamless iterations</div>
             </div>
-            <div class="c6 shot">
-              <div class="shot-inner shot-inner-sm">
-                <div class="figure"><div class="media"><img width="1296" height="1452" src="images/cxverse/cxverse-dashboard-widgets-trend-heatmap-and-kpi-cards-1296.webp" srcset="images/cxverse/cxverse-dashboard-widgets-trend-heatmap-and-kpi-cards-900.webp 900w, images/cxverse/cxverse-dashboard-widgets-trend-heatmap-and-kpi-cards-1296.webp 1296w" sizes="(max-width: 767px) calc(100vw - 72px), calc(50vw - 200px)" loading="lazy" decoding="async" alt="Dashboard widgets: trend heatmap, channel donuts and KPI cards"></div></div>
+            <div class="c12 shot">
+              <div class="shot-inner">
+                <div class="figure figure-narrow"><div class="media"><img width="1296" height="1452" src="images/cxverse/cxverse-dashboard-widgets-trend-heatmap-and-kpi-cards-1296.webp" srcset="images/cxverse/cxverse-dashboard-widgets-trend-heatmap-and-kpi-cards-900.webp 900w, images/cxverse/cxverse-dashboard-widgets-trend-heatmap-and-kpi-cards-1296.webp 1296w" sizes="(max-width: 767px) calc(100vw - 72px), 760px" loading="lazy" decoding="async" alt="Dashboard widgets: trend heatmap, channel donuts and KPI cards"></div></div>
               </div>
               <div class="caption">widgets: heatmap, channel donuts, kpi cards</div>
             </div>
