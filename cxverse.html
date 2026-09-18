@@ -271,6 +271,9 @@
     .shot-inner-sm { padding: 32px; }
     /* Near-square images on a full row: capped and centred so they don't tower */
     .shot-inner > .figure.figure-narrow { max-width: 760px; margin: 0 auto; }
+    /* Two cards stacked in one half-width column, beside a taller card */
+    .stack { display: flex; flex-direction: column; gap: 8px; }
+    .stack > .shot { flex: 1; }
     @media (max-width: 767px) { .shot-inner-sm { padding: 20px; } }
 
     /* Phone mockup */
@@ -653,23 +656,25 @@
               </div>
               <div class="caption">the product suite, one colour per product</div>
             </div>
-            <div class="c12 shot">
-              <div class="shot-inner">
-                <div class="figure figure-narrow"><div class="media"><img width="2600" height="2987" src="images/cxverse/cxverse-continuity-loop-section-2600.webp" srcset="images/cxverse/cxverse-continuity-loop-section-1400.webp 1400w, images/cxverse/cxverse-continuity-loop-section-2600.webp 2600w" sizes="(max-width: 767px) calc(100vw - 72px), 760px" loading="lazy" decoding="async" alt="Continuity loop section: where every interaction connects and moves the relationship forward"></div></div>
+            <div class="c6 shot">
+              <div class="shot-inner shot-inner-sm">
+                <div class="figure"><div class="media"><img width="2600" height="2987" src="images/cxverse/cxverse-continuity-loop-section-2600.webp" srcset="images/cxverse/cxverse-continuity-loop-section-1400.webp 1400w, images/cxverse/cxverse-continuity-loop-section-2600.webp 2600w" sizes="(max-width: 767px) calc(100vw - 72px), calc(50vw - 200px)" loading="lazy" decoding="async" alt="Continuity loop section: where every interaction connects and moves the relationship forward"></div></div>
               </div>
               <div class="caption">the continuity loop</div>
             </div>
-            <div class="c6 shot">
+            <div class="c6 stack">
+            <div class="shot">
               <div class="shot-inner shot-inner-sm">
                 <div class="figure"><div class="media"><img width="2600" height="1768" src="images/cxverse/cxverse-customer-testimonials-real-growth-section-2600.webp" srcset="images/cxverse/cxverse-customer-testimonials-real-growth-section-1400.webp 1400w, images/cxverse/cxverse-customer-testimonials-real-growth-section-2600.webp 2600w" sizes="(max-width: 767px) calc(100vw - 72px), calc(50vw - 200px)" loading="lazy" decoding="async" alt="Real growth, real stories: customer testimonial cards with results"></div></div>
               </div>
               <div class="caption">customer stories with the numbers attached</div>
             </div>
-            <div class="c6 shot">
+            <div class="shot">
               <div class="shot-inner shot-inner-sm">
                 <div class="figure"><div class="media"><img width="2600" height="1416" src="images/cxverse/cxverse-blogs-resources-section-2600.webp" srcset="images/cxverse/cxverse-blogs-resources-section-1400.webp 1400w, images/cxverse/cxverse-blogs-resources-section-2600.webp 2600w" sizes="(max-width: 767px) calc(100vw - 72px), calc(50vw - 200px)" loading="lazy" decoding="async" alt="Resources section with blog cards"></div></div>
               </div>
               <div class="caption">resources and blog</div>
+            </div>
             </div>
 
             <!-- ================= PRODUCT PAGES ================= -->
