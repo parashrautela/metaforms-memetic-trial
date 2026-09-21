@@ -3,18 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Case Study — Metaforms</title>
+  <title>The Memetic Design Company</title>
+  <meta name="description" content="We build brands, websites, videos, and products for category-defining startups." />
 
-  <!-- Fonts: Bebas Neue (headings), Geist (body), Geist Mono (labels).
-       The original site also uses "Geist Pixel" for two tiny captions; it is not on Google Fonts,
-       so those fall back to Geist Mono. Drop the real font in via @font-face if you have it. -->
+  <!-- Fonts: Bebas Neue (headings), Geist (body), Geist Mono (labels). Same set as the case study pages. -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Geist:wght@400;500;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
   <style>
     /* ============================================================
-       1. TOKENS
+       1. TOKENS (shared with the case study pages)
        ============================================================ */
     :root, html.light {
       --background: #ffffff;
@@ -24,16 +23,12 @@
       --text-muted: #6b6b6b;
       --accent: #d42800;
       --border: rgba(0, 0, 0, 0.10);
-      --mockup-bg: #f0f0f0;
 
       --font-display: "Bebas Neue", Impact, sans-serif;
       --font-body: "Geist", -apple-system, system-ui, sans-serif;
       --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
       --font-pixel: "Geist Pixel", "Geist Mono", ui-monospace, monospace;
 
-      --sidebar-w: 240px;
-      --nav-h: 52px;
-      --footer-h: 294px;
     }
     html.dark {
       --background: #000000;
@@ -43,14 +38,13 @@
       --text-muted: #767676;
       --accent: #ff2e08;
       --border: rgba(42, 42, 42, 0.5);
-      --mockup-bg: #141414;
     }
 
     /* ============================================================
        2. RESET / BASE
        ============================================================ */
     *, *::before, *::after { box-sizing: border-box; }
-    html { -webkit-text-size-adjust: 100%; }
+    html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
     body {
       margin: 0;
       background: var(--background);
@@ -65,1051 +59,391 @@
     button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
     h1, h2, h3, p { margin: 0; }
     img, video { display: block; max-width: 100%; }
-    img[src=""] { display: none; }   /* no broken-image icon while a placeholder is empty */
 
-    /* Type scale (mirrors the source) */
-    .h1 { font-family: var(--font-display); font-weight: 400; font-size: 80px; line-height: 1; letter-spacing: -0.01em; text-transform: uppercase; }
-    .h2 { font-family: var(--font-display); font-weight: 400; font-size: 34px; line-height: 1.15; letter-spacing: -0.8px; text-transform: uppercase; }
-    .h3 { font-family: var(--font-display); font-weight: 400; font-size: 27px; line-height: 1.2; letter-spacing: -0.5px; text-transform: uppercase; }
     .body { font-size: 16px; line-height: 1.6; letter-spacing: 0.01em; }
     .label { font-family: var(--font-mono); font-size: 14px; line-height: 1.6; letter-spacing: 0.03em; text-transform: uppercase; color: var(--text-muted); }
     .label-sm { font-family: var(--font-mono); font-size: 13px; line-height: 1.6; letter-spacing: 0.03em; text-transform: uppercase; color: var(--text-muted); }
     .pixel { font-family: var(--font-pixel); font-size: 14px; line-height: 1.2; letter-spacing: -0.01em; color: var(--text-muted); }
 
     /* ============================================================
-       3. SHELL: SIDEBAR + TOP NAV + CONTENT
+       3. HERO: full-bleed project reel, headline bottom-left, pitch bottom-right
        ============================================================ */
-    .shell { display: flex; min-height: 100vh; }
+    .home-hero {
+      /* The hero always sits on video, so its colours do not follow the theme */
+      --hero-accent: #ff2e08;
+      --hero-pad: 64px;
+      position: relative; overflow: hidden; isolation: isolate;
+      height: 100vh; height: 100svh; min-height: 560px;
+      background: #000; color: #fff;
+    }
+    .reel { position: absolute; inset: 0; z-index: -2; }
+    .reel video {
+      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+      opacity: 0; transition: opacity 0.6s ease;
+    }
+    .reel video.on { opacity: 1; }
 
-    /* --- Sidebar --- */
-    .sidebar {
-      position: fixed; top: 0; left: 0;
-      width: var(--sidebar-w); height: 100vh;
-      display: flex; flex-direction: column; justify-content: space-between;
-      padding: 24px 32px;
-      background: var(--surface);
-      border-right: 1px solid var(--border);
-      overflow: auto;
-      z-index: 60;
+    /* Two soft black pools behind the copy (the blurred ellipses in the Figma frame), a band
+       behind the nav, and a light overall scrim so the white type also holds on the pale reels. */
+    .home-hero::before {
+      content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+      background:
+        radial-gradient(ellipse 58% 52% at 12% 100%, rgba(0, 0, 0, 0.88) 0%, rgba(0, 0, 0, 0.6) 45%, transparent 100%),
+        radial-gradient(ellipse 56% 48% at 90% 100%, rgba(0, 0, 0, 0.88) 0%, rgba(0, 0, 0, 0.6) 45%, transparent 100%),
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.62) 0, rgba(0, 0, 0, 0) 190px),
+        rgba(0, 0, 0, 0.22);
     }
-    .sidebar-top { display: flex; flex-direction: column; gap: 24px; }
-    .brand { display: flex; flex-direction: column; gap: 12px; }
-    .brand-logo { display: block; width: 36px; height: 36px; }
-    .brand-name { max-width: 160px; }
 
-    .projects { display: flex; flex-direction: column; gap: 6px; }
-    .projects > div { height: 32px; }
-    .proj-link {
-      display: inline-flex; height: 32px; overflow: hidden;
-      font-family: var(--font-display); font-size: 27px; line-height: 32px;
-      letter-spacing: -0.01em; text-transform: uppercase;
+    /* --- Top row: reel control (left) + nav (right) --- */
+    .hero-top {
+      position: absolute; top: 0; left: 0; right: 0;
+      display: flex; align-items: flex-start; justify-content: space-between; gap: 32px;
+      padding: 55px var(--hero-pad) 0;
     }
-    .proj-link .roll {
-      display: flex; flex-direction: column; gap: 4px;
-      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-    .proj-link .roll span:last-child { color: var(--accent); }
-    .proj-link:hover .roll { transform: translateY(-36px); }
-    .proj-link.active { color: var(--accent); }
-
-    .sidebar-bottom { display: flex; flex-direction: column; gap: 24px; }
-    .controls { display: flex; align-items: center; gap: 8px; }
-    .theme-toggle {
-      position: relative; display: flex; width: 140px; padding: 1px;
-      background: var(--surface-sunken); border: 1px solid var(--border);
-    }
-    .theme-toggle .thumb {
-      position: absolute; top: 1px; bottom: 1px; left: 1px; width: calc(50% - 1px);
-      background: var(--text-primary);
-      transition: transform 0.25s ease;
-    }
-    html.light .theme-toggle .thumb { transform: translateX(100%); }
-    .theme-toggle button {
-      position: relative; z-index: 1; flex: 1; padding: 4px 0;
+    .reel-ctrl { width: 132px; padding-top: 9px; }
+    .reel-track { display: block; height: 1px; background: rgba(255, 255, 255, 0.35); }
+    .reel-bar { display: block; height: 1px; width: 0; background: #fff; }
+    .reel-row { display: flex; align-items: center; justify-content: space-between; gap: 6px; margin-top: 2px; }
+    .reel-btn { width: 19px; height: 24px; display: flex; align-items: center; justify-content: center; opacity: 0.85; transition: opacity 0.2s; }
+    .reel-btn:hover, .reel-btn:focus-visible { opacity: 1; }
+    .reel-btn img { width: 7px; height: 12px; }
+    .reel-btn.prev img { transform: scaleX(-1); }
+    .reel-name {
+      flex: 1; min-width: 0; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
       font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase;
-      color: var(--text-muted); transition: color 0.2s;
+      color: rgba(255, 255, 255, 0.8); transition: color 0.2s;
     }
-    html.light .theme-toggle button[data-theme="light"],
-    html.dark  .theme-toggle button[data-theme="dark"] { color: var(--background); }
-    .icon-btn {
-      width: 28px; height: 28px; display: flex; align-items: center; justify-content: center;
-      background: var(--surface-sunken); border: 1px solid var(--border); color: var(--text-muted);
-    }
-    .socials { display: flex; align-items: center; gap: 16px; }
-    .socials a { display: block; width: 20px; height: 20px; transition: opacity 0.2s; }
-    .socials a:hover { opacity: 0.7; }
-    .socials svg { width: 20px; height: 20px; fill: var(--text-muted); }
+    .reel-name:hover { color: #fff; }
 
-    /* --- Top nav --- */
-    .topnav {
-      position: fixed; top: 0; right: 0; left: var(--sidebar-w); height: var(--nav-h);
-      display: flex; align-items: center; justify-content: flex-end; gap: 32px;
-      padding: 0 32px;
-      background: var(--surface); border-bottom: 1px solid var(--border);
-      z-index: 50;
-    }
-    .topnav-links { display: flex; align-items: center; gap: 32px; }
-    .topnav-links a { font-size: 14px; letter-spacing: 0.01em; line-height: 1.2; transition: color 0.2s; }
-    .topnav-links a:hover { color: var(--accent); }
-    .topnav-mobile { display: none; }
+    .hero-nav { display: flex; align-items: center; gap: 32px; }
+    .hero-nav a { font-size: 14px; letter-spacing: 0.01em; line-height: 1.2; transition: color 0.2s; }
+    .hero-nav a:hover { color: var(--hero-accent); }
+    .hamburger { display: none; }
 
-    /* --- Content column --- */
-    .content {
-      flex: 1; min-width: 0;
-      margin-left: var(--sidebar-w);
-      padding-top: var(--nav-h);
-      display: flex; flex-direction: column;
+    /* --- Bottom row --- */
+    .hero-bottom {
+      position: absolute; left: 0; right: 0; bottom: 0;
+      display: flex; align-items: flex-end; justify-content: space-between; gap: 48px;
+      padding: 0 var(--hero-pad) 55px;
     }
-    .page {
-      position: relative; z-index: 1;
-      background: var(--background);
-      border-bottom: 1px solid var(--border);
+    .hero-h1 {
+      font-family: var(--font-display); font-weight: 400;
+      font-size: clamp(52px, 6.4vw, 82px); line-height: 0.878; letter-spacing: -0.01em;
+      text-transform: uppercase; color: var(--hero-accent); white-space: nowrap;
     }
+    .hero-h1 span { color: #fff; }
+    .hero-pitch { display: flex; flex-direction: column; align-items: flex-start; gap: 28px; width: 434px; max-width: 100%; padding-bottom: 6px; }
+    .hero-cta {
+      display: inline-flex; align-items: center; padding: 10px;
+      background: #fff6f5; color: var(--hero-accent);
+      font-size: 16px; line-height: 21px; letter-spacing: 0.01em;
+      transition: background 0.2s, color 0.2s;
+    }
+    .hero-cta:hover { background: var(--hero-accent); color: #fff; }
 
     /* ============================================================
-       4. HERO + META
+       4. SELECTED WORK
        ============================================================ */
-    .hero { display: flex; flex-direction: column; align-items: stretch; }
-    .hero-title { display: flex; flex-direction: column; gap: 24px; padding: 24px 40px 24px 24px; }
-    .hero-meta { display: flex; flex-direction: column; }
-    .meta-row {
-      display: flex; align-items: flex-start; gap: 24px;
-      padding: 16px 24px; border-top: 1px solid var(--border);
-    }
-    .meta-row .label { flex: 0 0 71px; }
-    .meta-row .value { font-size: 16px; line-height: 1.6; letter-spacing: 0.01em; }
-    .meta-row .value .arrow { display: inline-block; transition: transform 0.2s; }
-    .meta-row a.value:hover .arrow { transform: translate(2px, -2px); }
-    @media (min-width: 1100px) {
-      .hero { flex-direction: row; }
-      .hero-title { flex: 1; }
-      .hero-meta { flex: 0 0 46%; border-left: 1px solid var(--border); }
-      .hero-meta .meta-row:first-child { border-top: 0; }
-    }
+    .work { border-top: 1px solid var(--border); }
+    .work-head { display: flex; align-items: center; justify-content: space-between; padding: 17px 24px; border-bottom: 1px solid var(--border); }
+    .work-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .work-card { border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .work-card:nth-child(2n) { border-right: 0; }
+    .work-card .thumb { aspect-ratio: 597 / 348; background: var(--surface-sunken); overflow: hidden; }
+    .work-card .thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
+    .work-card a:hover .thumb img { transform: scale(1.02); }
+    .work-info { display: flex; justify-content: space-between; gap: 8px; padding: 16px 24px; }
+    .work-info .title { display: block; font-size: 18px; font-weight: 500; line-height: 1.6; letter-spacing: 0.01em; }
+    .work-info .stack { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+    .work-info .stage { text-align: right; }
 
     /* ============================================================
-       5. CARD ROWS (challenge/solution, timeline)
+       5. FOOTER
        ============================================================ */
-    .row-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-    .row-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-bottom: 1px solid var(--border); }
-    .card { display: flex; flex-direction: column; gap: 16px; padding: 24px; border-right: 1px solid var(--border); }
-    .card:last-child { border-right: 0; }
-    .card .eyebrow { color: var(--accent); }
-
-    /* ============================================================
-       6. CASE STUDY GRID
-       ============================================================ */
-    .casestudy { padding: 0 12px; }
-    .grid12 { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 8px; }
-    .c12 { grid-column: span 12; }
-    .c6  { grid-column: span 6; }
-    .c4  { grid-column: span 4; }
-    .c3  { grid-column: span 3; }
-
-    .text-block { display: flex; flex-direction: column; gap: 16px; padding: 24px 12px; }
-    .text-block .spacer { height: 32px; }   /* aligns a companion paragraph with a heading on its left */
-
-    /* Generic media frame. Put your <img>/<video> inside; the data-label text shows only while empty. */
-    .media { position: relative; overflow: hidden; background: var(--mockup-bg); }
-    .media.r169 { aspect-ratio: 16 / 9; }
-    .media.r1610 { aspect-ratio: 16 / 10; }
-    .media.r43 { aspect-ratio: 4 / 3; }
-    .media img, .media video { width: 100%; height: 100%; object-fit: cover; }
-    /* A box holding a real image takes the image's own proportions: no crop, no squash. */
-    .media:has(img[src]:not([src=""])) { aspect-ratio: auto !important; }
-    .media img { height: auto; }
-
-    .media[data-label]::after {
-      content: attr(data-label);
-      position: absolute; inset: 0;
-      display: flex; align-items: center; justify-content: center; text-align: center; padding: 16px;
-      font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase;
-      color: var(--text-muted); pointer-events: none;
-    }
-    .media:has(img[src]:not([src=""]))::after,
-    .media:has(video[src]:not([src=""]))::after,
-    .media:has(video source)::after { display: none; }
-
-    /* Browser-window mockup */
-    .shot { background: var(--mockup-bg); overflow: hidden; display: flex; flex-direction: column; }
-    /* Side-by-side cards stretch to a shared height; the image stays centred in
-       whatever space it gets, so two slightly different shapes still line up. */
-    .shot-inner { padding: 48px; flex: 1; display: flex; align-items: center; }
-    .shot-inner > .figure { width: 100%; }
-    .browser { border: 1px solid rgba(55, 61, 65, 0.6); overflow: hidden; }
-    .browser-bar {
-      position: relative; display: flex; align-items: center; height: 32px; padding: 0 14px;
-      background: #1b1c20;
-    }
-    .browser-bar .dots { display: flex; gap: 8px; }
-    .browser-bar .dots span { width: 10px; height: 10px; border-radius: 999px; }
-    .browser-bar .dots span:nth-child(1) { background: #ff5f56; }
-    .browser-bar .dots span:nth-child(2) { background: #ffbd2e; }
-    .browser-bar .dots span:nth-child(3) { background: #27c93f; }
-    .browser-bar .url {
-      position: absolute; left: 50%; transform: translateX(-50%);
-      width: 199px; padding: 3px 12px; background: #090e11;
-      font-size: 10px; line-height: 1.5; color: #888; text-align: center;
-    }
-    .browser-body { background: var(--mockup-bg); }
-    .browser-body .media { border-radius: 0; }
-    .caption {
-      display: flex; justify-content: center; text-align: center; padding: 4px 16px 12px;
-      font-family: var(--font-mono); font-size: 12px; font-weight: 500; line-height: 1; color: var(--text-muted);
-    }
-    /* On pointer devices the caption stays hidden until the card is hovered.
-       Its space is still reserved, so revealing it never shifts the layout.
-       Touch devices have no hover, so there it is simply always visible. */
-    @media (hover: hover) {
-      .shot .caption { opacity: 0; transition: opacity 0.2s ease; }
-      .shot:hover .caption, .shot:focus-within .caption { opacity: 1; }
-    }
-
-    /* Plain image card (Figma-style: padded, rounded image, no browser chrome) */
-    /* Framed like the live memetic.design pages, minus their hairline border: 4px radius, soft double shadow */
-    .figure {
-      overflow: hidden;
-      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3), 0 2px 10px rgba(0, 0, 0, 0.2);
-    }
-    .figure .media { background: transparent; }   /* transparent PNG/webp areas show the card colour */
-    .shot-inner-sm { padding: 32px; }
-    @media (max-width: 767px) { .shot-inner-sm { padding: 20px; } }
-
-    /* Phone mockup */
-    .phone-wrap { background: var(--mockup-bg); padding: 24px; overflow: hidden; }
-    .phone { border: 1px solid var(--border); overflow: hidden; }
-    .phone .media { aspect-ratio: 984 / 2400; background: transparent; }   /* matches the mobile screenshot exports */
-
-    /* Tweet-style card (static markup replacing the embedded tweets) */
-    .tweets { margin-top: 8px; }
-    .tweet {
-      display: flex; flex-direction: column; gap: 12px;
-      padding: 12px 16px;
-      background: var(--surface); border: 1px solid var(--border);
-      font-size: 15px; line-height: 1.4;
-    }
-    .tweet-head { display: flex; align-items: center; gap: 12px; }
-    .tweet-avatar { width: 48px; height: 48px; border-radius: 999px; background: var(--surface-sunken); flex: 0 0 48px; overflow: hidden; }
-    .tweet-avatar img { width: 100%; height: 100%; object-fit: cover; }
-    .tweet-who { display: flex; flex-direction: column; min-width: 0; }
-    .tweet-name { font-weight: 700; }
-    .tweet-handle { color: var(--text-muted); }
-    .tweet-handle a { color: #1d9bf0; }
-    .tweet-x { margin-left: auto; width: 24px; height: 24px; flex: 0 0 24px; }
-    .tweet-x svg { width: 24px; height: 24px; fill: var(--text-primary); }
-    .tweet-body { white-space: pre-line; }
-    .tweet-body a { color: #1d9bf0; }
-    .tweet-media { overflow: hidden; border: 1px solid var(--border); }
-    .tweet-date { color: var(--text-muted); font-size: 15px; }
-    .tweet-actions { display: flex; align-items: center; gap: 16px; color: var(--text-muted); font-size: 14px; padding-top: 4px; border-top: 1px solid var(--border); }
-    .tweet-actions span { display: flex; align-items: center; gap: 6px; }
-    .tweet-replies {
-      display: block; text-align: center; padding: 8px 0; border: 1px solid var(--border);
-      color: #1d9bf0; font-size: 15px; font-weight: 500;
-    }
-
-    /* ============================================================
-       7. MORE PROJECTS
-       ============================================================ */
-    .more { margin-top: 56px; border-top: 1px solid var(--border); }
-    .more-head { display: flex; align-items: center; justify-content: space-between; padding: 17px 24px; border-bottom: 1px solid var(--border); }
-    .more-head a { color: var(--accent); font-size: 14px; }
-    .more-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    .more-card { border-right: 1px solid var(--border); }
-    .more-card:last-child { border-right: 0; }
-    .more-card .thumb { aspect-ratio: 597 / 348; background: var(--surface-sunken); }
-    .more-info { display: flex; justify-content: space-between; gap: 8px; padding: 16px 24px; }
-    .more-info .title { display: block; font-size: 18px; font-weight: 500; line-height: 1.6; letter-spacing: 0.01em; }
-    .more-info .stack { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
-    .more-info .stage { text-align: right; flex: 0 1 auto; }
-
-    /* ============================================================
-       8. FOOTER (fixed, revealed as the page scrolls past)
-       ============================================================ */
-    .footer-spacer { height: var(--footer-h); pointer-events: none; }
-    .site-footer {
-      position: fixed; bottom: 0; right: 0; left: var(--sidebar-w); z-index: 0;
-      padding: 160px 24px 32px;
-      background: var(--background); border-top: 1px solid var(--border);
-    }
+    .site-footer { padding: 120px 24px 32px; background: var(--background); }
     .footer-inner { display: flex; justify-content: space-between; gap: 48px; }
     .footer-brand { display: flex; flex-direction: column; gap: 8px; max-width: 247px; }
-    .footer-brand .wordmark { width: 137px; height: 40px; }
     .footer-cols { display: flex; gap: 64px; }
     .footer-col { display: flex; flex-direction: column; gap: 4px; }
-    .footer-col .body a:hover, .footer-col button:hover { color: var(--accent); }
-    .footer-col .email { color: var(--accent); text-align: left; }
+    .footer-col .body a:hover, .footer-col a.body:hover { color: var(--accent); }
+    .footer-col .email { color: var(--accent); }
 
     /* ============================================================
-       9. FLOATING CTA (desktop) + BOTTOM BAR (mobile)
+       6. RESPONSIVE
        ============================================================ */
-    .visit-btn {
-      position: fixed; right: 24px; bottom: 24px; z-index: 70;
-      display: flex; align-items: center; gap: 10px;
-      padding: 12px 20px; background: var(--accent); color: #fff;
-      box-shadow: 0 4px 24px rgba(229, 57, 53, 0.4);
-      transition: transform 0.2s, filter 0.2s;
-    }
-    .visit-btn:hover { filter: brightness(1.08); transform: translateY(-1px); }
-    .visit-btn .cta { font-family: var(--font-mono); font-size: 13px; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; }
-    .visit-btn .url { font-size: 13px; color: rgba(255, 255, 255, 0.7); }
-    .visit-btn svg { width: 14px; height: 14px; flex: 0 0 14px; }
-
-    .mobile-bar { display: none; }
-
-    /* ============================================================
-       10. RESPONSIVE
-       ============================================================ */
-    @media (max-width: 1100px) {
-      .grid12 { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+    @media (max-width: 1000px) {
+      .hero-nav { gap: 22px; }
+      .hero-pitch { width: 360px; }
     }
     @media (max-width: 767px) {
-      :root { --sidebar-w: 0px; --nav-h: 55px; }
-      .sidebar { display: none; }
-      .content { margin-left: 0; padding-bottom: 64px; }
-
-      .topnav { left: 0; justify-content: space-between; padding: 0 16px; }
-      .topnav-links { display: none; }
-      .topnav-mobile { display: flex; align-items: center; gap: 12px; width: 100%; }
-      .topnav-mobile .brand-logo { width: 32px; height: 32px; }
-      .topnav-mobile .brand-name { flex: 1; font-size: 13px; }
+      .home-hero { --hero-pad: 20px; }
+      .hero-top { padding-top: 24px; align-items: center; }
+      .hero-nav { display: none; }
       .hamburger { width: 28px; height: 28px; display: flex; flex-direction: column; justify-content: center; gap: 5px; }
-      .hamburger span { display: block; height: 1.5px; background: var(--text-primary); }
+      .hamburger span { display: block; height: 1.5px; background: #fff; }
 
-      .h1 { font-size: 52px; }
-      .hero-title { padding: 24px 16px; }
-      .meta-row { padding: 16px; }
+      .hero-bottom { flex-direction: column; align-items: flex-start; gap: 24px; padding-bottom: 32px; }
+      .hero-h1 { font-size: clamp(48px, 15vw, 72px); }
+      .hero-pitch { width: 100%; gap: 20px; padding-bottom: 0; }
+      .home-hero::before {
+        background:
+          linear-gradient(to top, rgba(0, 0, 0, 0.9) 0, rgba(0, 0, 0, 0.7) 45%, rgba(0, 0, 0, 0) 78%),
+          linear-gradient(to bottom, rgba(0, 0, 0, 0.62) 0, rgba(0, 0, 0, 0) 150px),
+          rgba(0, 0, 0, 0.22);
+      }
 
-      .row-2, .row-3 { grid-template-columns: 1fr; }
-      .card { border-right: 0; border-bottom: 1px solid var(--border); padding: 24px 16px; }
-      .card:last-child { border-bottom: 0; }
+      .work-grid { grid-template-columns: 1fr; }
+      .work-card { border-right: 0; }
+      .work-head, .work-info { padding-left: 16px; padding-right: 16px; }
 
-      .grid12 { grid-template-columns: 1fr; }
-      .c12, .c6, .c4, .c3 { grid-column: auto; }
-      .shot-inner { padding: 24px; }
-      .browser-bar .url { width: 140px; }
-
-      .more-grid { grid-template-columns: 1fr; }
-      .more-card { border-right: 0; border-bottom: 1px solid var(--border); }
-      .more-card:last-child { border-bottom: 0; }
-
-      .footer-spacer { display: none; }
-      .site-footer { position: static; padding: 64px 16px 32px; }
+      .site-footer { padding: 64px 16px 32px; }
       .footer-inner { flex-direction: column; gap: 32px; }
       .footer-cols { gap: 32px; }
-
-      .visit-btn { display: none; }
-      .mobile-bar {
-        position: fixed; left: 0; right: 0; bottom: 0; z-index: 70;
-        display: grid; grid-template-columns: 1fr 1fr; height: 64px;
-        border-top: 1px solid var(--border);
-        box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.25);
-      }
-      .mobile-bar a {
-        display: flex; align-items: center; justify-content: center; gap: 10px;
-        font-family: var(--font-mono); font-size: 13px; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase;
-      }
-      .mobile-bar a:first-child { background: var(--accent); color: #fff; }
-      .mobile-bar a:last-child { background: var(--surface); color: var(--text-primary); }
-      .mobile-bar svg { width: 14px; height: 14px; }
     }
 
     /* Mobile menu overlay */
     .mobile-menu {
-      position: fixed; inset: 55px 0 0 0; z-index: 65;
+      position: fixed; inset: 0; z-index: 65;
       display: none; flex-direction: column; justify-content: space-between;
-      padding: 24px 16px; background: var(--surface); overflow: auto;
+      padding: 80px 20px 24px; background: var(--surface); color: var(--text-primary); overflow: auto;
     }
     @media (max-width: 767px) { .mobile-menu.open { display: flex; } }
-    .mobile-menu .projects { gap: 8px; }
+    .mobile-menu .projects { display: flex; flex-direction: column; gap: 8px; }
+    .mobile-menu .proj-link { font-family: var(--font-display); font-size: 27px; line-height: 32px; letter-spacing: -0.01em; text-transform: uppercase; }
     .mobile-menu .links { display: flex; flex-wrap: wrap; gap: 16px 24px; padding-top: 24px; border-top: 1px solid var(--border); }
     .mobile-menu .links a { font-size: 14px; letter-spacing: 0.01em; }
+    .mobile-menu .close { position: absolute; top: 24px; right: 20px; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reel video { transition: none; }
+    }
   </style>
 </head>
 
 <body>
-<div class="shell">
 
   <!-- ============================================================
-       SIDEBAR
+       HERO
        ============================================================ -->
-  <aside class="sidebar">
-    <div class="sidebar-top">
-      <div class="brand">
-        <a href="/" class="brand-logo" aria-label="Home">
-          <!-- Replace with your own logo mark (36x36) -->
-          <svg width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true">
-            <rect width="36" height="36" rx="5" fill="var(--accent)"/>
-            <circle cx="23.79" cy="12.21" r="5.79" fill="#1A1919"/>
-            <circle cx="12.21" cy="12.21" r="5.79" fill="#1A1919"/>
-            <circle cx="12.21" cy="23.78" r="5.79" fill="#1A1919"/>
-            <circle cx="23.79" cy="23.78" r="5.79" fill="#1A1919"/>
-            <path d="M11.96 18c3.34 0 6.04-2.71 6.04-6.04 0 3.34 2.7 6.04 6.04 6.04-3.34 0-6.04 2.71-6.04 6.04 0-3.34-2.7-6.04-6.04-6.04Z" fill="var(--accent)"/>
-          </svg>
-        </a>
-        <span class="pixel brand-name">The Memetic Design Company</span>
-      </div>
+  <header class="home-hero" id="top">
 
-      <nav class="projects" aria-label="Projects">
-        <div><a class="proj-link active" href="#"><span class="roll"><span>Metaforms</span><span>Metaforms</span></span></a></div>
-        <div><a class="proj-link" href="cxverse.html"><span class="roll"><span>CXVERSE</span><span>CXVERSE</span></span></a></div>
-        <div><a class="proj-link" href="#"><span class="roll"><span>Yaas</span><span>Yaas</span></span></a></div>
-        <div><a class="proj-link" href="hexalog.html"><span class="roll"><span>Hexalog</span><span>Hexalog</span></span></a></div>
-        <div><a class="proj-link" href="#"><span class="roll"><span>0xGasless</span><span>0xGasless</span></span></a></div>
-        <div><a class="proj-link" href="#"><span class="roll"><span>Blockpe</span><span>Blockpe</span></span></a></div>
-        <div><a class="proj-link" href="nyayanidhi.html"><span class="roll"><span>Nyayanidhi</span><span>Nyayanidhi</span></span></a></div>
-      </nav>
+    <!-- Project reel: one walkthrough plays at a time and hands over to the next when it ends.
+         Two stacked <video>s so the change is a crossfade. Sources are set by the script below
+         (1080p WebM on desktop, 720p MP4 on phones), so only the reel that is playing downloads. -->
+    <div class="reel" id="reel" aria-hidden="true">
+      <video muted playsinline preload="none" class="on" poster="images/nyayanidhi/motion/rilin-website-walkthrough-poster.webp"></video>
+      <video muted playsinline preload="none"></video>
     </div>
 
-    <div class="sidebar-bottom">
-      <div class="controls">
-        <div class="theme-toggle" role="group" aria-label="Theme">
-          <span class="thumb" aria-hidden="true"></span>
-          <button type="button" data-theme="dark">Dark</button>
-          <button type="button" data-theme="light">Light</button>
+    <div class="hero-top">
+      <div class="reel-ctrl" role="group" aria-label="Project reel">
+        <span class="reel-track"><span class="reel-bar" id="reelBar"></span></span>
+        <div class="reel-row">
+          <button type="button" class="reel-btn prev" id="reelPrev" aria-label="Previous project"><img src="images/home/chevron-right.svg" width="7" height="12" alt=""></button>
+          <a class="reel-name" id="reelName" href="nyayanidhi.html">Rilin</a>
+          <button type="button" class="reel-btn next" id="reelNext" aria-label="Next project"><img src="images/home/chevron-right.svg" width="7" height="12" alt=""></button>
         </div>
-        <button type="button" class="icon-btn" aria-label="Sound">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0z"/></svg>
-        </button>
       </div>
-      <p class="pixel">Good design is provocative.</p>
-      <div class="socials">
-        <a href="#" aria-label="X / Twitter"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
-        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg></a>
-        <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg></a>
-        <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83-1.48 1.73-1.73.47-.13 1.33-.22 2.65-.28 1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z"/></svg></a>
-      </div>
-    </div>
-  </aside>
 
-  <!-- ============================================================
-       CONTENT COLUMN
-       ============================================================ -->
-  <div class="content">
-
-    <!-- Top nav -->
-    <nav class="topnav" aria-label="Primary">
-      <div class="topnav-mobile">
-        <a href="/" class="brand-logo" aria-label="Home">
-          <svg width="32" height="32" viewBox="0 0 36 36" fill="none" aria-hidden="true">
-            <rect width="36" height="36" rx="5" fill="var(--accent)"/>
-            <circle cx="23.79" cy="12.21" r="5.79" fill="#1A1919"/>
-            <circle cx="12.21" cy="12.21" r="5.79" fill="#1A1919"/>
-            <circle cx="12.21" cy="23.78" r="5.79" fill="#1A1919"/>
-            <circle cx="23.79" cy="23.78" r="5.79" fill="#1A1919"/>
-            <path d="M11.96 18c3.34 0 6.04-2.71 6.04-6.04 0 3.34 2.7 6.04 6.04 6.04-3.34 0-6.04 2.71-6.04 6.04 0-3.34-2.7-6.04-6.04-6.04Z" fill="var(--accent)"/>
-          </svg>
-        </a>
-        <span class="pixel brand-name">The Memetic Design Company</span>
-        <button type="button" class="hamburger" id="menuBtn" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
-      </div>
-      <div class="topnav-links">
-        <a href="#">All Projects</a>
+      <nav class="hero-nav" aria-label="Primary">
+        <a href="#work">All Projects</a>
         <a href="#">Video</a>
         <a href="#">Brand</a>
         <a href="#">Web</a>
         <a href="#">Product</a>
         <a href="#">Socials</a>
         <a href="#">About</a>
-      </div>
-    </nav>
-
-    <!-- Mobile menu (only used under 768px) -->
-    <div class="mobile-menu" id="mobileMenu">
-      <nav class="projects" aria-label="Projects">
-        <div><a class="proj-link active" href="#">Metaforms</a></div>
-        <div><a class="proj-link" href="cxverse.html">CXVERSE</a></div>
-        <div><a class="proj-link" href="#">Yaas</a></div>
-        <div><a class="proj-link" href="hexalog.html">Hexalog</a></div>
-        <div><a class="proj-link" href="#">0xGasless</a></div>
-        <div><a class="proj-link" href="#">Blockpe</a></div>
-        <div><a class="proj-link" href="nyayanidhi.html">Nyayanidhi</a></div>
       </nav>
-      <div class="links">
-        <a href="#">All Projects</a><a href="#">Video</a><a href="#">Brand</a><a href="#">Web</a><a href="#">Product</a><a href="#">Socials</a><a href="#">About</a>
-      </div>
+      <button type="button" class="hamburger" id="menuBtn" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
 
-    <main>
-      <div class="page">
-
-        <!-- ================= HERO ================= -->
-        <header class="hero">
-          <div class="hero-title">
-            <h1 class="h1">Metaforms</h1>
-            <p class="body">Honest and grounded AI infrastructure for research delivery teams</p>
-          </div>
-          <div class="hero-meta">
-            <div class="meta-row">
-              <span class="label">Client</span>
-              <a class="value" href="https://metaforms.ai" target="_blank" rel="noopener">Metaforms <span class="arrow">↗</span></a>
-            </div>
-            <div class="meta-row">
-              <span class="label">Services</span>
-              <span class="value">Brand Identity, Illustration, Web Design &amp; Development</span>
-            </div>
-            <div class="meta-row">
-              <span class="label">Year</span>
-              <span class="value">2025–2026</span>
-            </div>
-          </div>
-        </header>
-
-        <!-- ================= CHALLENGE / SOLUTION ================= -->
-        <div class="row-2">
-          <div class="card">
-            <h2 class="h2">The Challenge</h2>
-            <p class="body">Metaforms sells AI infrastructure to market research agencies, a category full of cold gradients and generic robot imagery. They needed a brand that felt honest, human and grounded while still reading as serious software.</p>
-          </div>
-          <div class="card">
-            <h2 class="h2">The Solution</h2>
-            <p class="body">A hand-drawn elephant mascot, warm cream and orange palette, serif headlines and sticky-note asides. We designed and built the full website around the story of removing one bottleneck at a time.</p>
-          </div>
-        </div>
-
-        <!-- ================= TIMELINE ================= -->
-        <div class="row-3">
-          <div class="card">
-            <span class="label eyebrow">Month 1</span>
-            <h2 class="h2">Research + Mascot</h2>
-            <p class="body">Audited competitors, built a moodboard and explored illustration styles until the orange elephant emerged as the face of the brand.</p>
-          </div>
-          <div class="card">
-            <span class="label eyebrow">Month 2-3</span>
-            <h2 class="h2">Website Design + Build</h2>
-            <p class="body">Wireframed the narrative, explored hero directions, then designed every section with custom illustration and diagrams of the delivery chain.</p>
-          </div>
-          <div class="card">
-            <span class="label eyebrow">Month 3.5</span>
-            <h2 class="h2">Build + Launch</h2>
-            <p class="body">Built the responsive site with mobile-first recrops of every illustration and shipped it with the new footer wordmark and support pages.</p>
-          </div>
-        </div>
-
-        <!-- ================= CASE STUDY BODY ================= -->
-        <!-- Image order follows the Figma reference frame. Copy below is draft; replace with your own. -->
-        <div class="casestudy">
-          <div class="grid12">
-
-            <!-- Hero: full-bleed homepage video (WebM, muted autoplay loop; poster shows until it plays) -->
-            <div class="c12">
-              <div class="media r169">
-                <!-- Source is chosen by viewport in the script below: 4K on desktop, 720p on phones.
-                     The media attribute on <source> is unreliable inside <video>, so JS sets it. -->
-                <video id="heroVideo" autoplay muted loop playsinline preload="metadata"
-                       poster="images/metaforms/metaforms-homepage-hero-honest-and-grounded-elephant-2600.webp"
-                       data-src-lg="images/metaforms/metaforms-homepage-2160.webm"
-                       data-src-sm="images/metaforms/metaforms-homepage-720.webm"></video>
-              </div>
-            </div>
-
-            <!-- Research -->
-            <div class="c12 text-block">
-              <h3 class="h3">Research + Competitor Analysis</h3>
-              <p class="body">We started by mapping the market research tooling landscape: how competitors position AI, how they talk to research delivery teams, and where the visual language of the category had gone stale. That audit set the direction for a warmer, more human brand.</p>
-            </div>
-
-            <div class="c12 shot">
-              <div class="shot-inner">
-                <div class="figure"><div class="media"><img width="2600" height="1932" src="images/metaforms/metaforms-competitor-analysis-board-2600.webp" srcset="images/metaforms/metaforms-competitor-analysis-board-1400.webp 1400w, images/metaforms/metaforms-competitor-analysis-board-2600.webp 2600w, images/metaforms/metaforms-competitor-analysis-board-3966.webp 3966w" sizes="(max-width: 767px) calc(100vw - 72px), calc(100vw - 360px)" loading="lazy" decoding="async" alt="Competitor analysis board"></div></div>
-              </div>
-              <div class="caption">competitor analysis board</div>
-            </div>
-
-            <!-- Mascot -->
-            <div class="c12 text-block">
-              <h3 class="h3">The Elephant</h3>
-              <p class="body">Metaforms needed a character that felt honest and grounded, not another abstract AI gradient. We built a moodboard around elephants, explored dozens of illustration styles, and landed on a hand-drawn orange elephant that could live in real-world scenes across the site.</p>
-            </div>
-
-            <div class="c12 shot">
-              <div class="shot-inner">
-                <div class="figure"><div class="media"><img width="2600" height="870" src="images/metaforms/metaforms-elephant-mascot-inspiration-moodboard-2600.webp" srcset="images/metaforms/metaforms-elephant-mascot-inspiration-moodboard-1400.webp 1400w, images/metaforms/metaforms-elephant-mascot-inspiration-moodboard-2600.webp 2600w, images/metaforms/metaforms-elephant-mascot-inspiration-moodboard-3966.webp 3966w" sizes="(max-width: 767px) calc(100vw - 72px), calc(100vw - 360px)" loading="lazy" decoding="async" alt="Elephant mascot inspiration moodboard"></div></div>
-              </div>
-              <div class="caption">mascot inspiration moodboard</div>
-            </div>
-
-            <div class="c12 shot">
-              <div class="shot-inner">
-                <div class="figure"><div class="media"><img width="2600" height="1151" src="images/metaforms/metaforms-elephant-mascot-illustration-explorations-2600.webp" srcset="images/metaforms/metaforms-elephant-mascot-illustration-explorations-1400.webp 1400w, images/metaforms/metaforms-elephant-mascot-illustration-explorations-2600.webp 2600w, images/metaforms/metaforms-elephant-mascot-illustration-explorations-3966.webp 3966w" sizes="(max-width: 767px) calc(100vw - 72px), calc(100vw - 360px)" loading="lazy" decoding="async" alt="Elephant mascot illustration explorations"></div></div>
-              </div>
-              <div class="caption">mascot illustration explorations</div>
-            </div>
-
-            <div class="c12 shot">
-              <div class="shot-inner">
-                <div class="figure"><div class="media"><img width="2600" height="893" src="images/metaforms/metaforms-elephant-mascot-scene-illustrations-grid-2600.webp" srcset="images/metaforms/metaforms-elephant-mascot-scene-illustrations-grid-1400.webp 1400w, images/metaforms/metaforms-elephant-mascot-scene-illustrations-grid-2600.webp 2600w, images/metaforms/metaforms-elephant-mascot-scene-illustrations-grid-3966.webp 3966w" sizes="(max-width: 767px) calc(100vw - 72px), calc(100vw - 360px)" loading="lazy" decoding="async" alt="Elephant mascot scene illustrations"></div></div>
-              </div>
-              <div class="caption">scene illustrations across the site</div>
-            </div>
-
-            <div class="c12 text-block">
-              <h3 class="h3">The Finished Scenes</h3>
-              <p class="body">The finished illustrations, drawn once and reused across the site: pricing, the pilot, security, the two ways to work with Metaforms, and the About page.</p>
-            </div>
-            <div class="c6 shot">
-              <div class="shot-inner shot-inner-sm">
-                <div class="figure"><div class="media"><img width="2600" height="1464" src="images/metaforms/metaforms-illustration-elephant-biplane-2600.webp" srcset="images/metaforms/metaforms-illustration-elephant-biplane-1400.webp 1400w, images/metaforms/metaforms-illustration-elephant-biplane-2600.webp 2600w" sizes="(max-width: 767px) calc(100vw - 72px), calc(50vw - 200px)" loading="lazy" decoding="async" alt="The elephant flying a biplane"></div></div>
-              </div>
-              <div class="caption">flying a biplane</div>
-            </div>
-            <div class="c6 shot">
-              <div class="shot-inner shot-inner-sm">
-                <div class="figure"><div class="media"><img width="2600" height="1464" src="images/metaforms/metaforms-illustration-elephant-money-pile-2600.webp" srcset="images/metaforms/metaforms-illustration-elephant-money-pile-1400.webp 1400w, images/metaforms/metaforms-illustration-elephant-money-pile-2600.webp 2600w" sizes="(max-width: 767px) calc(100vw - 72px), calc(50vw - 200px)" loading="lazy" decoding="async" alt="The elephant on a pile of money"></div></div>
-              </div>
-              <div class="caption">on a pile of money</div>
-            </div>
-            <div class="c6 shot">
-              <div class="shot-inner shot-inner-sm">
-                <div class="figure"><div class="media"><img width="2600" height="1464" src="images/metaforms/metaforms-illustration-elephant-park-bench-2600.webp" srcset="images/metaforms/metaforms-illustration-elephant-park-bench-1400.webp 1400w, images/metaforms/metaforms-illustration-elephant-park-bench-2600.webp 2600w" sizes="(max-width: 767px) calc(100vw - 72px), calc(50vw - 200px)" loading="lazy" decoding="async" alt="The elephant on a park bench between two people"></div></div>
-              </div>
-              <div class="caption">on a park bench</div>
-            </div>
-            <div class="c6 shot">
-              <div class="shot-inner shot-inner-sm">
-                <div class="figure"><div class="media"><img width="2600" height="1461" src="images/metaforms/metaforms-illustration-elephant-picnic-2600.webp" srcset="images/metaforms/metaforms-illustration-elephant-picnic-1400.webp 1400w, images/metaforms/metaforms-illustration-elephant-picnic-2600.webp 2600w" sizes="(max-width: 767px) calc(100vw - 72px), calc(50vw - 200px)" loading="lazy" decoding="async" alt="The elephant at a picnic"></div></div>
-              </div>
-              <div class="caption">at a picnic</div>
-            </div>
-            <div class="c6 shot">
-              <div class="shot-inner shot-inner-sm">
-                <div class="figure"><div class="media"><img width="2600" height="1464" src="images/metaforms/metaforms-illustration-elephant-street-corner-2600.webp" srcset="images/metaforms/metaforms-illustration-elephant-street-corner-1400.webp 1400w, images/metaforms/metaforms-illustration-elephant-street-corner-2600.webp 2600w" sizes="(max-width: 767px) calc(100vw - 72px), calc(50vw - 200px)" loading="lazy" decoding="async" alt="The elephant on a busy street corner"></div></div>
-              </div>
-              <div class="caption">on a street corner</div>
-            </div>
-            <div class="c6 shot">
-              <div class="shot-inner shot-inner-sm">
-                <div class="figure"><div class="media"><img width="2600" height="1464" src="images/metaforms/metaforms-illustration-elephant-umbrella-2600.webp" srcset="images/metaforms/metaforms-illustration-elephant-umbrella-1400.webp 1400w, images/metaforms/metaforms-illustration-elephant-umbrella-2600.webp 2600w" sizes="(max-width: 767px) calc(100vw - 72px), calc(50vw - 200px)" loading="lazy" decoding="async" alt="The elephant leaning on a lamppost with an umbrella"></div></div>
-              </div>
-              <div class="caption">waiting with an umbrella</div>
-            </div>
-            <div class="c4 shot">
-              <div class="shot-inner shot-inner-sm">
-                <div class="figure"><div class="media"><img width="2600" height="1464" src="images/metaforms/metaforms-illustration-elephant-watering-flower-2600.webp" srcset="images/metaforms/metaforms-illustration-elephant-watering-flower-1400.webp 1400w, images/metaforms/metaforms-illustration-elephant-watering-flower-2600.webp 2600w" sizes="(max-width: 767px) calc(100vw - 72px), calc(33vw - 150px)" loading="lazy" decoding="async" alt="The elephant watering a flower with a child"></div></div>
-              </div>
-              <div class="caption">watering a flower</div>
-            </div>
-            <div class="c4 shot">
-              <div class="shot-inner shot-inner-sm">
-                <div class="figure"><div class="media"><img width="2600" height="1950" src="images/metaforms/metaforms-illustration-elephant-padlock-2600.webp" srcset="images/metaforms/metaforms-illustration-elephant-padlock-1400.webp 1400w, images/metaforms/metaforms-illustration-elephant-padlock-2600.webp 2600w" sizes="(max-width: 767px) calc(100vw - 72px), calc(33vw - 150px)" loading="lazy" decoding="async" alt="The elephant sitting on a padlock"></div></div>
-              </div>
-              <div class="caption">sitting on a padlock</div>
-            </div>
-            <div class="c4 shot">
-              <div class="shot-inner shot-inner-sm">
-                <div class="figure"><div class="media"><img width="2108" height="2400" src="images/metaforms/metaforms-illustration-elephant-letter-2108.webp" srcset="images/metaforms/metaforms-illustration-elephant-letter-1400.webp 1400w, images/metaforms/metaforms-illustration-elephant-letter-2108.webp 2108w" sizes="(max-width: 767px) calc(100vw - 72px), calc(33vw - 150px)" loading="lazy" decoding="async" alt="The elephant reading a letter"></div></div>
-              </div>
-              <div class="caption">reading a letter</div>
-            </div>
-
-            <!-- Wireframes + hero explorations -->
-            <div class="c6 text-block">
-              <h3 class="h3">Wireframes</h3>
-              <p class="body">Low-fidelity wireframes for the homepage locked the narrative first: the problem, the delivery chain, the bottleneck, the proof. Every section had a job before it had a look.</p>
-            </div>
-            <div class="c6 text-block">
-              <div class="spacer" aria-hidden="true"></div>
-              <p class="body">From there we explored several hero directions, from dark and editorial to cream and illustrated, before settling on the "Honest and grounded" concept with the elephant reading under a tree.</p>
-            </div>
-
-            <div class="c12 shot">
-              <div class="shot-inner">
-                <div class="figure"><div class="media"><img width="2600" height="1763" src="images/metaforms/metaforms-homepage-full-page-layout-2600.webp" srcset="images/metaforms/metaforms-homepage-full-page-layout-1400.webp 1400w, images/metaforms/metaforms-homepage-full-page-layout-2600.webp 2600w, images/metaforms/metaforms-homepage-full-page-layout-3966.webp 3966w" sizes="(max-width: 767px) calc(100vw - 72px), calc(100vw - 360px)" loading="lazy" decoding="async" alt="Homepage wireframes and full page layout"></div></div>
-              </div>
-              <div class="caption">homepage wireframes, full page layout</div>
-            </div>
-
-            <div class="c12 shot">
-              <div class="shot-inner">
-                <div class="figure"><div class="media"><img width="2600" height="1671" src="images/metaforms/metaforms-homepage-hero-explorations-grid-2600.webp" srcset="images/metaforms/metaforms-homepage-hero-explorations-grid-1400.webp 1400w, images/metaforms/metaforms-homepage-hero-explorations-grid-2600.webp 2600w, images/metaforms/metaforms-homepage-hero-explorations-grid-3966.webp 3966w" sizes="(max-width: 767px) calc(100vw - 72px), calc(100vw - 360px)" loading="lazy" decoding="async" alt="Homepage hero explorations"></div></div>
-              </div>
-              <div class="caption">homepage hero explorations</div>
-            </div>
-
-            <div class="c12 shot">
-              <div class="shot-inner">
-                <div class="figure"><div class="media"><img width="2600" height="1526" src="images/metaforms/metaforms-homepage-hero-honest-and-grounded-elephant-2600.webp" srcset="images/metaforms/metaforms-homepage-hero-honest-and-grounded-elephant-1400.webp 1400w, images/metaforms/metaforms-homepage-hero-honest-and-grounded-elephant-2600.webp 2600w, images/metaforms/metaforms-homepage-hero-honest-and-grounded-elephant-3966.webp 3966w" sizes="(max-width: 767px) calc(100vw - 72px), calc(100vw - 360px)" loading="lazy" decoding="async" alt="Final homepage hero, honest and grounded, with the elephant reading under a tree"></div></div>
-              </div>
-              <div class="caption">the final homepage hero</div>
-            </div>
-
-            <!-- ================= THE WEBSITE ================= -->
-            <div class="c12 text-block">
-              <h2 class="h2">The Website</h2>
-              <p class="body">A hand-drawn, warm, editorial site for a technical product. Serif headlines, orange accents, sticky-note asides and the elephant guiding readers from bottleneck to rollout.</p>
-            </div>
-
-            <div class="c12 shot">
-              <div class="shot-inner">
-                <div class="figure"><div class="media"><img width="2600" height="1719" src="images/metaforms/metaforms-next-bottleneck-delivery-chain-section-2600.webp" srcset="images/metaforms/metaforms-next-bottleneck-delivery-chain-section-1400.webp 1400w, images/metaforms/metaforms-next-bottleneck-delivery-chain-section-2600.webp 2600w, images/metaforms/metaforms-next-bottleneck-delivery-chain-section-3966.webp 3966w" sizes="(max-width: 767px) calc(100vw - 72px), calc(100vw - 360px)" loading="lazy" decoding="async" alt="Next bottleneck delivery chain section"></div></div>
-              </div>
-              <div class="caption">"then let the next bottleneck tell you where to expand"</div>
-            </div>
-
-            <!-- Pair row: one tall card left, two stacked panels right (Figma reference) -->
-            <div class="c6 shot">
-              <div class="shot-inner shot-inner-sm">
-                <div class="figure"><div class="media"><img width="1400" height="1343" src="images/metaforms/metaforms-survey-programming-section-1400.webp" srcset="images/metaforms/metaforms-survey-programming-section-900.webp 900w, images/metaforms/metaforms-survey-programming-section-1400.webp 1400w, images/metaforms/metaforms-survey-programming-section-1963.webp 1963w" sizes="(max-width: 767px) calc(100vw - 72px), calc(50vw - 200px)" loading="lazy" decoding="async" alt="Start with survey programming section"></div></div>
-              </div>
-              <div class="caption">survey programming section</div>
-            </div>
-            <div class="c6 shot">
-              <div class="shot-inner shot-inner-sm">
-                <div class="figure"><div class="media"><img width="982" height="908" src="images/metaforms/metaforms-reviewable-batches-and-client-revisions-982.webp" srcset="images/metaforms/metaforms-reviewable-batches-and-client-revisions-900.webp 900w, images/metaforms/metaforms-reviewable-batches-and-client-revisions-982.webp 982w" sizes="(max-width: 767px) calc(100vw - 72px), calc(50vw - 200px)" loading="lazy" decoding="async" alt="Reviewable batches and client revisions sections"></div></div>
-              </div>
-              <div class="caption">reviewable batches and client revisions</div>
-            </div>
-
-            <div class="c12 shot">
-              <div class="shot-inner">
-                <div class="figure"><div class="media"><img width="2600" height="884" src="images/metaforms/metaforms-customer-testimonials-illustrated-portraits-2600.webp" srcset="images/metaforms/metaforms-customer-testimonials-illustrated-portraits-1400.webp 1400w, images/metaforms/metaforms-customer-testimonials-illustrated-portraits-2600.webp 2600w, images/metaforms/metaforms-customer-testimonials-illustrated-portraits-3966.webp 3966w" sizes="(max-width: 767px) calc(100vw - 72px), calc(100vw - 360px)" loading="lazy" decoding="async" alt="Customer testimonials with illustrated portraits"></div></div>
-              </div>
-              <div class="caption">customer testimonials with illustrated portraits</div>
-            </div>
-
-            <div class="c12 shot">
-              <div class="shot-inner">
-                <div class="figure"><div class="media"><img width="2600" height="1516" src="images/metaforms/metaforms-ai-without-disrupting-cafe-illustration-section-2600.webp" srcset="images/metaforms/metaforms-ai-without-disrupting-cafe-illustration-section-1400.webp 1400w, images/metaforms/metaforms-ai-without-disrupting-cafe-illustration-section-2600.webp 2600w, images/metaforms/metaforms-ai-without-disrupting-cafe-illustration-section-3966.webp 3966w" sizes="(max-width: 767px) calc(100vw - 72px), calc(100vw - 360px)" loading="lazy" decoding="async" alt="AI that works without disrupting how your team works, cafe illustration"></div></div>
-              </div>
-              <div class="caption">"AI that works without disrupting how your team works"</div>
-            </div>
-
-            <div class="c6 shot">
-              <div class="shot-inner shot-inner-sm">
-                <div class="figure"><div class="media"><img width="3966" height="2891" src="images/metaforms/metaforms-website-pricing-2600.webp" srcset="images/metaforms/metaforms-website-pricing-1400.webp 1400w, images/metaforms/metaforms-website-pricing-2600.webp 2600w, images/metaforms/metaforms-website-pricing-3966.webp 3966w" sizes="(max-width: 767px) calc(100vw - 72px), calc(50vw - 200px)" loading="lazy" decoding="async" alt="Pricing section: pay for projects, not seats or tokens"></div></div>
-              </div>
-              <div class="caption">pricing: pay for projects, not seats or tokens</div>
-            </div>
-            <div class="c6 shot">
-              <div class="shot-inner shot-inner-sm">
-                <div class="figure"><div class="media"><img width="3966" height="2891" src="images/metaforms/metaforms-website-pilot-2600.webp" srcset="images/metaforms/metaforms-website-pilot-1400.webp 1400w, images/metaforms/metaforms-website-pilot-2600.webp 2600w, images/metaforms/metaforms-website-pilot-3966.webp 3966w" sizes="(max-width: 767px) calc(100vw - 72px), calc(50vw - 200px)" loading="lazy" decoding="async" alt="Pilot section: test Metaforms on work your team knows well"></div></div>
-              </div>
-              <div class="caption">pilot: test it on work your team knows well</div>
-            </div>
-            <div class="c12 shot">
-              <div class="shot-inner">
-                <div class="figure"><div class="media"><img width="3966" height="2891" src="images/metaforms/metaforms-website-security-2600.webp" srcset="images/metaforms/metaforms-website-security-1400.webp 1400w, images/metaforms/metaforms-website-security-2600.webp 2600w, images/metaforms/metaforms-website-security-3966.webp 3966w" sizes="(max-width: 767px) calc(100vw - 72px), calc(100vw - 360px)" loading="lazy" decoding="async" alt="Security section with compliance badges and the elephant on a padlock"></div></div>
-              </div>
-              <div class="caption">security: your security team won't be our first</div>
-            </div>
-
-            <!-- ================= THE ABOUT PAGE ================= -->
-            <div class="c12 text-block">
-              <h2 class="h2">The About Page</h2>
-              <p class="body">The About page opens on an orange envelope. As you scroll, the flap lifts and the company's story slides out one letter at a time, from the early years to the people who taught the team the job. It ends on the team itself, the offices in New York and Bengaluru, and the backers.</p>
-            </div>
-
-            <div class="c12 shot">
-              <div class="shot-inner">
-                <div class="figure"><div class="media" style="aspect-ratio: 2276 / 1598;">
-                  <video class="lazy-video" muted loop playsinline preload="none"
-                         poster="images/metaforms/motion/about-page-envelope-poster.webp"
-                         data-src-lg="images/metaforms/motion/about-page-envelope-2276.webm"
-                         data-src-sm="images/metaforms/motion/about-page-envelope-1280.mp4"
-                         aria-label="Scrolling the About page: the orange envelope opens and the story letters slide out"></video>
-                </div></div>
-              </div>
-              <div class="caption">the envelope opens and the story slides out, one letter at a time</div>
-            </div>
-
-            <div class="c12 shot">
-              <div class="shot-inner">
-                <div class="figure"><div class="media"><img width="3966" height="2883" src="images/metaforms/metaforms-about-page-board-2600.webp" srcset="images/metaforms/metaforms-about-page-board-1400.webp 1400w, images/metaforms/metaforms-about-page-board-2600.webp 2600w, images/metaforms/metaforms-about-page-board-3966.webp 3966w" sizes="(max-width: 767px) calc(100vw - 72px), calc(100vw - 360px)" loading="lazy" decoding="async" alt="About page screens: the envelope hero, offices, the team wall, and what we do"></div></div>
-              </div>
-              <div class="caption">about page: envelope hero, offices, the team, and what we do</div>
-            </div>
-
-            <!-- ================= ANIMATED DIAGRAMS ================= -->
-            <!-- Captured frame by frame from metaforms.ai at 60 fps. Loaded only near the viewport (see script). -->
-            <div class="c12 text-block">
-              <h2 class="h2">Animated Diagrams</h2>
-              <p class="body">Every product diagram on the site is animated. Each one is built from Figma layers and plays in the browser as live vector, so it stays sharp at any screen size. The elephant rides along on top, walking the delivery chain and sitting on the review card.</p>
-            </div>
-
-            <div class="c12 shot">
-              <div class="shot-inner">
-                <div class="figure"><div class="media" style="aspect-ratio: 3840 / 1636;">
-                  <video class="lazy-video" muted loop playsinline preload="none"
-                         poster="images/metaforms/motion/delivery-chain-poster.webp"
-                         data-src-lg="images/metaforms/motion/delivery-chain-3840.webm"
-                         data-src-sm="images/metaforms/motion/delivery-chain-1280.mp4"
-                         aria-label="Animated delivery chain: studies flow through ten module cards as each comes online"></video>
-                </div></div>
-              </div>
-              <div class="caption">the delivery chain: studies flow through ten modules as each comes online</div>
-            </div>
-
-            <div class="c12 shot">
-              <div class="shot-inner">
-                <div class="figure"><div class="media" style="aspect-ratio: 3840 / 2210;">
-                  <video class="lazy-video" muted loop playsinline preload="none"
-                         poster="images/metaforms/motion/survey-programming-poster.webp"
-                         data-src-lg="images/metaforms/motion/survey-programming-3840.webm"
-                         data-src-sm="images/metaforms/motion/survey-programming-1280.mp4"
-                         aria-label="Animated survey programming: requirement cards stream into the Metaforms hub and come out as survey screens"></video>
-                </div></div>
-              </div>
-              <div class="caption">survey programming: requirements stream into the hub and come out as survey screens</div>
-            </div>
-
-            <div class="c12 shot">
-              <div class="shot-inner">
-                <div class="figure"><div class="media" style="aspect-ratio: 3840 / 2210;">
-                  <video class="lazy-video" muted loop playsinline preload="none"
-                         poster="images/metaforms/motion/change-management-poster.webp"
-                         data-src-lg="images/metaforms/motion/change-management-3840.webm"
-                         data-src-sm="images/metaforms/motion/change-management-1280.mp4"
-                         aria-label="Animated change management: a change request arrives, is routed and resolved"></video>
-                </div></div>
-              </div>
-              <div class="caption">change management: a change request arrives, is routed and resolved</div>
-            </div>
-
-            <div class="c6 shot">
-              <div class="shot-inner shot-inner-sm">
-                <div class="figure"><div class="media" style="aspect-ratio: 2560 / 1510;">
-                  <video class="lazy-video" muted loop playsinline preload="none"
-                         poster="images/metaforms/motion/integrations-poster.webp"
-                         data-src-lg="images/metaforms/motion/integrations-2560.webm"
-                         data-src-sm="images/metaforms/motion/integrations-960.mp4"
-                         aria-label="Animated integrations: connected tools link up to the Metaforms hub"></video>
-                </div></div>
-              </div>
-              <div class="caption">integrations: connected tools link up to the hub</div>
-            </div>
-            <div class="c6 shot">
-              <div class="shot-inner shot-inner-sm">
-                <div class="figure"><div class="media" style="aspect-ratio: 2560 / 1510;">
-                  <video class="lazy-video" muted loop playsinline preload="none"
-                         poster="images/metaforms/motion/q2-routing-poster.webp"
-                         data-src-lg="images/metaforms/motion/q2-routing-2560.webm"
-                         data-src-sm="images/metaforms/motion/q2-routing-960.mp4"
-                         aria-label="Animated Q2 routing: a question is routed, answered and applied to the survey"></video>
-                </div></div>
-              </div>
-              <div class="caption">q2 routing: a question is routed, answered and applied</div>
-            </div>
-
-            <!-- ================= AGENTIC FLOW ================= -->
-            <div class="c12 text-block">
-              <h2 class="h2">Agentic Flow</h2>
-              <p class="body">The Agentic Flow page walks a study through four stages, each drawn from a real product screen: plan the study from a research objective, build and field the survey, process and check the data, then present the report for approval.</p>
-            </div>
-
-            <div class="c6 shot">
-              <div class="shot-inner shot-inner-sm">
-                <div class="figure"><div class="media"><img width="2600" height="1681" src="images/metaforms/metaforms-agentic-plan-2600.webp" srcset="images/metaforms/metaforms-agentic-plan-1400.webp 1400w, images/metaforms/metaforms-agentic-plan-2600.webp 2600w" sizes="(max-width: 767px) calc(100vw - 72px), calc(50vw - 200px)" loading="lazy" decoding="async" alt="Plan stage: the agent shapes a study from a research objective"></div></div>
-              </div>
-              <div class="caption">plan: shape the study from a research objective</div>
-            </div>
-            <div class="c6 shot">
-              <div class="shot-inner shot-inner-sm">
-                <div class="figure"><div class="media"><img width="2600" height="1677" src="images/metaforms/metaforms-agentic-build-2600.webp" srcset="images/metaforms/metaforms-agentic-build-1400.webp 1400w, images/metaforms/metaforms-agentic-build-2600.webp 2600w" sizes="(max-width: 767px) calc(100vw - 72px), calc(50vw - 200px)" loading="lazy" decoding="async" alt="Build stage: the survey in field with responses and quotas"></div></div>
-              </div>
-              <div class="caption">build: field the survey and track responses</div>
-            </div>
-            <div class="c6 shot">
-              <div class="shot-inner shot-inner-sm">
-                <div class="figure"><div class="media"><img width="2600" height="1663" src="images/metaforms/metaforms-agentic-process-2600.webp" srcset="images/metaforms/metaforms-agentic-process-1400.webp 1400w, images/metaforms/metaforms-agentic-process-2600.webp 2600w" sizes="(max-width: 767px) calc(100vw - 72px), calc(50vw - 200px)" loading="lazy" decoding="async" alt="Process stage: data checks, flags and exclusions"></div></div>
-              </div>
-              <div class="caption">process: check and clean the data</div>
-            </div>
-            <div class="c6 shot">
-              <div class="shot-inner shot-inner-sm">
-                <div class="figure"><div class="media"><img width="2600" height="1680" src="images/metaforms/metaforms-agentic-present-2600.webp" srcset="images/metaforms/metaforms-agentic-present-1400.webp 1400w, images/metaforms/metaforms-agentic-present-2600.webp 2600w" sizes="(max-width: 767px) calc(100vw - 72px), calc(50vw - 200px)" loading="lazy" decoding="async" alt="Present stage: the report ready for approval"></div></div>
-              </div>
-              <div class="caption">present: turn it into a report</div>
-            </div>
-
-            <!-- ================= MOBILE ================= -->
-            <div class="c12 text-block">
-              <h2 class="h2">Mobile</h2>
-              <p class="body">Every section was rebuilt for small screens rather than squeezed. Illustrations were recropped and the elephant reappears where the layout needed a beat.</p>
-            </div>
-
-            <div class="c4 phone-wrap"><div class="phone"><div class="media"><img width="984" height="2400" src="images/metaforms/metaforms-mobile-rollout-and-cta-section-984.webp" srcset="images/metaforms/metaforms-mobile-rollout-and-cta-section-500.webp 500w, images/metaforms/metaforms-mobile-rollout-and-cta-section-984.webp 984w" sizes="(max-width: 767px) calc(100vw - 72px), calc(33vw - 140px)" loading="lazy" decoding="async" alt="Mobile rollout and CTA section"></div></div></div>
-            <div class="c4 phone-wrap"><div class="phone"><div class="media"><img width="984" height="2400" src="images/metaforms/metaforms-mobile-survey-programming-section-984.webp" srcset="images/metaforms/metaforms-mobile-survey-programming-section-500.webp 500w, images/metaforms/metaforms-mobile-survey-programming-section-984.webp 984w" sizes="(max-width: 767px) calc(100vw - 72px), calc(33vw - 140px)" loading="lazy" decoding="async" alt="Mobile survey programming section"></div></div></div>
-            <div class="c4 phone-wrap"><div class="phone"><div class="media"><img width="984" height="2400" src="images/metaforms/metaforms-mobile-client-revisions-and-testimonial-section-984.webp" srcset="images/metaforms/metaforms-mobile-client-revisions-and-testimonial-section-500.webp 500w, images/metaforms/metaforms-mobile-client-revisions-and-testimonial-section-984.webp 984w" sizes="(max-width: 767px) calc(100vw - 72px), calc(33vw - 140px)" loading="lazy" decoding="async" alt="Mobile client revisions and testimonial section"></div></div></div>
-
-            <div class="c12 shot">
-              <div class="shot-inner">
-                <div class="figure"><div class="media"><img width="2600" height="1916" src="images/metaforms/metaforms-support-section-real-help-real-person-2600.webp" srcset="images/metaforms/metaforms-support-section-real-help-real-person-1400.webp 1400w, images/metaforms/metaforms-support-section-real-help-real-person-2600.webp 2600w, images/metaforms/metaforms-support-section-real-help-real-person-3966.webp 3966w" sizes="(max-width: 767px) calc(100vw - 72px), calc(100vw - 360px)" loading="lazy" decoding="async" alt="Support section, real help from a real person"></div></div>
-              </div>
-              <div class="caption">support section</div>
-            </div>
-
-            <!-- ================= IN CONTEXT ================= -->
-            <div class="c12 text-block">
-              <h2 class="h2">In Context</h2>
-              <p class="body">The site as it is used: on a desk, on a monitor, in the hands of a research delivery team.</p>
-            </div>
-
-            <div class="c12 shot">
-              <div class="shot-inner">
-                <div class="figure"><div class="media"><img width="2600" height="1943" src="images/metaforms/metaforms-survey-programming-desktop-monitor-mockup-2600.webp" srcset="images/metaforms/metaforms-survey-programming-desktop-monitor-mockup-1400.webp 1400w, images/metaforms/metaforms-survey-programming-desktop-monitor-mockup-2600.webp 2600w, images/metaforms/metaforms-survey-programming-desktop-monitor-mockup-3966.webp 3966w" sizes="(max-width: 767px) calc(100vw - 72px), calc(100vw - 360px)" loading="lazy" decoding="async" alt="Survey programming page on a desktop monitor"></div></div>
-              </div>
-              <div class="caption">survey programming page on desktop</div>
-            </div>
-
-            <div class="c12 shot">
-              <div class="shot-inner">
-                <div class="figure"><div class="media"><img width="2600" height="1257" src="images/metaforms/metaforms-footer-orange-wordmark-2600.webp" srcset="images/metaforms/metaforms-footer-orange-wordmark-1400.webp 1400w, images/metaforms/metaforms-footer-orange-wordmark-2600.webp 2600w, images/metaforms/metaforms-footer-orange-wordmark-3966.webp 3966w" sizes="(max-width: 767px) calc(100vw - 72px), calc(100vw - 360px)" loading="lazy" decoding="async" alt="Footer with the orange Metaforms wordmark"></div></div>
-              </div>
-              <div class="caption">footer with the orange wordmark</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- ================= MORE PROJECTS ================= -->
-        <section class="more">
-          <div class="more-head">
-            <span class="label-sm">More Projects</span>
-            <a href="#">View all &nbsp;→</a>
-          </div>
-          <div class="more-grid">
-            <div class="more-card">
-              <a href="cxverse.html">
-                <div class="media thumb" data-label="CXVERSE"><img width="1400" height="902" src="images/cxverse/cxverse-homepage-hero-shape-every-moment-1400.webp" loading="lazy" decoding="async" alt="CXVERSE"></div>
-                <div class="more-info">
-                  <div class="stack"><span class="title">CXVERSE</span><span class="label">Brand System, Web, Product</span></div>
-                  <span class="label stage">Case study</span>
-                </div>
-              </a>
-            </div>
-            <div class="more-card">
-              <a href="hexalog.html">
-                <div class="media thumb" data-label="Hexalog"><img width="1400" height="792" src="images/hexalog/hexalog-homepage-hero-cross-border-supply-chain-1400.webp" loading="lazy" decoding="async" alt="Hexalog"></div>
-                <div class="more-info">
-                  <div class="stack"><span class="title">Hexalog</span><span class="label">Brand, Web, Motion</span></div>
-                  <span class="label stage">Case study</span>
-                </div>
-              </a>
-            </div>
-            <div class="more-card">
-              <a href="nyayanidhi.html">
-                <div class="media thumb" data-label="Nyayanidhi"><img width="1400" height="803" src="images/nyayanidhi/nyayanidhi-homepage-hero-source-of-truth-prism-1400.webp" loading="lazy" decoding="async" alt="Nyayanidhi"></div>
-                <div class="more-info">
-                  <div class="stack"><span class="title">Nyayanidhi</span><span class="label">Brand, Web, Product</span></div>
-                  <span class="label stage">Case study</span>
-                </div>
-              </a>
-            </div>
-          </div>
-        </section>
+    <div class="hero-bottom">
+      <h1 class="hero-h1">Designing for<br><span>Intentional</span><br>AI founders<span>.</span></h1>
+      <div class="hero-pitch">
+        <p class="body">We build brands, websites, videos, and products for category-defining startups. Memetic is building an AI native design studio with taste and speed as core values.</p>
+        <a class="hero-cta" href="mailto:abhinav@memetic.design">Talk to founder →</a>
       </div>
+    </div>
+  </header>
 
-      <!-- Reserves room so the fixed footer is revealed as you reach the end -->
-      <div class="footer-spacer" aria-hidden="true"></div>
-    </main>
-
-    <!-- ================= FOOTER ================= -->
-    <footer class="site-footer" id="siteFooter">
-      <div class="footer-inner">
-        <div class="footer-brand">
-          <div class="media wordmark" data-label="Wordmark"><img src="" alt="Memetic.design"></div>
-          <p class="pixel">Designing for intentional AI founders.</p>
-        </div>
-        <div class="footer-cols">
-          <div class="footer-col">
-            <span class="label-sm">Connect</span>
-            <button type="button" class="body email">abhinav@memetic.design</button>
-            <span class="body">Bangalore, India</span>
-          </div>
-          <div class="footer-col">
-            <span class="label-sm">Social</span>
-            <a class="body" href="#">Twitter/X</a>
-            <a class="body" href="#">Instagram</a>
-            <a class="body" href="#">LinkedIn</a>
-          </div>
-        </div>
-      </div>
-    </footer>
+  <!-- Mobile menu (only used under 768px) -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button type="button" class="close" id="menuClose">Close</button>
+    <nav class="projects" aria-label="Projects">
+      <div><a class="proj-link" href="metaforms.html">Metaforms</a></div>
+      <div><a class="proj-link" href="cxverse.html">CXVERSE</a></div>
+      <div><a class="proj-link" href="hexalog.html">Hexalog</a></div>
+      <div><a class="proj-link" href="nyayanidhi.html">Nyayanidhi</a></div>
+    </nav>
+    <div class="links">
+      <a href="#work">All Projects</a><a href="#">Video</a><a href="#">Brand</a><a href="#">Web</a><a href="#">Product</a><a href="#">Socials</a><a href="#">About</a>
+    </div>
   </div>
-</div>
 
-<!-- Floating CTA (desktop) -->
-<a class="visit-btn" href="https://metaforms.ai" target="_blank" rel="noopener">
-  <span class="cta">Visit Website</span>
-  <span class="url">metaforms.ai</span>
-  <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-</a>
+  <main>
+    <!-- ============================================================
+         SELECTED WORK
+         ============================================================ -->
+    <section class="work" id="work">
+      <div class="work-head">
+        <span class="label-sm">Selected Work</span>
+        <span class="label-sm">2025–2026</span>
+      </div>
+      <div class="work-grid">
+        <div class="work-card">
+          <a href="metaforms.html">
+            <div class="thumb"><img width="1400" height="822" src="images/metaforms/metaforms-homepage-hero-honest-and-grounded-elephant-1400.webp" loading="lazy" decoding="async" alt="Metaforms"></div>
+            <div class="work-info">
+              <div class="stack"><span class="title">Metaforms</span><span class="label">Brand, Illustration, Web</span></div>
+              <span class="label stage">Case study</span>
+            </div>
+          </a>
+        </div>
+        <div class="work-card">
+          <a href="cxverse.html">
+            <div class="thumb"><img width="1400" height="902" src="images/cxverse/cxverse-homepage-hero-shape-every-moment-1400.webp" loading="lazy" decoding="async" alt="CXVERSE"></div>
+            <div class="work-info">
+              <div class="stack"><span class="title">CXVERSE</span><span class="label">Brand System, Web, Product</span></div>
+              <span class="label stage">Case study</span>
+            </div>
+          </a>
+        </div>
+        <div class="work-card">
+          <a href="hexalog.html">
+            <div class="thumb"><img width="1400" height="792" src="images/hexalog/hexalog-homepage-hero-cross-border-supply-chain-1400.webp" loading="lazy" decoding="async" alt="Hexalog"></div>
+            <div class="work-info">
+              <div class="stack"><span class="title">Hexalog</span><span class="label">Brand, Web, Motion</span></div>
+              <span class="label stage">Case study</span>
+            </div>
+          </a>
+        </div>
+        <div class="work-card">
+          <a href="nyayanidhi.html">
+            <div class="thumb"><img width="1400" height="803" src="images/nyayanidhi/nyayanidhi-homepage-hero-source-of-truth-prism-1400.webp" loading="lazy" decoding="async" alt="Nyayanidhi"></div>
+            <div class="work-info">
+              <div class="stack"><span class="title">Nyayanidhi</span><span class="label">Brand, Web, Product</span></div>
+              <span class="label stage">Case study</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
 
-<!-- Bottom bar (mobile) -->
-<div class="mobile-bar">
-  <a href="#" target="_blank" rel="noopener">Visit site <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
-  <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Talk to us</a>
-</div>
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="pixel">The Memetic Design Company</span>
+        <p class="pixel">Designing for intentional AI founders.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <span class="label-sm">Connect</span>
+          <a class="body email" href="mailto:abhinav@memetic.design">abhinav@memetic.design</a>
+          <span class="body">Bangalore, India</span>
+        </div>
+        <div class="footer-col">
+          <span class="label-sm">Social</span>
+          <a class="body" href="#">Twitter/X</a>
+          <a class="body" href="#">Instagram</a>
+          <a class="body" href="#">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </footer>
 
 <script>
-  // Theme toggle (persists in localStorage)
+  // Theme: the case study pages own the toggle; this page only honours the saved choice
   (function () {
-    var root = document.documentElement;
-    try { var saved = localStorage.getItem('theme'); if (saved === 'dark' || saved === 'light') root.className = saved; } catch (e) {}
-    document.querySelectorAll('.theme-toggle button').forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        root.className = btn.dataset.theme;
-        try { localStorage.setItem('theme', btn.dataset.theme); } catch (e) {}
-      });
-    });
+    try { var saved = localStorage.getItem('theme'); if (saved === 'dark' || saved === 'light') document.documentElement.className = saved; } catch (e) {}
   })();
 
-  // Keep the footer spacer the same height as the fixed footer
+  // Project reel
   (function () {
-    var footer = document.getElementById('siteFooter');
-    function sync() { document.documentElement.style.setProperty('--footer-h', footer.offsetHeight + 'px'); }
-    sync();
-    window.addEventListener('resize', sync);
-    if (document.fonts && document.fonts.ready) document.fonts.ready.then(sync);
-  })();
-
-  // Hero video: pick 4K on desktop, 720p on phones, then start it.
-  (function () {
-    var v = document.getElementById('heroVideo');
-    if (!v) return;
+    var REEL = [
+      { name: 'Rilin',     href: 'nyayanidhi.html', base: 'images/nyayanidhi/motion/rilin-website-walkthrough' },
+      { name: 'Hexalog',   href: 'hexalog.html',    base: 'images/hexalog/motion/hexalog-website-walkthrough' },
+      { name: 'Metaforms', href: 'metaforms.html',  lg: 'images/metaforms/metaforms-homepage-2160.webm', sm: 'images/metaforms/metaforms-homepage-720.webm',
+        poster: 'images/metaforms/metaforms-homepage-hero-honest-and-grounded-elephant-2600.webp' },
+      { name: 'Ferrock',   href: 'nyayanidhi.html', base: 'images/nyayanidhi/motion/ferrock-website-walkthrough' },
+      { name: 'Wapas',     href: 'nyayanidhi.html', base: 'images/nyayanidhi/motion/wapas-website-walkthrough' }
+    ];
+    var vids = document.querySelectorAll('#reel video');
+    var bar = document.getElementById('reelBar');
+    var nameEl = document.getElementById('reelName');
     var big = window.matchMedia('(min-width: 768px)').matches;
-    v.addEventListener('loadeddata', function () {
-      var go = v.play();
-      if (go && go.catch) go.catch(function () {});   // autoplay blocked: poster stays
-    }, { once: true });
-    v.src = big ? v.dataset.srcLg : v.dataset.srcSm;
-    v.load();
-  })();
+    var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var front = 0, idx = 0;
 
-  // Animated diagrams: load each video only as it nears the screen, and pause it once it
-  // leaves, so several 4K videos never decode at the same time. Desktop gets the 4K file,
-  // phones the light one. With reduced motion on, only the still poster is shown.
-  (function () {
-    var vids = document.querySelectorAll('video.lazy-video');
-    if (!vids.length) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    var big = window.matchMedia('(min-width: 768px)').matches;
-    function start(v) {
-      if (!v.dataset.loaded) {
-        v.dataset.loaded = '1';
-        v.src = big ? v.dataset.srcLg : v.dataset.srcSm;
-        v.load();
-      }
-      var go = v.play();
-      if (go && go.catch) go.catch(function () {});
+    function src(p) { return p.base ? p.base + (big ? '-1920.webm' : '-1280.mp4') : (big ? p.lg : p.sm); }
+    function poster(p) { return p.poster || p.base + '-poster.webp'; }
+
+    function show(i, first) {
+      idx = (i + REEL.length) % REEL.length;
+      var p = REEL[idx];
+      nameEl.textContent = p.name;
+      nameEl.href = p.href;
+      bar.style.width = '0';
+
+      var next = first ? vids[front] : vids[1 - front];
+      var prev = first ? null : vids[front];
+      next.poster = poster(p);
+      if (still) { swap(next, prev); return; }   // reduced motion: posters only
+      next.src = src(p);
+      next.load();
+      next.addEventListener('loadeddata', function () {
+        var go = next.play();
+        if (go && go.catch) go.catch(function () {});   // autoplay blocked: poster stays
+        swap(next, prev);
+      }, { once: true });
     }
-    if (!('IntersectionObserver' in window)) { vids.forEach(start); return; }
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) start(e.target);
-        else if (e.target.dataset.loaded) e.target.pause();
+    function swap(next, prev) {
+      next.classList.add('on');
+      if (!prev || prev === next) return;
+      prev.classList.remove('on');
+      front = 1 - front;
+      setTimeout(function () { prev.pause(); prev.removeAttribute('src'); prev.load(); }, 700);
+    }
+
+    vids.forEach(function (v) {
+      v.addEventListener('timeupdate', function () {
+        if (v !== vids[front] || !v.duration) return;
+        bar.style.width = (v.currentTime / v.duration * 100) + '%';
       });
-    }, { rootMargin: '200px 0px' });
-    vids.forEach(function (v) { io.observe(v); });
+      v.addEventListener('ended', function () { if (v === vids[front]) show(idx + 1); });
+    });
+    document.getElementById('reelPrev').addEventListener('click', function () { show(idx - 1); });
+    document.getElementById('reelNext').addEventListener('click', function () { show(idx + 1); });
+
+    // Don't decode video nobody can see
+    document.addEventListener('visibilitychange', function () {
+      var v = vids[front];
+      if (!v.getAttribute('src')) return;
+      if (document.hidden) v.pause();
+      else { var go = v.play(); if (go && go.catch) go.catch(function () {}); }
+    });
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        var v = vids[front];
+        if (!v.getAttribute('src')) return;
+        if (entries[0].isIntersecting) { var go = v.play(); if (go && go.catch) go.catch(function () {}); }
+        else v.pause();
+      }, { threshold: 0.05 }).observe(document.getElementById('top'));
+    }
+
+    show(0, true);
   })();
 
   // Mobile menu
   (function () {
     var btn = document.getElementById('menuBtn');
     var menu = document.getElementById('mobileMenu');
-    btn.addEventListener('click', function () {
-      var open = menu.classList.toggle('open');
-      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-    });
+    function set(open) { menu.classList.toggle('open', open); btn.setAttribute('aria-expanded', open ? 'true' : 'false'); }
+    btn.addEventListener('click', function () { set(true); });
+    document.getElementById('menuClose').addEventListener('click', function () { set(false); });
+    menu.addEventListener('click', function (e) { if (e.target.closest('a')) set(false); });
   })();
 </script>
 </body>
